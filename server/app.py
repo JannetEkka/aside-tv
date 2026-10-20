@@ -1,9 +1,8 @@
-"""Aside backend: the companion API, phone pairing, read-aloud audio, and the TV + phone web apps.
+"""Aside backend: the companion API, phone pairing, and the TV + phone web apps.
 
     GEMINI_API_KEY=... uvicorn app:app --app-dir server --port 8000
 """
 import asyncio
-import hashlib
 import io
 import os
 import random
@@ -20,9 +19,7 @@ from knowledge import DATA, load_films
 
 ROOT = Path(__file__).resolve().parent.parent
 WEB = ROOT / "web"
-MEDIA = Path(os.environ.get("ASIDE_MEDIA_DIR", ROOT / "media"))   # local video files, dev only
-TTS_DIR = Path(os.environ.get("ASIDE_TTS_DIR", "/tmp/aside-tts"))
-TTS_VOICE = os.environ.get("ASIDE_VOICE", "en-US-AvaMultilingualNeural")
+MEDIA = Path(os.environ.get("ASIDE_MEDIA_DIR", ROOT / "media"))   # the demo films, streamed with range requests
 
 app = FastAPI(title="Aside")
 FILMS = load_films()
@@ -36,6 +33,13 @@ class AskIn(BaseModel):
     mode: str = "question"
     question: str = ""
     since: float | None = None
+    # Evaluation only (eval/spoilers.py), honoured when ASIDE_EVAL=1: switch the safeguards off
+    # to measure what each one does. The demo films are public, so this exposes nothing private.
+    guard: bool = True
+    context: str = "seen"
+
+
+EVAL = os.environ.get("ASIDE_EVAL") == "1"
 
 
 @app.get("/api/health")
@@ -50,11 +54,8 @@ def films():
         if not f.public:
             continue
         pub = dict(f.public)
-        local = pub.get("video_file", "")
         if os.environ.get("ASIDE_TEST_WEBM"):   # headless test browsers ship without H.264
-            local = local.replace("-720p.mp4", "-test.webm")
-        if local and (MEDIA / local).is_file():   # local copy (development): skip the download
-            pub["video"] = "/media/" + local
+            pub["video"] = "/media/" + pub["video_file"].replace(".mp4", "-test.webm")
         out.append(pub)
     return out
 
@@ -66,12 +67,21 @@ async def ask(body: AskIn):
         raise HTTPException(404, "unknown film")
     if body.mode == "question" and not body.question.strip():
         raise HTTPException(400, "empty question")
+    if not EVAL:
+        body.guard, body.context = True, "seen"
+    baseline = not body.guard or body.context != "seen"
+    if body.mode != "question" and not baseline:
+        hit = film.prepared_answer(body.mode, body.t, body.since)
+        if hit:
+            return {**hit, "prepared": True}
     # Answers depend only on what has been seen, so nearby positions can share one.
-    key = (body.film, body.mode, int(body.t // 5), int((body.since or 0) // 30), body.question.strip().lower())
+    key = (body.film, body.mode, int(body.t // 5), int((body.since or 0) // 30), body.question.strip().lower(),
+           body.guard, body.context)
     if key in CACHE:
         return {**CACHE[key], "cached": True}
     try:
-        result = await asyncio.to_thread(companion.ask, film, body.t, body.mode, body.question, body.since)
+        result = await asyncio.to_thread(companion.ask, film, body.t, body.mode, body.question, body.since,
+                                         body.guard, body.context)
     except Exception as e:
         return JSONResponse({"error": "The companion couldn't answer just now. Try again in a moment.",
                              "detail": str(e)[:200]}, status_code=503)
@@ -79,27 +89,23 @@ async def ask(body: AskIn):
     return result
 
 
-# ---- read-aloud -------------------------------------------------------------------------------
+class JudgeIn(BaseModel):
+    film: str
+    t: float
+    question: str
+    answer: str
 
-@app.get("/api/tts")
-async def tts(text: str):
-    text = text.strip()[:600]
-    if not text:
-        raise HTTPException(400, "empty")
-    TTS_DIR.mkdir(parents=True, exist_ok=True)
-    path = TTS_DIR / (hashlib.sha1(f"{TTS_VOICE}|{text}".encode()).hexdigest() + ".mp3")
-    if not path.exists():
-        import edge_tts
-        ca = os.environ.get("ASIDE_CA_BUNDLE")   # only behind a TLS-inspecting proxy
-        if ca:
-            import ssl
-            import edge_tts.communicate
-            edge_tts.communicate._SSL_CTX = ssl.create_default_context(cafile=ca)
-        try:
-            await edge_tts.Communicate(text, TTS_VOICE, rate="+4%").save(str(path))
-        except Exception as e:
-            raise HTTPException(503, f"voice unavailable: {e}")
-    return FileResponse(path, media_type="audio/mpeg", headers={"Cache-Control": "public, max-age=86400"})
+
+@app.post("/api/eval/judge")
+async def eval_judge(body: JudgeIn):
+    """Grades one answer for spoilers and helpfulness (eval/spoilers.py). Only with ASIDE_EVAL=1."""
+    film = FILMS.get(body.film)
+    if not EVAL or not film:
+        raise HTTPException(404)
+    try:
+        return await asyncio.to_thread(companion.judge, film, body.t, body.question, body.answer)
+    except Exception as e:
+        return JSONResponse({"error": str(e)[:200]}, status_code=503)
 
 
 # ---- phone pairing ----------------------------------------------------------------------------
@@ -216,6 +222,13 @@ def media(name: str):
     if p.parent != MEDIA.resolve() or not p.is_file():
         raise HTTPException(404)
     return FileResponse(p)
+
+
+@app.get("/apk")
+def apk():
+    """The Fire TV app, for the Downloader app on the TV: type <server>/apk."""
+    return FileResponse(ROOT / "dist" / "aside.apk", media_type="application/vnd.android.package-archive",
+                        filename="aside.apk")
 
 
 @app.get("/")

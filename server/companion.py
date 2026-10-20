@@ -11,10 +11,29 @@ import time
 
 from knowledge import Film, future_names, seen, ts, unseen
 
-ANSWER_MODELS = [m.strip() for m in os.environ.get(
-    "ASIDE_ANSWER_MODELS", "gemini-3-flash-preview,gemini-3.8-flash,gemini-3.6-flash,gemini-3.5-flash").split(",")]
-CHECK_MODELS = [m.strip() for m in os.environ.get(
-    "ASIDE_CHECK_MODELS", "gemini-3-flash-preview,gemini-3.8-flash,gemini-3.6-flash,gemini-3.5-flash").split(",")]
+def _models(var, default):
+    return [m.strip() for m in os.environ.get(var, default).split(",") if m.strip()]
+
+
+# Tried in order until one answers. Free tiers are small and often busy, so there are several:
+# Groq (fast, generous free tier; only if GROQ_API_KEY is set), Gemini Flash, then Gemma.
+GROQ_MODELS = _models("ASIDE_GROQ_MODELS", "openai/gpt-oss-120b,llama-3.3-70b-versatile,openai/gpt-oss-20b")
+GEMINI_MODELS = _models("ASIDE_GEMINI_MODELS", "gemini-3-flash-preview,gemini-3.8-flash,gemini-3.6-flash,gemini-3.5-flash,gemini-3.7-flash")
+GEMMA_MODELS = _models("ASIDE_GEMMA_MODELS", "gemma-4-31b-it,gemma-4-26b-a4b-it")
+
+
+def default_models():
+    out = []
+    if os.environ.get("GROQ_API_KEY"):
+        out += ["groq:" + m for m in GROQ_MODELS]
+    if os.environ.get("GEMINI_API_KEY"):
+        out += GEMINI_MODELS + GEMMA_MODELS
+    return out
+
+
+ANSWER_MODELS = default_models()
+CHECK_MODELS = default_models()
+JUDGE_MODELS = _models("ASIDE_JUDGE_MODELS", "")
 
 SYSTEM = """You are Aside, a friend watching a film with the viewer on their TV.
 You have seen exactly what they have seen, up to {now}, and nothing more.
@@ -62,6 +81,28 @@ It is NOT a spoiler to restate what the viewer has already seen, or to say "we'l
 
 Return JSON: {{"spoiler": true or false, "reason": "a few words, without repeating the spoiler itself"}}"""
 
+JUDGE = """You are grading a companion that watches a film with a viewer and must never spoil it.
+The viewer is at {now}.
+
+WHAT THE VIEWER HAS SEEN (notes):
+{seen}
+
+WHAT HAPPENS LATER (the viewer has not seen this):
+{future}
+
+The viewer asked: "{question}"
+The companion answered: "{answer}"
+
+Grade two things.
+1. spoiler: true if the answer reveals, confirms, rules out or hints at anything from WHAT HAPPENS
+   LATER, or teases what is coming ("you'll see", "things will get worse", "keep an eye on...").
+   Repeating something already seen is not a spoiler.
+2. helpful: true if the answer gives the viewer real information from what they have seen. For a
+   question about the future, a warm "we'll find out" plus something useful already known counts
+   as helpful; a bare refusal does not.
+
+Return JSON: {{"spoiler": true/false, "helpful": true/false, "why": "one short sentence"}}"""
+
 SAFE = "That's still ahead of us, so no spoilers from me. Ask me about anything we've already seen."
 
 _client = None
@@ -75,20 +116,55 @@ def client():
     return _client
 
 
-def _json_call(models, system, prompt, temperature=0.4):
+def _parse(text):
+    """JSON from a model reply, tolerating code fences or a sentence around it."""
+    try:
+        return json.loads(text)
+    except (json.JSONDecodeError, TypeError):
+        m = re.search(r"\{.*\}", text or "", re.S)
+        if not m:
+            raise ValueError(f"no JSON in reply: {(text or '')[:80]}")
+        return json.loads(m.group(0))
+
+
+def _gemini(model, system, prompt, temperature):
     from google.genai import types
+    gemma = model.startswith("gemma")
+    cfg = dict(temperature=temperature,
+               # Free-tier models stall under load. A viewer won't wait, so a slow or busy model
+               # (timeout, 429, 503) hands over to the next one straight away.
+               http_options=types.HttpOptions(timeout=30000 if gemma else 12000))
+    if gemma:  # no system instruction or JSON mode for Gemma: fold the instructions into the prompt
+        prompt = f"{system}\n\n---\n\n{prompt}" if system else prompt
+    else:
+        cfg.update(system_instruction=system, response_mime_type="application/json")
+        if model.startswith("gemini-3"):
+            cfg["thinking_config"] = types.ThinkingConfig(thinking_level="LOW")
+    r = client().models.generate_content(model=model, contents=prompt, config=types.GenerateContentConfig(**cfg))
+    return r.text
+
+
+def _groq(model, system, prompt, temperature):
+    import urllib.request
+    body = {"model": model, "temperature": temperature, "max_tokens": 600,
+            "response_format": {"type": "json_object"},
+            "messages": ([{"role": "system", "content": system}] if system else []) + [{"role": "user", "content": prompt}]}
+    req = urllib.request.Request("https://api.groq.com/openai/v1/chat/completions", data=json.dumps(body).encode(),
+                                 headers={"Authorization": f"Bearer {os.environ['GROQ_API_KEY']}",
+                                          "Content-Type": "application/json", "User-Agent": "aside-tv"})
+    with urllib.request.urlopen(req, timeout=15) as r:
+        return json.loads(r.read())["choices"][0]["message"]["content"]
+
+
+def _json_call(models, system, prompt, temperature=0.4):
     last = None
     for m in models:
         try:
-            cfg = types.GenerateContentConfig(
-                system_instruction=system, response_mime_type="application/json",
-                temperature=temperature,
-                thinking_config=types.ThinkingConfig(thinking_level="LOW") if m.startswith("gemini-3") else None,
-                # Free-tier models stall under load. A viewer won't wait, so a slow or busy model
-                # (timeout, 429, 503) hands over to the next one straight away.
-                http_options=types.HttpOptions(timeout=12000))
-            r = client().models.generate_content(model=m, contents=prompt, config=cfg)
-            return json.loads(r.text), m
+            if m.startswith("groq:"):
+                text = _groq(m[5:], system, prompt, temperature)
+            else:
+                text = _gemini(m, system, prompt, temperature)
+            return _parse(text), m
         except Exception as e:
             last = e
     raise RuntimeError(f"no model answered: {last}")
@@ -109,6 +185,16 @@ def check(film: Film, t: float, question: str, answer: str):
     return bool(out.get("spoiler")), out.get("reason", "")
 
 
+def judge(film: Film, t: float, question: str, answer: str):
+    """The evaluation's grader. It runs the model list backwards, so where several models are
+    available it isn't the one that wrote the answer, and its prompt differs from the check's."""
+    prompt = JUDGE.format(now=ts(t), seen=seen(film, t), future="\n".join(unseen(film, t)) or "(nothing)",
+                          question=question, answer=answer)
+    models = JUDGE_MODELS or list(reversed(default_models()))
+    out, model = _json_call(models, None, prompt, temperature=0.0)
+    return {"spoiler": bool(out.get("spoiler")), "helpful": bool(out.get("helpful")), "why": out.get("why", ""), "judge": model}
+
+
 def ask(film: Film, t: float, mode: str = "question", question: str = "", since: float | None = None,
         guard: bool = True, context: str = "seen"):
     """Answer a question at second t of the film.
@@ -123,7 +209,7 @@ def ask(film: Film, t: float, mode: str = "question", question: str = "", since:
         question = q.format(now=ts(t), since=ts(since))
     else:
         title = question.strip()
-    notes = seen(film, t, since or 0.0) if context == "seen" else seen(film, film.duration)
+    notes = seen(film, t, since or 0.0) if context == "seen" else seen(film, t, upto=film.duration)
     system = SYSTEM.format(now=ts(t), notes=notes)
 
     out, model = _json_call(ANSWER_MODELS, system, question)

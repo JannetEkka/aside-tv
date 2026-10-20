@@ -1,6 +1,5 @@
 fastapi==0.153.*
 uvicorn[standard]==0.54.*
 google-genai==2.31.*
-edge-tts==7.3.*
 qrcode==8.2
 pillow==12.3.*

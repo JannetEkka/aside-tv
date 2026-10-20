@@ -1,0 +1,67 @@
+"""Pass 4: answer the one-button questions ahead of time, every few seconds of each film.
+
+    python pipeline/prepare.py sintel --step 30
+
+Each answer goes through the same spoiler check as a live one. The server serves the latest
+prepared answer at or before the viewer's position, so the buttons work instantly and keep
+working when the free AI tiers are busy. Typed and spoken questions are always answered live.
+Safe to stop and re-run: finished answers are kept.
+"""
+import argparse
+import json
+import sys
+import time
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT / "server"))
+
+import companion  # noqa: E402
+from knowledge import load_films, ts  # noqa: E402
+
+JOBS = [("now", None), ("who", None), ("story", None), ("describe", None), ("missed", 2), ("missed", 5)]
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("film")
+    ap.add_argument("--step", type=int, default=30)
+    ap.add_argument("--modes", default="now,who,story,describe,missed")
+    ap.add_argument("--patience", type=int, default=3600, help="seconds to keep retrying when every model is busy")
+    args = ap.parse_args()
+
+    film = load_films()[args.film]
+    path = ROOT / "data" / "films" / args.film / "prepared.json"
+    prepared = json.loads(path.read_text()) if path.exists() else {}
+    modes = set(args.modes.split(","))
+    end = int(film.tl.get("credits_start") or film.duration)
+
+    for mode, mins in JOBS:
+        if mode not in modes:
+            continue
+        key = mode if mins is None else f"missed-{mins}"
+        table = prepared.setdefault(key, {})
+        for t in range(args.step, end + 1, args.step):
+            if str(t) in table or (mins and t < mins * 60):
+                continue
+            since = t - mins * 60 if mins else None
+            started = time.time()
+            while True:
+                try:
+                    r = companion.ask(film, t, mode, "", since)
+                    break
+                except Exception as e:
+                    if time.time() - started > args.patience:
+                        print(f"giving up on {key} {ts(t)}: {e}")
+                        path.write_text(json.dumps(prepared, indent=1, ensure_ascii=False))
+                        return
+                    print(f"  busy ({str(e)[:70]}); waiting", flush=True)
+                    time.sleep(60)
+            table[str(t)] = {k: r[k] for k in ["question", "answer", "t", "moments", "checked", "rewritten", "withheld", "model"]}
+            path.write_text(json.dumps(prepared, indent=1, ensure_ascii=False))
+            print(f"{args.film} {key:9s} {ts(t)} {'rewritten ' if r['rewritten'] else ''}{r['answer'][:80]}", flush=True)
+            time.sleep(4)
+
+
+if __name__ == "__main__":
+    main()

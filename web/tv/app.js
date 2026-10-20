@@ -55,7 +55,6 @@
   var pausedAt = 0;         // wall clock when playback was paused
   var room = null;          // phone pairing code
   var phoneLive = false;
-  var speaking = null;      // read-aloud Audio
   var controlsTimer = null;
 
   // ---------- toast ----------
@@ -269,8 +268,8 @@
     showControls();
   }
 
-  video.addEventListener('pause', function () { pausedAt = Date.now(); showControls(); savePosition(); pushState(); });
-  video.addEventListener('play', function () { pausedAt = 0; showControls(); pushState(); });
+  video.addEventListener('pause', function () { pausedAt = Date.now(); if (!activeLayer()) showControls(); savePosition(); pushState(); });
+  video.addEventListener('play', function () { pausedAt = 0; if (!activeLayer()) showControls(); pushState(); });
   video.addEventListener('waiting', function () { $('buffering').classList.remove('hidden'); });
   video.addEventListener('playing', function () { $('buffering').classList.add('hidden'); });
   video.addEventListener('canplay', function () { $('buffering').classList.add('hidden'); });
@@ -311,7 +310,7 @@
     var c = cues[adIndex];
     if (!c || t < c.start) return;
     adIndex++;
-    var a = new Audio(c.audio || ('/api/tts?text=' + encodeURIComponent(c.text)));
+    var a = new Audio(c.audio);
     adPlaying = a;
     video.volume = 0.3;
     $('ad-text').textContent = c.text;
@@ -340,7 +339,7 @@
     { label: 'Describe the scene', mode: 'describe', ico: 'eye' },
     { label: 'What did I miss?', mode: 'missed', ico: 'back' },
     { label: 'Story so far', mode: 'story', ico: 'book' },
-    { label: 'Ask from phone', mode: 'phone', ico: 'phone' }
+    { label: 'Ask by phone', mode: 'phone', ico: 'phone' }
   ];
 
   function openBar() {
@@ -420,7 +419,12 @@
         if (seq !== askSeq) return;
         clearTimeout(thinkTimer);
         $('answer-thinking').classList.add('hidden');
-        $('answer-body').textContent = "I couldn't answer just now. Check the connection and try again.";
+        $('answer-body').textContent = "I couldn't answer just now. The AI service is busy, so give it a moment and try again.";
+        var acts = $('answer-actions');
+        var retry = button('Try again', 'btn primary', function () { ask(o); }, 'replay');
+        acts.insertBefore(retry, acts.firstChild);
+        setFocus(retry);
+        if (room) api('/api/rooms/' + room + '/answer', { question: o.title || o.question, answer: "Aside couldn't answer just now. Try again in a moment.", t: t }).catch(function () {});
       });
   }
 
@@ -450,17 +454,20 @@
     showControls();
   }
 
+  // Read aloud with the TV's own speech engine (Android TextToSpeech through the Fire TV wrapper),
+  // or the browser's when the app runs outside the wrapper.
   function speak(text) {
     stopSpeaking();
-    var a = new Audio('/api/tts?text=' + encodeURIComponent(text));
-    speaking = a;
-    a.play().catch(function () {
-      if (window.AsideNative && window.AsideNative.speak) window.AsideNative.speak(text);
-    });
+    if (window.AsideNative && window.AsideNative.speak) { window.AsideNative.speak(text); return; }
+    if (window.speechSynthesis) {
+      var u = new SpeechSynthesisUtterance(text);
+      u.lang = 'en-US';
+      speechSynthesis.speak(u);
+    }
   }
   function stopSpeaking() {
-    if (speaking) { try { speaking.pause(); } catch (e) { /* ignore */ } speaking = null; }
     if (window.AsideNative && window.AsideNative.stop) window.AsideNative.stop();
+    else if (window.speechSynthesis) speechSynthesis.cancel();
   }
 
   // ---------- welcome back ----------

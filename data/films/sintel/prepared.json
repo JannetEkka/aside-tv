@@ -1,0 +1,32 @@
+{
+ "now": {
+  "30": {
+   "question": "What just happened?",
+   "answer": "We started with sweeping views over jagged, icy mountains. Now, a traveler carrying a walking staff is trudging through a heavy blizzard, leaving footprints in the deep snow.",
+   "t": 30,
+   "moments": [
+    0,
+    24,
+    26
+   ],
+   "checked": true,
+   "rewritten": true,
+   "withheld": false,
+   "model": "gemini-3.6-flash"
+  },
+  "60": {
+   "question": "What just happened?",
+   "answer": "Sintel was trekking through the snow with her staff. Then a mountain warrior ambushed her from the cliffs with a spear. He just knocked her down into the snow and is charging at her.",
+   "t": 60,
+   "moments": [
+    44,
+    54,
+    58
+   ],
+   "checked": true,
+   "rewritten": false,
+   "withheld": false,
+   "model": "gemma-4-26b-a4b-it"
+  }
+ }
+}

@@ -20,6 +20,19 @@ class Film:
     id: str
     tl: dict
     public: dict = field(default_factory=dict)
+    prepared: dict = field(default_factory=dict)   # mode -> {second: answer}, made by pipeline/prepare.py
+
+    def prepared_answer(self, mode, t, since=None, max_age=30):
+        """A spoiler-checked answer made ahead of time at a moment no later than t (and at most
+        max_age seconds earlier), or None. Answers from an earlier moment can't spoil t."""
+        key = mode if mode != "missed" else f"missed-{round((t - (since if since is not None else t - 120)) / 60)}"
+        table = self.prepared.get(key) or {}
+        best = None
+        for k in table:
+            sec = int(k)
+            if sec <= t and t - sec <= max_age and (best is None or sec > best):
+                best = sec
+        return table[str(best)] if best is not None else None
 
     @property
     def title(self):
@@ -52,14 +65,19 @@ def load_films():
         if p.exists():
             tl = json.loads(p.read_text())
             pub = json.loads((d / "public.json").read_text()) if (d / "public.json").exists() else {}
-            films[tl["id"]] = Film(tl["id"], tl, pub)
+            prep = json.loads((d / "prepared.json").read_text()) if (d / "prepared.json").exists() else {}
+            films[tl["id"]] = Film(tl["id"], tl, pub, prep)
     return films
 
 
-def seen(film: Film, t: float, since: float = 0.0):
-    """Notes for everything on screen up to second t, as plain text for the model."""
+def seen(film: Film, t: float, since: float = 0.0, upto: float | None = None):
+    """Notes for everything on screen up to second t, as plain text for the model.
+
+    `upto` is for the evaluation's naive baseline only: notes run to `upto` while the header
+    still says the viewer is at t."""
     tl = film.tl
-    lines = [f"FILM: {film.title} ({tl.get('year', '')}). The viewer is at {ts(t)} of {ts(film.duration)}."]
+    viewer, t = t, (upto if upto is not None else t)
+    lines = [f"FILM: {film.title} ({tl.get('year', '')}). The viewer is at {ts(viewer)} of {ts(film.duration)}."]
 
     chars = [c for c in tl["characters"] if c["first_seen"] <= t]
     if chars:
