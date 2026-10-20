@@ -409,6 +409,106 @@
    "withheld": false,
    "plain": null,
    "model": "groq:openai/gpt-oss-20b"
+  },
+  "150": {
+   "question": "Who's that?",
+   "answer": "Sintel, a lean young woman with short reddish hair, dressed in cold-weather travel rags and leaning on a staff, appears in the scene. The old shaman, an elderly bearded man wearing a patterned headscarf, facial piercings, and earth-toned robes, smoking a pipe, is also on screen.",
+   "t": 120.0,
+   "moments": [
+    108,
+    111,
+    118
+   ],
+   "checked": true,
+   "rewritten": false,
+   "withheld": false,
+   "plain": null,
+   "model": "groq:openai/gpt-oss-20b"
+  },
+  "180": {
+   "question": "Who's that?",
+   "answer": "On screen: Sintel.",
+   "t": 180.0,
+   "moments": [],
+   "checked": true,
+   "rewritten": true,
+   "withheld": false,
+   "plain": true,
+   "model": "groq:openai/gpt-oss-120b"
+  },
+  "210": {
+   "question": "Who's that?",
+   "answer": "Right now, Sintel and the baby dragon are on screen. Sintel is a lean young woman with short reddish hair who is searching for a dragon and was recently attacked by a warrior. The baby dragon is a small, sandy-brown reptile with bat-like wings that Sintel found injured on a rooftop.",
+   "t": 210.0,
+   "moments": [
+    187,
+    202,
+    207
+   ],
+   "checked": true,
+   "rewritten": false,
+   "withheld": false,
+   "plain": null,
+   "model": "groq:qwen/qwen3.8-27b"
+  },
+  "240": {
+   "question": "Who's that?",
+   "answer": "Right now we see Sintel and Scales in an abandoned urban shelter. Sintel is a lean young woman with short reddish hair who has been traveling in the snow and was recently attacked by a warrior. Scales is a small, sandy-brown reptilian dragon fledgling that Sintel found injured and is now tending to.",
+   "t": 240.0,
+   "moments": [
+    211,
+    228
+   ],
+   "checked": true,
+   "rewritten": false,
+   "withheld": false,
+   "plain": null,
+   "model": "groq:qwen/qwen3.8-27b"
+  },
+  "270": {
+   "question": "Who's that?",
+   "answer": "Right now, Sintel and Scales are on screen. Sintel is the red-haired traveler who has been searching for a dragon and was recently attacked in the snow. Scales is the small baby dragon she found injured, named him, and is now running with through the market.",
+   "t": 270.0,
+   "moments": [
+    254,
+    228,
+    144
+   ],
+   "checked": true,
+   "rewritten": false,
+   "withheld": false,
+   "plain": null,
+   "model": "groq:qwen/qwen3.8-27b"
+  },
+  "300": {
+   "question": "Who's that?",
+   "answer": "Sintel, a lean young woman with short reddish hair, is on screen, carrying a staff and wearing cold‑weather travel rags. The mountain warrior, a muscular bald man with a dark goatee and thin mustache, is on screen, wielding a spear. The old shaman, an elderly bearded man in a patterned headscarf and earth‑toned robes, is on screen, smoking a pipe. Scales, a small sandy‑brown reptilian dragon fledgling with small horns and bat‑like wings, is on screen, resting beside Sintel. We'll find out what happens next together.",
+   "t": 300.0,
+   "moments": [
+    26,
+    108,
+    187
+   ],
+   "checked": true,
+   "rewritten": true,
+   "withheld": false,
+   "plain": null,
+   "model": "groq:openai/gpt-oss-20b"
+  },
+  "330": {
+   "question": "Who's that?",
+   "answer": "Sintel, a lean young woman with short reddish hair, is on screen, carrying a staff and wearing cold‑weather travel rags; Scales, a small sandy‑brown reptilian dragon fledgling with bat‑like wings, is perched beside her, and the adult dragon, a massive winged reptilian with pale brownish scales and curved horns, is swooping down from above.",
+   "t": 330.0,
+   "moments": [
+    319,
+    325,
+    308
+   ],
+   "checked": true,
+   "rewritten": false,
+   "withheld": false,
+   "plain": null,
+   "model": "groq:openai/gpt-oss-20b"
   }
  }
 }
