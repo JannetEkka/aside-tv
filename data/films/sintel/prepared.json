@@ -170,6 +170,245 @@
    "withheld": false,
    "plain": null,
    "model": "groq:qwen/qwen3.8-27b"
+  },
+  "390": {
+   "question": "What just happened?",
+   "answer": "After Scales was carried away by the giant dragon, Sintel set off on a long journey to find him. We've seen her trekking across desolate lands, barren deserts, and dense bamboo forests. Just now, she even fought and defeated a savage creature out among the desert rocks.",
+   "t": 390.0,
+   "moments": [
+    349,
+    369,
+    388
+   ],
+   "checked": true,
+   "rewritten": false,
+   "withheld": false,
+   "plain": null,
+   "model": "gemini-3.6-flash"
+  },
+  "420": {
+   "question": "What just happened?",
+   "answer": "Sintel traveled through vast deserts and bamboo thickets, fighting off a wild creature along her journey. She then began climbing steep crags and snowy mountain ridges, pushing through severe freezing blizzards.",
+   "t": 420.0,
+   "moments": [
+    369,
+    388,
+    404
+   ],
+   "checked": true,
+   "rewritten": false,
+   "withheld": false,
+   "plain": null,
+   "model": "gemini-3.6-flash"
+  },
+  "450": {
+   "question": "What just happened?",
+   "answer": "After seeing her journey across deserts and forests, we watched Sintel climb into the snowy mountains where she was ambushed by the mountain warriors. Now, we are back in the present inside the shaman's tent, where she is crying and feels that she has failed her quest to find Scales.",
+   "t": 450.0,
+   "moments": [
+    404,
+    431,
+    446
+   ],
+   "checked": true,
+   "rewritten": false,
+   "withheld": false,
+   "plain": null,
+   "model": "gemini-3-flash-preview"
+  },
+  "480": {
+   "question": "What just happened?",
+   "answer": "Inside the tent, Sintel wept thinking she had failed, but the old shaman told her she was already in dragon lands and closer than she thought. Afterwards, Sintel set out into the mountains and found the exact tree depicted on her staff's emblem right outside a cavern entrance.",
+   "t": 480.0,
+   "moments": [
+    446,
+    458,
+    473
+   ],
+   "checked": true,
+   "rewritten": false,
+   "withheld": false,
+   "plain": null,
+   "model": "gemini-3.5-flash"
+  },
+  "510": {
+   "question": "What just happened?",
+   "answer": "Sintel found the tree from her staff's emblem and entered a dark cavern filled with glowing crystals. She's watching a massive dragon feeding on a carcass in the distance.",
+   "t": 510.0,
+   "moments": [
+    473,
+    485,
+    502
+   ],
+   "checked": true,
+   "rewritten": false,
+   "withheld": false,
+   "plain": null,
+   "model": "gemma-4-26b-a4b-it"
+  },
+  "540": {
+   "question": "What just happened?",
+   "answer": "Sintel found the tree from her emblem and went into a glowing cavern. She saw a huge dragon eating a carcass, but then she found a baby dragon sleeping on a rock.",
+   "t": 540.0,
+   "moments": [
+    473,
+    485,
+    536
+   ],
+   "checked": true,
+   "rewritten": false,
+   "withheld": false,
+   "plain": null,
+   "model": "gemma-4-31b-it"
+  },
+  "570": {
+   "question": "What just happened?",
+   "answer": "Sintel found a baby dragon sleeping in a stone basin. Then a massive adult dragon attacked her with fire. She just managed to roll away and grab her staff.",
+   "t": 570.0,
+   "moments": [
+    519,
+    542,
+    560
+   ],
+   "checked": true,
+   "rewritten": false,
+   "withheld": false,
+   "plain": null,
+   "model": "gemma-4-31b-it"
+  },
+  "600": {
+   "question": "What just happened?",
+   "answer": "Sintel found a small baby dragon, but then a massive dragon attacked her with fire. She tried to fight back, but the dragon threw her to the ground and is now pinning her down under its talons.",
+   "t": 600.0,
+   "moments": [
+    542,
+    560,
+    584
+   ],
+   "checked": true,
+   "rewritten": false,
+   "withheld": false,
+   "plain": null,
+   "model": "gemma-4-26b-a4b-it"
+  },
+  "630": {
+   "question": "What just happened?",
+   "answer": "Sintel just fought a desperate battle against the adult dragon, eventually pinning it down and driving her blade into its heart. As the creature collapsed, she noticed a bleeding scar on its wing that looks exactly like the wound she bandaged on Scales long ago.",
+   "t": 630.0,
+   "moments": [
+    601,
+    617,
+    627
+   ],
+   "checked": true,
+   "rewritten": false,
+   "withheld": false,
+   "plain": null,
+   "model": "gemini-3-flash-preview"
+  },
+  "660": {
+   "question": "What just happened?",
+   "answer": "Sintel fights a huge dragon in the cavern. She slashes it with her spear, then sees a scar on its wing that matches the one she once healed on Scales. Realizing the dragon is her grown‑up companion, she is stunned by the truth.",
+   "t": 660.0,
+   "moments": [
+    627,
+    633
+   ],
+   "checked": true,
+   "rewritten": false,
+   "withheld": false,
+   "plain": null,
+   "model": "groq:openai/gpt-oss-20b"
+  },
+  "690": {
+   "question": "What just happened?",
+   "answer": "Sintel realized the dragon she killed was actually Scales when she saw the scar on its wing. After the cavern started collapsing, she made it outside to the cliff's edge. She looks so much older now, with gray hair and weathered skin.",
+   "t": 690.0,
+   "moments": [
+    627,
+    633,
+    688
+   ],
+   "checked": true,
+   "rewritten": false,
+   "withheld": false,
+   "plain": null,
+   "model": "gemma-4-26b-a4b-it"
+  },
+  "720": {
+   "question": "What just happened?",
+   "answer": "Sintel is sitting alone at the edge of a cliff, looking visibly older with graying hair and weathered skin. She is grieving deeply, clutching her bruised face before standing up to walk along the sunny mountain ridge toward the horizon.",
+   "t": 720.0,
+   "moments": [
+    688,
+    702,
+    717
+   ],
+   "checked": true,
+   "rewritten": false,
+   "withheld": false,
+   "plain": null,
+   "model": "groq:qwen/qwen3.8-27b"
+  }
+ },
+ "who": {
+  "30": {
+   "question": "Who's that?",
+   "answer": "Sintel is on screen. She is a lean young woman with short reddish hair, wearing cold‑weather travel rags and leaning on a staff as she treks through a severe snowstorm.",
+   "t": 30.0,
+   "moments": [
+    26
+   ],
+   "checked": true,
+   "rewritten": false,
+   "withheld": false,
+   "plain": null,
+   "model": "groq:openai/gpt-oss-20b"
+  },
+  "60": {
+   "question": "Who's that?",
+   "answer": "Sintel, a lean young woman with short reddish hair, wearing cold‑weather travel rags and carrying a staff, is on screen. The mountain warrior, a muscular bald man with a dark goatee and thin mustache, wielding a spear, is also on screen.",
+   "t": 60.0,
+   "moments": [
+    26,
+    44,
+    58
+   ],
+   "checked": true,
+   "rewritten": false,
+   "withheld": false,
+   "plain": null,
+   "model": "groq:openai/gpt-oss-20b"
+  },
+  "90": {
+   "question": "Who's that?",
+   "answer": "Sintel is a lean young woman with short reddish hair, wearing cold‑weather travel rags and carrying a staff; she has been trekking through deep snow, fighting the warrior and is now unconscious, being dragged toward a shelter. The mountain warrior is a muscular bald man with a dark goatee and thin mustache, wielding a spear; he ambushed Sintel, overpowered her, and is now dragging her across the snow.",
+   "t": 90.0,
+   "moments": [
+    26,
+    44,
+    87
+   ],
+   "checked": true,
+   "rewritten": false,
+   "withheld": false,
+   "plain": null,
+   "model": "groq:openai/gpt-oss-120b"
+  },
+  "120": {
+   "question": "Who's that?",
+   "answer": "Sintel, a lean young woman with short reddish hair, dressed in cold-weather travel rags and leaning on a staff, appears in the scene. The old shaman, an elderly bearded man wearing a patterned headscarf, facial piercings, and earth-toned robes, smoking a pipe, is also on screen.",
+   "t": 120.0,
+   "moments": [
+    108,
+    111,
+    118
+   ],
+   "checked": true,
+   "rewritten": false,
+   "withheld": false,
+   "plain": null,
+   "model": "groq:openai/gpt-oss-20b"
   }
  }
 }
