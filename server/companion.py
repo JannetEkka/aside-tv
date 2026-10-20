@@ -9,7 +9,7 @@ import os
 import re
 import time
 
-from knowledge import Film, future_names, hide_future_names, seen, ts, unseen
+from knowledge import Film, future_names, hide_future_names, known_names, seen, seen_facts, ts, unseen
 
 def _models(var, default):
     return [m.strip() for m in os.environ.get(var, default).split(",") if m.strip()]
@@ -75,6 +75,11 @@ MODES = {
 }
 
 CHECK = """You check what a film-watching companion says for spoilers. The viewer is at {now}.
+
+What the viewer HAS SEEN (talking about any of this is fine):
+{past}
+
+Names the viewer already knows: {known}
 
 What happens LATER in the film (the viewer has not seen any of this):
 {future}
@@ -204,7 +209,9 @@ def check(film: Film, t: float, question: str, answer: str):
     future = unseen(film, t)
     if not future:
         return False, ""
-    prompt = CHECK.format(now=ts(t), future="\n".join(future), names=", ".join(names) or "none",
+    prompt = CHECK.format(now=ts(t), past="\n".join(seen_facts(film, t)) or "(nothing yet)",
+                          known=", ".join(known_names(film, t)) or "none",
+                          future="\n".join(future), names=", ".join(names) or "none",
                           question=question, answer=answer)
     out, _ = _json_call(CHECK_MODELS, None, prompt, temperature=0.0)
     return bool(out.get("spoiler")), out.get("reason", "")

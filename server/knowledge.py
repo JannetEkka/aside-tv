@@ -109,7 +109,7 @@ def seen(film: Film, t: float, since: float = 0.0, upto: float | None = None):
         lines.append("\nDIALOGUE SO FAR:")
         lines += [f"[{ts(x['start'])}] {x['text']}" for x in said]
 
-    ad = [x for x in tl.get("ad", []) if x["start"] <= t]
+    ad = [x for x in tl.get("ad", []) if x["end"] <= t + 1]   # a cue describes up to its end, so only finished ones
     if ad:
         lines.append("\nVISUAL DESCRIPTIONS SO FAR:")
         lines += [f"[{ts(x['start'])}] {x['text']}" for x in ad[-12:]]
@@ -128,6 +128,16 @@ def hide_future_names(film, lines, t):
             line = line.replace(name, label)
         out.append(line)
     return out
+
+
+def seen_facts(film: Film, t: float):
+    """The facts the viewer has already seen, one line each. The spoiler check reads these so it can
+    tell a recap of the past from a hint about the future."""
+    return hide_future_names(film, [f"{ts(f['t'])} {f['text']}" for s in film.tl["scenes"] for f in s["facts"] if f["t"] <= t], t)
+
+
+def known_names(film: Film, t: float):
+    return sorted({film.label(c["id"], t) for c in film.tl["characters"] if c["first_seen"] <= t} - set(future_names(film, t)))
 
 
 def unseen(film: Film, t: float):
