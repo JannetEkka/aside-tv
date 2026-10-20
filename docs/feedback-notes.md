@@ -14,3 +14,10 @@ Raw notes, written as things happened. The submission's feedback answer and fric
 
 ## Web apps on Fire OS
 - Menu can't be captured by a pure web app (Amazon's table says so). Aside uses Menu to open its question bar, so the wrapper catches KEYCODE_MENU in `dispatchKeyEvent` and forwards it to the page.
+
+## Vega Developer Mode from a Windows laptop, 2026-10-20/21
+- Jannet's stick turned out to be Vega OS (Fire TV Stick 4K Select), so the Android APK couldn't run. We rebuilt the shell from the `vegaWebview` template (SDK 0.24.12112, CLI 1.4.5) in about 20 minutes. The template, WebView key handling and build were smooth: three VPKGs (armv7, aarch64, x86_64) from one `npm run build:release`.
+- Friction: the Vega CLI supports macOS and Ubuntu only. The laptop is Windows. Developer Mode enabling is a cloud step (device-code sign-in plus the TV's code), so we ran `vega devmode login` / `enable-device` from a Linux cloud session while Jannet approved on her own browser, then signed the CLI out.
+- Friction: with an Amazon account that wasn't yet registered as a developer, `vega devmode login` failed with `Failed to verify vendor registration: http 401 invalid_token "Authentication failed"`. It looked like a token or region problem; the real cause was the missing developer registration (the CLI has a clearer "No vendors found" message, but this path never reaches it). Suggestion: when the account has no developer profile, say so and link to the registration page.
+- Friction: on a headless Linux box, login then failed at the very end: `failed to store token in OS password management system: exec: "dbus-launch": executable file not found`. Fix: install `dbus-x11 gnome-keyring` and run the CLI inside `dbus-run-session` with an unlocked keyring. Suggestion: fall back to a file-based token store (with a warning) when no keyring is available, as many CLIs do.
+- Worked well: once registered, `enable-device --code` took a second and the stick rebooted into Developer Mode. The `vda` device tool is a renamed `adb` (protocol 41), so `vega device install-app` is `push` + `vpm install`.
