@@ -302,7 +302,18 @@
   }
 
   // ---------- audio description: narration in the gaps between dialogue ----------
-  var adIndex = 0, adPlaying = null;
+  // While the narrator speaks the film dips a little (not off) and fades back, as broadcast AD does.
+  var AD_DUCK = 0.65, AD_VOICE = 0.8;
+  var adIndex = 0, adPlaying = null, fadeTimer = null;
+  function fadeVolume(to, ms) {
+    clearInterval(fadeTimer);
+    var from = video.volume, steps = Math.max(1, Math.round(ms / 40)), i = 0;
+    fadeTimer = setInterval(function () {
+      i++;
+      video.volume = Math.max(0, Math.min(1, from + (to - from) * i / steps));
+      if (i >= steps) clearInterval(fadeTimer);
+    }, 40);
+  }
   function audioDescription(t) {
     if (!settings.ad || !film || !film.ad || adPlaying) return;
     var cues = film.ad;
@@ -311,8 +322,9 @@
     if (!c || t < c.start) return;
     adIndex++;
     var a = new Audio(c.audio);
+    a.volume = AD_VOICE;
     adPlaying = a;
-    video.volume = 0.3;
+    fadeVolume(AD_DUCK, 300);
     $('ad-text').textContent = c.text;
     $('ad-caption').classList.remove('hidden');
     var done = function () { if (adPlaying === a) stopAd(); };
@@ -323,7 +335,7 @@
   function stopAd() {
     if (adPlaying) { try { adPlaying.pause(); } catch (e) { /* ignore */ } }
     adPlaying = null;
-    video.volume = 1;
+    fadeVolume(1, 600);
     $('ad-caption').classList.add('hidden');
     if (film && film.ad) {
       var t = video.currentTime || 0;
@@ -352,7 +364,7 @@
     box.classList.remove('hidden');
     $('missed-chips').classList.add('hidden');
     CHIPS.forEach(function (c) {
-      var b = button(c.label, 'chip', function () {
+      var b = button(c.label, c.mode === 'phone' ? 'chip chip-phone' : 'chip', function () {
         if (c.mode === 'phone') return openPair();
         if (c.mode === 'missed') return openMissed();
         ask({ mode: c.mode, title: c.label });

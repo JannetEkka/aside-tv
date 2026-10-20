@@ -99,6 +99,7 @@ kbd { display: inline-block; min-width: 40px; margin: 0 8px 0 26px; padding: 2px
 .chip .ico { width: 26px; height: 26px; }
 .chip .ico { font-size: 30px; }
 .chip.focused { background: var(--accent); color: var(--accent-ink); }
+.chip-phone { box-shadow: inset 0 0 0 3px var(--accent); }
 
 /* answer card */
 .answer { position: absolute; top: 0; right: 0; bottom: 0; width: 820px; padding: 80px 70px 60px; background: linear-gradient(270deg, rgba(10,11,15,.98) 0%, rgba(10,11,15,.95) 80%, rgba(10,11,15,.85) 100%); border-left: 1px solid var(--line); display: flex; flex-direction: column; }
