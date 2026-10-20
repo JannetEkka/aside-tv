@@ -576,6 +576,19 @@
    "withheld": false,
    "plain": null,
    "model": "groq:openai/gpt-oss-20b"
+  },
+  "510": {
+   "question": "Who's that?",
+   "answer": "Sintel is on screen. She is a lean young woman with short reddish hair, wearing cold‑weather travel rags and leaning on a staff. She has a staff‑blade with a tree emblem, has been searching for a dragon, and has just found the tree that matches the emblem on her weapon.",
+   "t": 480.0,
+   "moments": [
+    473
+   ],
+   "checked": true,
+   "rewritten": false,
+   "withheld": false,
+   "plain": null,
+   "model": "groq:openai/gpt-oss-20b"
   }
  }
 }
