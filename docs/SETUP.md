@@ -20,6 +20,8 @@ Free Render services fall asleep after 15 minutes without visitors, and the firs
 
 ## 2. Install Aside on the Fire TV Stick
 
+**First check which system your stick runs:** Settings → My Fire TV → About → Software Version. If it says **Vega OS** (Fire TV Stick 4K Select and newer sticks), follow [VEGA.md](VEGA.md) instead of this section. The steps below are for **Fire OS** sticks.
+
 Once only:
 
 1. **Turn on developer options.** Settings → My Fire TV → About. Select your device name 7 times until it says you're a developer.
