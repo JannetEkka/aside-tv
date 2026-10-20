@@ -1,6 +1,6 @@
 # Demo video: shot list
 
-Target: 2:45 or less (judges may stop at 3:00), English, nobody on camera. Every shot is the TV screen, recorded off the Fire TV Stick (see [SETUP.md](SETUP.md), part 3). Claude edits the takes, adds titles and the narration, and makes the final MP4.
+Target: 2:45 or less (judges may stop at 3:00), English, nobody on camera. Every shot is the TV screen. On a Vega OS stick, screen-capture tools don't work, so **film the TV with your phone**: phone on a stand or a pile of books, landscape, TV filling the frame, room lights down, phone volume up so it records the TV's sound. Claude edits the takes, adds titles and the narration, and makes the final MP4.
 
 Before recording: wake the server (open its address on your phone), open Aside on the TV, and on the home screen set **Audio description: Off**, **Read answers aloud: On**, **Captions: Off**.
 
