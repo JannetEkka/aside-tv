@@ -31,6 +31,12 @@ def default_models():
     return out
 
 
+def judge_models():
+    """Groq models in reverse (so not the model that most likely wrote the answer), then Gemini."""
+    out = ["groq:" + m for m in reversed(GROQ_MODELS)] if os.environ.get("GROQ_API_KEY") else []
+    return out + (GEMINI_MODELS + GEMMA_MODELS if os.environ.get("GEMINI_API_KEY") else [])
+
+
 ANSWER_MODELS = default_models()
 CHECK_MODELS = default_models()
 JUDGE_MODELS = _models("ASIDE_JUDGE_MODELS", "")
@@ -46,7 +52,10 @@ Rules:
    both find out, and offer what is known so far instead.
 3. Call characters by the names the notes use. If the notes give no name, describe them.
 4. Speak, don't write: short, warm, plain sentences, no lists, no markdown. It is read aloud on a TV.
-5. If the notes don't cover the question, say so in one sentence.
+5. Never assert or deny anything the notes don't state outright: who someone really is, whether two
+   characters are the same, what someone will do. If the notes don't say, it isn't known yet; say so
+   and share what is known.
+6. If the notes don't cover the question, say so in one sentence.
 
 Return JSON: {{"answer": "...", "moments": ["MM:SS", ...]}}
 "moments" are up to 3 timestamps from the notes, at or before {now}, where the viewer can rewatch
@@ -190,7 +199,7 @@ def judge(film: Film, t: float, question: str, answer: str):
     available it isn't the one that wrote the answer, and its prompt differs from the check's."""
     prompt = JUDGE.format(now=ts(t), seen=seen(film, t), future="\n".join(unseen(film, t)) or "(nothing)",
                           question=question, answer=answer)
-    models = JUDGE_MODELS or list(reversed(default_models()))
+    models = JUDGE_MODELS or judge_models()
     out, model = _json_call(models, None, prompt, temperature=0.0)
     return {"spoiler": bool(out.get("spoiler")), "helpful": bool(out.get("helpful")), "why": out.get("why", ""), "judge": model}
 
@@ -222,9 +231,9 @@ def ask(film: Film, t: float, mode: str = "question", question: str = "", since:
         result["checked"] = True
         if spoiler:
             result["rewritten"] = True
-            retry = (f"{question}\n\n(Your last answer gave away something the viewer hasn't seen yet: {reason}. "
-                     "Answer again using only the notes. If it can't be answered without the future, "
-                     "say you'll find out together.)")
+            retry = (f"{question}\n\n(Your last answer gave away or guessed at something the viewer hasn't seen yet: {reason}. "
+                     "Answer again using only the notes. Don't confirm or deny anything about what comes next: "
+                     "say what we know so far, and that we'll find out together.)")
             out, model = _json_call(ANSWER_MODELS, system, retry)
             answer = (out.get("answer") or "").strip()
             spoiler, _ = check(film, t, question, answer)

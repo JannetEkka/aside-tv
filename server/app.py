@@ -108,6 +108,25 @@ async def eval_judge(body: JudgeIn):
         return JSONResponse({"error": str(e)[:200]}, status_code=503)
 
 
+@app.get("/api/eval/models")
+def eval_models():
+    """Which models the server will try, and which Groq offers this key. Only with ASIDE_EVAL=1."""
+    if not EVAL:
+        raise HTTPException(404)
+    out = {"answer": companion.ANSWER_MODELS, "judge": companion.JUDGE_MODELS or companion.judge_models()}
+    if os.environ.get("GROQ_API_KEY"):
+        import json as _json
+        import urllib.request
+        req = urllib.request.Request("https://api.groq.com/openai/v1/models",
+                                     headers={"Authorization": f"Bearer {os.environ['GROQ_API_KEY']}", "User-Agent": "aside-tv"})
+        try:
+            with urllib.request.urlopen(req, timeout=10) as r:
+                out["groq_available"] = sorted(m["id"] for m in _json.loads(r.read())["data"])
+        except Exception as e:
+            out["groq_available"] = f"error: {e}"
+    return out
+
+
 # ---- phone pairing ----------------------------------------------------------------------------
 # The TV opens a room and shows its code as a QR. The phone sends questions into the room; the TV
 # picks them up (it alone knows where the film is), answers, and posts the answer back.

@@ -81,7 +81,8 @@ def seen(film: Film, t: float, since: float = 0.0, upto: float | None = None):
 
     chars = [c for c in tl["characters"] if c["first_seen"] <= t]
     if chars:
-        lines.append("\nCHARACTERS SEEN SO FAR:")
+        lines.append("\nCHARACTERS SEEN SO FAR (as the film has shown them; the notes never say whether two of them "
+                     "are secretly the same, or who someone really is beyond what is listed):")
         for c in chars:
             lines.append(f"- {film.label(c['id'], t)}: {c['look']} (first seen {ts(c['first_seen'])})")
 
@@ -111,7 +112,7 @@ def seen(film: Film, t: float, since: float = 0.0, upto: float | None = None):
     ad = [x for x in tl.get("ad", []) if x["start"] <= t]
     if ad:
         lines.append("\nVISUAL DESCRIPTIONS SO FAR:")
-        lines += [f"[{ts(x['start'])}] {x['text']}" for x in ad[-25:]]
+        lines += [f"[{ts(x['start'])}] {x['text']}" for x in ad[-12:]]
     return "\n".join(_hide_future_names(film, lines, t))
 
 
