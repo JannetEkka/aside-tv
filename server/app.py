@@ -44,7 +44,7 @@ EVAL = os.environ.get("ASIDE_EVAL") == "1"
 
 @app.get("/api/health")
 def health():
-    return {"ok": True, "films": list(FILMS)}
+    return {"ok": True, "films": list(FILMS), "commit": os.environ.get("RENDER_GIT_COMMIT", "")[:7]}
 
 
 @app.get("/api/films")
