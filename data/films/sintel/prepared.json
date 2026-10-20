@@ -509,6 +509,34 @@
    "withheld": false,
    "plain": null,
    "model": "groq:openai/gpt-oss-20b"
+  },
+  "360": {
+   "question": "Who's that?",
+   "answer": "Sintel, a lean young woman with short reddish hair, is on screen, carrying a staff and wearing cold‑weather travel rags; Scales, a small sandy‑brown reptilian dragon fledgling with bat‑like wings, is perched beside her, and the adult dragon, a massive winged reptilian with pale brownish scales and curved horns, is swooping down from above.",
+   "t": 330.0,
+   "moments": [
+    319,
+    325,
+    308
+   ],
+   "checked": true,
+   "rewritten": false,
+   "withheld": false,
+   "plain": null,
+   "model": "groq:openai/gpt-oss-20b"
+  },
+  "390": {
+   "question": "Who's that?",
+   "answer": "Right now we see Sintel, a lean, red-haired young traveler who is journeying across harsh lands to find her lost baby dragon, Scales. She is wrestling a savage creature in the desert rocks, though we don't know anything else about this creature yet.",
+   "t": 390.0,
+   "moments": [
+    388
+   ],
+   "checked": true,
+   "rewritten": true,
+   "withheld": false,
+   "plain": null,
+   "model": "gemini-3-flash-preview"
   }
  }
 }
