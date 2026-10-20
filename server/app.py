@@ -261,7 +261,7 @@ def vpkg(arch: str = "armv7"):
 
 SPEAK_DIR = Path(os.environ.get("ASIDE_SPEAK_DIR", "/tmp/aside-speak"))
 SPEAK_MODEL = os.environ.get("ASIDE_SPEAK_MODEL", "canopylabs/orpheus-v1-english")
-SPEAK_VOICES = [v for v in os.environ.get("ASIDE_SPEAK_VOICES", "tara,autumn,diana,hannah,leah,troy").split(",") if v]
+SPEAK_VOICES = [v for v in os.environ.get("ASIDE_SPEAK_VOICES", "diana,autumn,hannah,daniel,austin,troy").split(",") if v]
 
 
 def _speak_chunk(text, voice):
@@ -289,7 +289,11 @@ def _sentences(text, limit=190):
 
 
 def _join_wavs(blobs):
+    """One WAV from several. Groq streams WAVs with a 'size unknown' header, so the frame count
+    is reset and the writer fills in the real size when it closes."""
     import wave
+    if len(blobs) == 1:
+        return blobs[0]
     frames, params = [], None
     for b in blobs:
         with wave.open(io.BytesIO(b)) as w:
@@ -297,7 +301,7 @@ def _join_wavs(blobs):
             frames.append(w.readframes(w.getnframes()))
     buf = io.BytesIO()
     with wave.open(buf, "wb") as w:
-        w.setparams(params)
+        w.setparams(params._replace(nframes=0))
         for f in frames:
             w.writeframes(f)
     return buf.getvalue()

@@ -589,6 +589,34 @@
    "withheld": false,
    "plain": null,
    "model": "groq:openai/gpt-oss-20b"
+  },
+  "540": {
+   "question": "Who's that?",
+   "answer": "Sintel is on screen. She is a lean young woman with short reddish hair, wearing cold‑weather travel rags and leaning on a staff. She has a staff‑blade with a tree emblem, has been searching for a dragon, and has just found the tree that matches the emblem on her weapon.",
+   "t": 480.0,
+   "moments": [
+    473
+   ],
+   "checked": true,
+   "rewritten": false,
+   "withheld": false,
+   "plain": null,
+   "model": "groq:openai/gpt-oss-20b"
+  },
+  "570": {
+   "question": "Who's that?",
+   "answer": "Sintel – a lean young woman with short reddish hair, carrying a staff‑blade, determined and skilled in combat; the adult dragon – a massive winged reptilian creature with pale brownish scales, powerful and aggressive, feeding on a carcass and breathing fire; the baby dragon – a small, sleeping dragon with expressive eyes that awakens and chirps before the adult attacks.",
+   "t": 570.0,
+   "moments": [
+    502,
+    536,
+    542
+   ],
+   "checked": true,
+   "rewritten": false,
+   "withheld": false,
+   "plain": null,
+   "model": "groq:openai/gpt-oss-120b"
   }
  }
 }
