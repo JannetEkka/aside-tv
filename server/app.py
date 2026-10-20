@@ -323,7 +323,8 @@ async def speak(text: str):
                 break
             except Exception as e:
                 last = e
-                companion.FAILURES.append((time.strftime("%H:%M:%S"), f"speak:{voice}", str(e)[:160]))
+                body = e.read().decode(errors="ignore")[:300] if hasattr(e, "read") else ""
+                companion.FAILURES.append((time.strftime("%H:%M:%S"), f"speak:{voice}", f"{e} {body}"[:400]))
         else:
             raise HTTPException(503, f"voice unavailable: {last}")
     return FileResponse(path, media_type="audio/wav", headers={"Cache-Control": "public, max-age=86400"})
