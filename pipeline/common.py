@@ -102,13 +102,3 @@ def generate_json(c, contents, schema=None, models=VIDEO_MODELS, temperature=0.2
         time.sleep(min(60, 10 * rnd))
     raise RuntimeError(f"all models failed: {last}")
 
-
-def edge_tts_tls():
-    """edge-tts pins certifi's CA list. Behind a TLS-inspecting proxy, point it at that proxy's CA
-    with ASIDE_CA_BUNDLE (not needed on a normal host such as Render)."""
-    import os
-    import ssl
-    ca = os.environ.get("ASIDE_CA_BUNDLE")
-    if ca:
-        import edge_tts.communicate
-        edge_tts.communicate._SSL_CTX = ssl.create_default_context(cafile=ca)

@@ -3,18 +3,19 @@
     python pipeline/publish.py sintel --video media/sintel-720p.mp4 --still 296
 
 Writes data/films/<id>/public.json (title, playback info, captions, audio description cues),
-the backdrop and card images, and one narrated MP3 per audio description cue.
+the backdrop and card images, and one narrated MP3 per audio description cue (Piper, an open-source offline voice: the LJSpeech
+voice, trained on public-domain recordings).
 The scene notes and facts stay in timeline.json, which only the server reads.
 """
 import argparse
-import asyncio
 import json
+import os
 import subprocess
+import tempfile
 
-from common import FILMS, edge_tts_tls
+from common import FILMS
 
-RELEASE = "https://github.com/JannetEkka/aside-tv/releases/download/media-v1/"
-VOICE = "en-US-AndrewMultilingualNeural"   # a calm narrator, distinct from the companion's voice
+VOICE = os.environ.get("ASIDE_PIPER_VOICE", "media/piper/en_US-ljspeech-high.onnx")
 
 
 def frame(video, t, out, vf):
@@ -28,23 +29,17 @@ def duration(path):
     return round(float(r.stdout.strip()), 2)
 
 
-async def narrate(cues, folder):
-    import edge_tts
-    edge_tts_tls()
+def narrate(cues, folder):
     folder.mkdir(exist_ok=True)
     for c in cues:
         path = folder / f"{c['id']}.mp3"
-        for attempt in range(3):
-            if path.exists() and path.stat().st_size > 1000:
-                break
-            try:
-                await edge_tts.Communicate(c["text"], VOICE, rate="+8%").save(str(path))
-            except Exception as e:  # the voice service drops a request now and then
-                print(f"  {c['id']} attempt {attempt + 1}: {e}")
-                path.unlink(missing_ok=True)
-                await asyncio.sleep(2)
-        # No clip after three tries: the TV falls back to the server's read-aloud for this cue.
-        c["audio_s"] = duration(path) if path.exists() else None
+        if not (path.exists() and path.stat().st_size > 1000):
+            with tempfile.NamedTemporaryFile(suffix=".wav") as wav:
+                subprocess.run(["python3", "-m", "piper", "-m", VOICE, "--length-scale", "0.9", "-f", wav.name],
+                               input=c["text"], text=True, check=True, capture_output=True)
+                subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", wav.name, "-ac", "1", "-c:a", "libmp3lame",
+                                "-b:a", "64k", str(path)], check=True)
+        c["audio_s"] = duration(path)
 
 
 def main():
@@ -60,22 +55,21 @@ def main():
     frame(args.video, args.still, d / "thumb.jpg", "crop=ih*16/9:ih,scale=640:360")
 
     cues = [dict(c) for c in tl.get("ad", [])]
-    asyncio.run(narrate(cues, d / "ad"))
-    long = [c["id"] for c in cues if c["audio_s"] and c["audio_s"] > c["end"] - c["start"] + 0.5]
+    narrate(cues, d / "ad")
+    long = [c["id"] for c in cues if c["audio_s"] > c["end"] - c["start"] + 0.5]
     if long:
         print("narration longer than its gap:", ", ".join(long))
 
-    name = f"{args.film}-720p.mp4"
+    name = f"{args.film}.mp4"   # media/<id>.mp4, kept under GitHub's 100 MB limit and served by the Aside server
     pub = {k: tl.get(k) for k in ["id", "title", "year", "director", "genre", "credit", "license",
                                    "license_url", "source_url", "logline", "duration", "credits_start"]}
     pub.update({
-        "video": RELEASE + name,
+        "video": "/media/" + name,
         "video_file": name,
         "backdrop": f"/films/{args.film}/backdrop.jpg",
         "thumb": f"/films/{args.film}/thumb.jpg",
         "subtitles": tl.get("subtitles", []),
-        "ad": [{"start": c["start"], "end": c["end"], "text": c["text"],
-                "audio": f"/films/{args.film}/ad/{c['id']}.mp3" if c["audio_s"] else None,
+        "ad": [{"start": c["start"], "end": c["end"], "text": c["text"], "audio": f"/films/{args.film}/ad/{c['id']}.mp3",
                 "audio_s": c["audio_s"]} for c in cues],
     })
     (d / "public.json").write_text(json.dumps(pub, indent=1, ensure_ascii=False))
