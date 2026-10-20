@@ -246,6 +246,89 @@ def media(name: str):
     return FileResponse(p)
 
 
+@app.get("/vpkg")
+@app.get("/vpkg/{arch}")
+def vpkg(arch: str = "armv7"):
+    """The Vega OS app (Fire TV Stick 4K Select and newer). armv7 for today's sticks."""
+    p = ROOT / "dist" / f"aside_{arch}.vpkg"
+    if arch not in ("armv7", "aarch64", "x86_64") or not p.is_file():
+        raise HTTPException(404)
+    return FileResponse(p, media_type="application/octet-stream", filename="aside.vpkg")
+
+
+# ---- read-aloud for Vega -------------------------------------------------------------------------
+# Vega's WebView has no speech API, so the server reads answers out with Groq's speech model.
+
+SPEAK_DIR = Path(os.environ.get("ASIDE_SPEAK_DIR", "/tmp/aside-speak"))
+SPEAK_MODEL = os.environ.get("ASIDE_SPEAK_MODEL", "canopylabs/orpheus-v1-english")
+SPEAK_VOICES = [v for v in os.environ.get("ASIDE_SPEAK_VOICES", "tara,autumn,diana,hannah,leah,troy").split(",") if v]
+
+
+def _speak_chunk(text, voice):
+    import json as _json
+    import urllib.request
+    req = urllib.request.Request(
+        "https://api.groq.com/openai/v1/audio/speech",
+        data=_json.dumps({"model": SPEAK_MODEL, "voice": voice, "input": text, "response_format": "wav"}).encode(),
+        headers={"Authorization": f"Bearer {os.environ['GROQ_API_KEY']}", "Content-Type": "application/json",
+                 "User-Agent": "aside-tv"})
+    with urllib.request.urlopen(req, timeout=20) as r:
+        return r.read()
+
+
+def _sentences(text, limit=190):
+    import re as _re
+    out, cur = [], ""
+    for part in _re.split(r"(?<=[.!?])\s+", text):
+        if cur and len(cur) + len(part) + 1 > limit:
+            out.append(cur)
+            cur = part
+        else:
+            cur = f"{cur} {part}".strip()
+    return out + ([cur] if cur else [])
+
+
+def _join_wavs(blobs):
+    import wave
+    frames, params = [], None
+    for b in blobs:
+        with wave.open(io.BytesIO(b)) as w:
+            params = params or w.getparams()
+            frames.append(w.readframes(w.getnframes()))
+    buf = io.BytesIO()
+    with wave.open(buf, "wb") as w:
+        w.setparams(params)
+        for f in frames:
+            w.writeframes(f)
+    return buf.getvalue()
+
+
+@app.get("/api/speak")
+async def speak(text: str):
+    import hashlib
+    text = text.strip()[:700]
+    if not text or not os.environ.get("GROQ_API_KEY"):
+        raise HTTPException(404)
+    SPEAK_DIR.mkdir(parents=True, exist_ok=True)
+    path = SPEAK_DIR / (hashlib.sha1(f"{SPEAK_MODEL}|{text}".encode()).hexdigest() + ".wav")
+    if not path.exists():
+        last = None
+        for voice in list(SPEAK_VOICES):
+            try:
+                blobs = [await asyncio.to_thread(_speak_chunk, chunk, voice) for chunk in _sentences(text)]
+                path.write_bytes(_join_wavs(blobs))
+                if SPEAK_VOICES[0] != voice:   # remember the voice that works
+                    SPEAK_VOICES.remove(voice)
+                    SPEAK_VOICES.insert(0, voice)
+                break
+            except Exception as e:
+                last = e
+                companion.FAILURES.append((time.strftime("%H:%M:%S"), f"speak:{voice}", str(e)[:160]))
+        else:
+            raise HTTPException(503, f"voice unavailable: {last}")
+    return FileResponse(path, media_type="audio/wav", headers={"Cache-Control": "public, max-age=86400"})
+
+
 @app.get("/apk")
 def apk():
     """The Fire TV app, for the Downloader app on the TV: type <server>/apk."""

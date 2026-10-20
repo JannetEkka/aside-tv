@@ -456,16 +456,23 @@
 
   // Read aloud with the TV's own speech engine (Android TextToSpeech through the Fire TV wrapper),
   // or the browser's when the app runs outside the wrapper.
+  // Fire OS: the TV's own speech engine through the wrapper. Vega's WebView has no speech API, so
+  // there the server reads it out (/api/speak). A desktop browser uses its own speech synthesis.
+  var voiceAudio = null;
   function speak(text) {
     stopSpeaking();
     if (window.AsideNative && window.AsideNative.speak) { window.AsideNative.speak(text); return; }
-    if (window.speechSynthesis) {
+    if (window.speechSynthesis && !window.ReactNativeWebView) {
       var u = new SpeechSynthesisUtterance(text);
       u.lang = 'en-US';
       speechSynthesis.speak(u);
+      return;
     }
+    voiceAudio = new Audio('/api/speak?text=' + encodeURIComponent(text));
+    voiceAudio.play().catch(function () { voiceAudio = null; });
   }
   function stopSpeaking() {
+    if (voiceAudio) { try { voiceAudio.pause(); } catch (e) { /* ignore */ } voiceAudio = null; }
     if (window.AsideNative && window.AsideNative.stop) window.AsideNative.stop();
     else if (window.speechSynthesis) speechSynthesis.cancel();
   }
@@ -577,6 +584,11 @@
   document.addEventListener('keydown', function (e) {
     var name = KEYMAP[e.key] || CODEMAP[e.keyCode];
     if (name && key(name)) e.preventDefault();
+    else if (name === 'back' && window.ReactNativeWebView) {
+      // Vega: Back at the home screen leaves the app (the shell exits on this message).
+      window.ReactNativeWebView.postMessage('EXIT_APP');
+      e.preventDefault();
+    }
   });
 
   // The Fire TV wrapper sends Back, Menu and media keys here (see tv-app/).
