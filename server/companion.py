@@ -17,7 +17,7 @@ def _models(var, default):
 
 # Tried in order until one answers. Free tiers are small and often busy, so there are several:
 # Groq (fast, generous free tier; only if GROQ_API_KEY is set), Gemini Flash, then Gemma.
-GROQ_MODELS = _models("ASIDE_GROQ_MODELS", "openai/gpt-oss-120b,llama-3.3-70b-versatile,openai/gpt-oss-20b")
+GROQ_MODELS = _models("ASIDE_GROQ_MODELS", "openai/gpt-oss-120b,qwen/qwen3.8-27b,openai/gpt-oss-20b")
 GEMINI_MODELS = _models("ASIDE_GEMINI_MODELS", "gemini-3-flash-preview,gemini-3.8-flash,gemini-3.6-flash,gemini-3.5-flash,gemini-3.7-flash")
 GEMMA_MODELS = _models("ASIDE_GEMMA_MODELS", "gemma-4-31b-it,gemma-4-26b-a4b-it")
 
@@ -32,8 +32,8 @@ def default_models():
 
 
 def judge_models():
-    """Groq models in reverse (so not the model that most likely wrote the answer), then Gemini."""
-    out = ["groq:" + m for m in reversed(GROQ_MODELS)] if os.environ.get("GROQ_API_KEY") else []
+    """Groq models starting from the second (so not the model that most likely wrote the answer), then Gemini."""
+    out = ["groq:" + m for m in GROQ_MODELS[1:] + GROQ_MODELS[:1]] if os.environ.get("GROQ_API_KEY") else []
     return out + (GEMINI_MODELS + GEMMA_MODELS if os.environ.get("GEMINI_API_KEY") else [])
 
 
@@ -154,15 +154,23 @@ def _gemini(model, system, prompt, temperature):
 
 
 def _groq(model, system, prompt, temperature):
+    import urllib.error
     import urllib.request
-    body = {"model": model, "temperature": temperature, "max_tokens": 600,
+    body = {"model": model, "temperature": temperature, "max_tokens": 900,
             "response_format": {"type": "json_object"},
             "messages": ([{"role": "system", "content": system}] if system else []) + [{"role": "user", "content": prompt}]}
-    req = urllib.request.Request("https://api.groq.com/openai/v1/chat/completions", data=json.dumps(body).encode(),
-                                 headers={"Authorization": f"Bearer {os.environ['GROQ_API_KEY']}",
-                                          "Content-Type": "application/json", "User-Agent": "aside-tv"})
-    with urllib.request.urlopen(req, timeout=15) as r:
-        return json.loads(r.read())["choices"][0]["message"]["content"]
+    # Short thinking keeps a TV answer to a few seconds. Dropped if a model doesn't take the option.
+    extra = {"reasoning_effort": "low"} if "gpt-oss" in model else {"reasoning_format": "hidden"} if "qwen" in model else {}
+    for opts in ([extra, {}] if extra else [{}]):
+        req = urllib.request.Request("https://api.groq.com/openai/v1/chat/completions", data=json.dumps({**body, **opts}).encode(),
+                                     headers={"Authorization": f"Bearer {os.environ['GROQ_API_KEY']}",
+                                              "Content-Type": "application/json", "User-Agent": "aside-tv"})
+        try:
+            with urllib.request.urlopen(req, timeout=15) as r:
+                return json.loads(r.read())["choices"][0]["message"]["content"]
+        except urllib.error.HTTPError as e:
+            if e.code != 400 or not opts:
+                raise
 
 
 def _json_call(models, system, prompt, temperature=0.4):
