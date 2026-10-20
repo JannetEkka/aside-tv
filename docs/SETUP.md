@@ -34,6 +34,17 @@ Then install Aside:
 
 To update later, repeat steps 4 and 5. The app installs over the old one.
 
+**If Downloader doesn't show up in search** (it's sometimes hidden in some regions): look under Find → App Store → Categories → **Utilities**; the publisher is AFTVnews. Don't install look-alike "downloader" apps from other publishers. Or install from a laptop instead:
+
+1. On the TV: Settings → My Fire TV → Developer Options → **ADB debugging: On**. Note the IP address under Settings → My Fire TV → About → Network.
+2. On the laptop: download [scrcpy](https://github.com/Genymobile/scrcpy#get-the-app) (it includes `adb`; you'll use it for recording too) and unzip it. Open `https://aside-tv.onrender.com/apk` in the laptop's browser to download `aside.apk`, and move it into the scrcpy folder.
+3. Open a terminal in that folder (on Windows: Shift + right-click → *Open in Terminal*) and run:
+   ```
+   adb connect <IP>:5555
+   adb install -r aside.apk
+   ```
+   The TV asks to allow the computer the first time: tick *Always allow* and choose OK, then run the second line again if it failed. It prints `Success`.
+
 **Using it:** the remote's D-pad moves around and the centre button selects. During a film, **Up** or **Menu (☰)** opens Aside's questions, **Left/Right** skip 10 seconds, **Back** closes whatever is open. **Ask by phone** shows a QR code: scan it with your phone's camera and ask out loud.
 
 ## 3. Record the screen for the demo
