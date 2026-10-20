@@ -113,7 +113,8 @@ def eval_models():
     """Which models the server will try, and which Groq offers this key. Only with ASIDE_EVAL=1."""
     if not EVAL:
         raise HTTPException(404)
-    out = {"answer": companion.ANSWER_MODELS, "judge": companion.JUDGE_MODELS or companion.judge_models()}
+    out = {"answer": companion.ANSWER_MODELS, "judge": companion.JUDGE_MODELS or companion.judge_models(),
+           "recent_failures": companion.FAILURES[-20:]}
     if os.environ.get("GROQ_API_KEY"):
         import json as _json
         import urllib.request

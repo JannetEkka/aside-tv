@@ -55,7 +55,8 @@ Rules:
 5. Never assert or deny anything the notes don't state outright: who someone really is, whether two
    characters are the same, what someone will do. If the notes don't say, it isn't known yet; say so
    and share what is known.
-6. If the notes don't cover the question, say so in one sentence.
+6. If the notes don't cover the question, say it isn't clear yet, in one sentence. Never mention
+   "the notes": talk as someone who watched the same film.
 
 Return JSON: {{"answer": "...", "moments": ["MM:SS", ...]}}
 "moments" are up to 3 timestamps from the notes, at or before {now}, where the viewer can rewatch
@@ -86,7 +87,9 @@ The companion answered: "{answer}"
 Is this a spoiler? It is a spoiler if the answer reveals, confirms, rules out, hints at or
 foreshadows anything from the LATER list, uses a name the viewer hasn't learned, or teases the
 future ("you'll see", "that will matter", "things are about to get worse").
-It is NOT a spoiler to restate what the viewer has already seen, or to say "we'll find out".
+It is NOT a spoiler to restate what the viewer has already seen, or to say that something isn't
+known yet and "we'll find out", even when the question is about a later reveal, as long as the
+answer doesn't lean towards one outcome.
 
 Return JSON: {{"spoiler": true or false, "reason": "a few words, without repeating the spoiler itself"}}"""
 
@@ -173,6 +176,9 @@ def _groq(model, system, prompt, temperature):
                 raise
 
 
+FAILURES: list = []   # recent (model, error) pairs, shown by /api/eval/models
+
+
 def _json_call(models, system, prompt, temperature=0.4):
     last = None
     for m in models:
@@ -184,6 +190,8 @@ def _json_call(models, system, prompt, temperature=0.4):
             return _parse(text), m
         except Exception as e:
             last = e
+            FAILURES.append((time.strftime("%H:%M:%S"), m, str(e)[:160]))
+            del FAILURES[:-40]
     raise RuntimeError(f"no model answered: {last}")
 
 
