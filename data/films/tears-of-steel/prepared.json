@@ -1,0 +1,93 @@
+{
+ "now": {
+  "30": {
+   "question": "What just happened?",
+   "answer": "Thom and Celia are arguing on a canal bridge. Celia calls him a jerk, and Thom says they need to follow their separate passions, contrasting her robotics work with his dream of going to space.",
+   "t": 30.0,
+   "moments": [
+    23,
+    25
+   ],
+   "checked": true,
+   "rewritten": false,
+   "withheld": false,
+   "plain": null,
+   "model": "groq:qwen/qwen3.8-27b"
+  },
+  "60": {
+   "question": "What just happened?",
+   "answer": "We just jumped forty years into the future to a simulation lab. A console operator announces that a robot's memory is synced and locked, and we see a preserved human brain sitting on a dish surrounded by a glowing energy ring.",
+   "t": 60.0,
+   "moments": [
+    42,
+    50,
+    57
+   ],
+   "checked": true,
+   "rewritten": false,
+   "withheld": false,
+   "plain": null,
+   "model": "groq:qwen/qwen3.8-27b"
+  },
+  "90": {
+   "question": "What just happened?",
+   "answer": "The title TEARS OF STEEL appears as the scene shifts to a bell tower overlooking Amsterdam. Inside, a sleeping man lies under a newspaper headline about a roboticist creating killer robots, while a sniper readies his rifle. Above the city, a massive armored airship drifts across the sky.",
+   "t": 90.0,
+   "moments": [
+    65,
+    79,
+    88
+   ],
+   "checked": true,
+   "rewritten": false,
+   "withheld": false,
+   "plain": null,
+   "model": "groq:openai/gpt-oss-120b"
+  },
+  "120": {
+   "question": "What just happened?",
+   "answer": "We're in a bell tower now. A sniper is watching a massive airship crash into the city and destroy houses. An older gray-haired man just woke up under a newspaper about killer robots.",
+   "t": 120.0,
+   "moments": [
+    79,
+    95,
+    107
+   ],
+   "checked": true,
+   "rewritten": false,
+   "withheld": false,
+   "plain": null,
+   "model": "gemma-4-31b-it"
+  },
+  "150": {
+   "question": "What just happened?",
+   "answer": "The sniper is keeping watch from the bell tower while the older gray‑haired man wakes up, groaning and rubbing his shoulder. He mentions hearing the team talking the previous night, and the sniper drinks mango juice as he keeps his eye on the sky.",
+   "t": 150.0,
+   "moments": [
+    119,
+    131,
+    146
+   ],
+   "checked": true,
+   "rewritten": false,
+   "withheld": false,
+   "plain": null,
+   "model": "groq:openai/gpt-oss-20b"
+  },
+  "180": {
+   "question": "What just happened?",
+   "answer": "The older gray-haired man woke up in the bell tower lookout and spoke briefly with the sniper. He then rappelled down a long rope inside a ruined church nave and walked into an enclosed room filled with books, maps, and lamps.",
+   "t": 180.0,
+   "moments": [
+    131,
+    153,
+    174
+   ],
+   "checked": true,
+   "rewritten": false,
+   "withheld": false,
+   "plain": null,
+   "model": "gemini-3.6-flash"
+  }
+ }
+}

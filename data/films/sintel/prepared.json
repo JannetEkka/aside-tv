@@ -647,6 +647,51 @@
    "withheld": false,
    "plain": null,
    "model": "groq:openai/gpt-oss-20b"
+  },
+  "660": {
+   "question": "Who's that?",
+   "answer": "Sintel, a lean young woman with short reddish hair, is on screen, wielding a staff-spear and fighting a massive adult dragon. The adult dragon, a massive winged reptilian with pale brownish scales and curved horns, is on screen, wounded and bleeding from a scar that matches the one Sintel once bandaged.",
+   "t": 630.0,
+   "moments": [
+    627,
+    542,
+    325
+   ],
+   "checked": true,
+   "rewritten": false,
+   "withheld": false,
+   "plain": null,
+   "model": "groq:openai/gpt-oss-20b"
+  },
+  "690": {
+   "question": "Who's that?",
+   "answer": "Sintel is the only figure on screen now; she is an aged, red‑haired traveler with graying hair, weathered skin, and a staff‑blade, having just lost Scales and sitting alone on the cliff’s edge.",
+   "t": 690.0,
+   "moments": [
+    688,
+    678,
+    642
+   ],
+   "checked": true,
+   "rewritten": false,
+   "withheld": false,
+   "plain": null,
+   "model": "groq:openai/gpt-oss-120b"
+  },
+  "720": {
+   "question": "Who's that?",
+   "answer": "Sintel is the only one on screen; she is a lean young woman with short reddish hair, wearing cold‑weather travel rags, her hair now graying, bruised and visibly aged from her long quest, standing alone on a sunny mountain ridge after the loss of her dragon companion.",
+   "t": 720.0,
+   "moments": [
+    678,
+    688,
+    717
+   ],
+   "checked": true,
+   "rewritten": false,
+   "withheld": false,
+   "plain": null,
+   "model": "groq:openai/gpt-oss-20b"
   }
  }
 }
