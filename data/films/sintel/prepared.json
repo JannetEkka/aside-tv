@@ -1,0 +1,175 @@
+{
+ "now": {
+  "30": {
+   "question": "What just happened?",
+   "answer": "We just saw a wide aerial view of jagged, snow-covered mountains under a misty sky. Then the focus shifted to Sintel, who is trekking through a severe snowstorm while leaning on a staff.",
+   "t": 30.0,
+   "moments": [
+    0,
+    26
+   ],
+   "checked": true,
+   "rewritten": false,
+   "withheld": false,
+   "plain": null,
+   "model": "groq:qwen/qwen3.8-27b"
+  },
+  "60": {
+   "question": "What just happened?",
+   "answer": "Sintel was trudging through the snow when a warrior leaped down from the cliffs to ambush her. They fought briefly, but he quickly overpowered her and struck her down onto the ground.",
+   "t": 60.0,
+   "moments": [
+    44,
+    58
+   ],
+   "checked": true,
+   "rewritten": false,
+   "withheld": false,
+   "plain": null,
+   "model": "groq:qwen/qwen3.8-27b"
+  },
+  "90": {
+   "question": "What just happened?",
+   "answer": "The mountain warrior ambushed Sintel on the snowy slopes and overpowered her, striking her down until she lost consciousness. He is now dragging her by her staff across the snow toward a distant shelter.",
+   "t": 90.0,
+   "moments": [
+    44,
+    73,
+    87
+   ],
+   "checked": true,
+   "rewritten": false,
+   "withheld": false,
+   "plain": null,
+   "model": "groq:qwen/qwen3.8-27b"
+  },
+  "120": {
+   "question": "What just happened?",
+   "answer": "The old shaman is in his tent, watching Sintel. He comments that her blade has a dark past and has shed much innocent blood, and tells her she is a fool for traveling alone, unprepared. That's all we see right now, and we'll find out what happens next together.",
+   "t": 120.0,
+   "moments": [
+    101,
+    108,
+    118
+   ],
+   "checked": true,
+   "rewritten": true,
+   "withheld": false,
+   "plain": null,
+   "model": "groq:qwen/qwen3.8-27b"
+  },
+  "150": {
+   "question": "What just happened?",
+   "answer": "Sintel is sitting in a warm tent with the old shaman, who has just served her some hot soup. She tells him she is searching for a dragon, and he warns her that it is a dangerous quest for a lone hunter.",
+   "t": 150.0,
+   "moments": [
+    124,
+    135,
+    144
+   ],
+   "checked": true,
+   "rewritten": false,
+   "withheld": false,
+   "plain": null,
+   "model": "groq:qwen/qwen3.8-27b"
+  },
+  "180": {
+   "question": "What just happened?",
+   "answer": "The scene just shifted to a sunlit desert city where a younger Sintel is rummaging through alley scraps and crates. She finds a ripe fruit on a crate, but right next to it, she discovers a prickly hedgehog.",
+   "t": 180.0,
+   "moments": [
+    156,
+    168
+   ],
+   "checked": true,
+   "rewritten": false,
+   "withheld": false,
+   "plain": null,
+   "model": "groq:qwen/qwen3.8-27b"
+  },
+  "210": {
+   "question": "What just happened?",
+   "answer": "She climbs onto a tiled rooftop after hearing a distressed cry. She discovers a small baby dragon with a severely bleeding wing. The baby dragon relaxes and permits the girl to gently touch its snout.",
+   "t": 210.0,
+   "moments": [],
+   "checked": true,
+   "rewritten": true,
+   "withheld": false,
+   "plain": true,
+   "model": "groq:qwen/qwen3.8-27b"
+  },
+  "240": {
+   "question": "What just happened?",
+   "answer": "The girl, Sintel, is in a ruined room tending to the wounded baby dragon she found earlier. She wraps its wing with bandages and names it Scales, then settles him into bed while she sits nearby. The scene shows her caring for the creature in the dim, abandoned shelter.",
+   "t": 240.0,
+   "moments": [
+    211,
+    228
+   ],
+   "checked": true,
+   "rewritten": false,
+   "withheld": false,
+   "plain": null,
+   "model": "groq:openai/gpt-oss-20b"
+  },
+  "270": {
+   "question": "What just happened?",
+   "answer": "The girl, Sintel, is running through a busy market with the baby dragon, Scales, darting ahead. She calls out to him, encouraging him to hurry, and he playfully chases a chicken, causing a small commotion as they both laugh.",
+   "t": 270.0,
+   "moments": [
+    250,
+    254
+   ],
+   "checked": true,
+   "rewritten": false,
+   "withheld": false,
+   "plain": null,
+   "model": "groq:openai/gpt-oss-20b"
+  },
+  "300": {
+   "question": "What just happened?",
+   "answer": "Sintel and Scales have been running through the city market together, chasing a chicken and showing off their close bond. Now, they are climbing the stone stairs of a ruined temple that overlooks the city.",
+   "t": 300.0,
+   "moments": [
+    254,
+    268,
+    286
+   ],
+   "checked": true,
+   "rewritten": false,
+   "withheld": false,
+   "plain": null,
+   "model": "gemini-3-flash-preview"
+  },
+  "330": {
+   "question": "What just happened?",
+   "answer": "Sintel and Scales climbed to the top of some ancient temple ruins at sunset, where Scales joyfully took to the open sky. As Sintel watched him fly, a massive adult dragon suddenly swooped down and snatched Scales in its talons.",
+   "t": 330.0,
+   "moments": [
+    286,
+    308,
+    325
+   ],
+   "checked": true,
+   "rewritten": true,
+   "withheld": false,
+   "plain": null,
+   "model": "groq:qwen/qwen3.8-27b"
+  },
+  "360": {
+   "question": "What just happened?",
+   "answer": "Sintel is standing in a vast, open wilderness, watching the horizon after the giant dragon carried Scales away. She looks heartbroken but determined, with tears in her eyes, as she resolves to find him. The scene is still playing, showing her alone in the wild.",
+   "t": 360.0,
+   "moments": [
+    342,
+    347,
+    349
+   ],
+   "checked": true,
+   "rewritten": false,
+   "withheld": false,
+   "plain": null,
+   "model": "groq:qwen/qwen3.8-27b"
+  }
+ }
+}
