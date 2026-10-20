@@ -9,7 +9,7 @@ import os
 import re
 import time
 
-from knowledge import Film, future_names, seen, ts, unseen
+from knowledge import Film, future_names, hide_future_names, seen, ts, unseen
 
 def _models(var, default):
     return [m.strip() for m in os.environ.get(var, default).split(",") if m.strip()]
@@ -210,6 +210,35 @@ def check(film: Film, t: float, question: str, answer: str):
     return bool(out.get("spoiler")), out.get("reason", "")
 
 
+def recap(film: Film, t: float, mode: str, since: float | None):
+    """A plain answer stitched from the timeline's own facts up to t, with no model involved, so it
+    can't spoil. The fallback for button questions when a model's answer keeps failing the check."""
+    facts = [(f["t"], f["text"]) for s in film.tl["scenes"] for f in s["facts"] if f["t"] <= t]
+    scene = film.scene_at(t)
+    if mode == "now":
+        pick = [x for x in facts if x[0] >= t - 90][-3:] or facts[-2:]
+    elif mode == "missed":
+        start = since if since is not None else t - 120
+        pick = [x for x in facts if x[0] >= start][-4:]
+    elif mode == "story":
+        done = [s for s in film.tl["scenes"] if s["end"] <= t][-4:]
+        pick = [(s["start"], s["summary"]) for s in done] + [x for x in facts if x[0] >= scene["start"]][-2:]
+    elif mode == "who":
+        names = [f"{film.label(c, t)}" for c in scene["characters"]
+                 if any(ch["id"] == c and ch["first_seen"] <= t for ch in film.tl["characters"])]
+        pick = [(t, ("On screen: " + ", ".join(names) + ".") if names else "Nobody we've met is on screen right now.")]
+    elif mode == "describe":
+        ad = [c for c in film.tl.get("ad", []) if c["start"] <= t][-2:]
+        pick = [(c["start"], c["text"]) for c in ad] or [(scene["start"], f"We're at {scene['location']}.")]
+    else:
+        return None
+    if not pick:
+        return None
+    text = " ".join(x[1] if x[1].endswith(".") else x[1] + "." for x in pick)
+    text = hide_future_names(film, [text], t)[0]
+    return text, {"moments": [int(x[0]) for x in pick][-3:]}
+
+
 def judge(film: Film, t: float, question: str, answer: str):
     """The evaluation's grader. It runs the model list backwards, so where several models are
     available it isn't the one that wrote the answer, and its prompt differs from the check's."""
@@ -246,16 +275,22 @@ def ask(film: Film, t: float, mode: str = "question", question: str = "", since:
         spoiler, reason = check(film, t, question, answer)
         result["checked"] = True
         if spoiler:
-            result["rewritten"] = True
+            result.update(rewritten=True, first_answer=answer, check_reason=reason)
             retry = (f"{question}\n\n(Your last answer gave away or guessed at something the viewer hasn't seen yet: {reason}. "
                      "Answer again using only the notes. Don't confirm or deny anything about what comes next: "
                      "say what we know so far, and that we'll find out together.)")
             out, model = _json_call(ANSWER_MODELS, system, retry)
             answer = (out.get("answer") or "").strip()
-            spoiler, _ = check(film, t, question, answer)
+            spoiler, reason2 = check(film, t, question, answer)
             if spoiler or not answer:
-                answer, out = SAFE, {"moments": []}
-                result["withheld"] = True
+                result.update(second_answer=answer, check_reason_2=reason2)
+                plain = recap(film, t, mode, since) if mode in MODES else None
+                if plain:   # a button question always gets an answer, built only from what's been seen
+                    answer, out = plain
+                    result["plain"] = True
+                else:
+                    answer, out = SAFE, {"moments": []}
+                    result["withheld"] = True
             result["answer"] = answer
 
     moments = []

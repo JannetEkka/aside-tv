@@ -13,6 +13,7 @@ in the opposite order, so the check isn't grading its own homework.
 Results go to eval/results.json (resumable) and eval/RESULTS.md.
 """
 import argparse
+import sys
 import json
 import time
 import urllib.request
@@ -68,7 +69,7 @@ def main():
                 rows.append(row)
                 out_path.write_text(json.dumps(rows, indent=1, ensure_ascii=False))
                 print(f"{fid} {ts(item['t'])} {cond:8s} {'SPOILER' if g['spoiler'] else 'ok':7s} {item['q']}", flush=True)
-                time.sleep(1)
+                time.sleep(12)   # stay inside the free tiers' per-minute limits
     report(rows)
 
 

@@ -3,6 +3,7 @@
     python pipeline/publish.py sintel --video media/sintel-720p.mp4 --still 296
 
 Writes data/films/<id>/public.json (title, playback info, captions, audio description cues),
+descriptions.vtt and captions.vtt (WebVTT, for any player),
 the backdrop and card images, and one narrated MP3 per audio description cue (Piper, an open-source offline voice: the LJSpeech
 voice, trained on public-domain recordings).
 The scene notes and facts stay in timeline.json, which only the server reads.
@@ -42,6 +43,20 @@ def narrate(cues, folder):
         c["audio_s"] = duration(path)
 
 
+def vtt_time(sec):
+    h, rem = divmod(sec, 3600)
+    m, s = divmod(rem, 60)
+    return f"{int(h):02d}:{int(m):02d}:{s:06.3f}"
+
+
+def write_vtt(path, cues):
+    """WebVTT, so any player can use the track: kind="descriptions" for audio description."""
+    lines = ["WEBVTT", ""]
+    for i, c in enumerate(cues, 1):
+        lines += [str(i), f"{vtt_time(c['start'])} --> {vtt_time(c['end'])}", c["text"], ""]
+    path.write_text("\n".join(lines))
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("film")
@@ -73,6 +88,8 @@ def main():
                 "audio_s": c["audio_s"]} for c in cues],
     })
     (d / "public.json").write_text(json.dumps(pub, indent=1, ensure_ascii=False))
+    write_vtt(d / "descriptions.vtt", cues)
+    write_vtt(d / "captions.vtt", tl.get("subtitles", []))
     print(f"{args.film}: public.json with {len(pub['ad'])} narrated cues, {len(pub['subtitles'])} caption lines")
 
 

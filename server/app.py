@@ -85,6 +85,8 @@ async def ask(body: AskIn):
     except Exception as e:
         return JSONResponse({"error": "The companion couldn't answer just now. Try again in a moment.",
                              "detail": str(e)[:200]}, status_code=503)
+    if not EVAL:   # the rejected drafts are for tuning the check, not for viewers
+        result = {k: v for k, v in result.items() if k not in ("first_answer", "second_answer", "check_reason", "check_reason_2")}
     CACHE[key] = result
     return result
 

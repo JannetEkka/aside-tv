@@ -71,10 +71,10 @@ def main():
                         return
                     print(f"  busy ({str(e)[:70]}); waiting", flush=True)
                     time.sleep(60)
-            table[str(t)] = {k: r[k] for k in ["question", "answer", "t", "moments", "checked", "rewritten", "withheld", "model"]}
+            table[str(t)] = {k: r.get(k) for k in ["question", "answer", "t", "moments", "checked", "rewritten", "withheld", "plain", "model"]}
             path.write_text(json.dumps(prepared, indent=1, ensure_ascii=False))
             print(f"{args.film} {key:9s} {ts(t)} {'rewritten ' if r['rewritten'] else ''}{r['answer'][:80]}", flush=True)
-            time.sleep(4)
+            time.sleep(10 if args.server else 4)
 
 
 if __name__ == "__main__":

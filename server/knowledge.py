@@ -113,10 +113,10 @@ def seen(film: Film, t: float, since: float = 0.0, upto: float | None = None):
     if ad:
         lines.append("\nVISUAL DESCRIPTIONS SO FAR:")
         lines += [f"[{ts(x['start'])}] {x['text']}" for x in ad[-12:]]
-    return "\n".join(_hide_future_names(film, lines, t))
+    return "\n".join(hide_future_names(film, lines, t))
 
 
-def _hide_future_names(film, lines, t):
+def hide_future_names(film, lines, t):
     """Scene notes are written once for the whole film, so a name revealed at 05:00 can appear in a
     fact from 02:00. Swap such names for the character's description until the film says them."""
     swaps = [(c["name"], c["label"]) for c in film.tl["characters"] if c.get("name") in future_names(film, t)]
