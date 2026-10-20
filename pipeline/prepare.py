@@ -1,6 +1,7 @@
 """Pass 4: answer the one-button questions ahead of time, every few seconds of each film.
 
     python pipeline/prepare.py sintel --step 30
+    python pipeline/prepare.py sintel --step 30 --server https://aside-tv.onrender.com   # use a deployed server's keys
 
 Each answer goes through the same spoiler check as a live one. The server serves the latest
 prepared answer at or before the viewer's position, so the buttons work instantly and keep
@@ -11,6 +12,7 @@ import argparse
 import json
 import sys
 import time
+import urllib.request
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -28,7 +30,19 @@ def main():
     ap.add_argument("--step", type=int, default=30)
     ap.add_argument("--modes", default="now,who,story,describe,missed")
     ap.add_argument("--patience", type=int, default=3600, help="seconds to keep retrying when every model is busy")
+    ap.add_argument("--server", help="answer through this Aside server instead of calling the models from here")
     args = ap.parse_args()
+
+    def ask(t, mode, since):
+        if not args.server:
+            return companion.ask(film, t, mode, "", since)
+        body = json.dumps({"film": args.film, "t": t, "mode": mode, "since": since}).encode()
+        req = urllib.request.Request(args.server.rstrip("/") + "/api/ask", data=body, headers={"Content-Type": "application/json"})
+        with urllib.request.urlopen(req, timeout=120) as r:
+            out = json.loads(r.read())
+        if "answer" not in out:
+            raise RuntimeError(out.get("error", "no answer"))
+        return out
 
     film = load_films()[args.film]
     path = ROOT / "data" / "films" / args.film / "prepared.json"
@@ -48,7 +62,7 @@ def main():
             started = time.time()
             while True:
                 try:
-                    r = companion.ask(film, t, mode, "", since)
+                    r = ask(t, mode, since)
                     break
                 except Exception as e:
                     if time.time() - started > args.patience:

@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Aside demo cards</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display&display=swap">
+<style>
+  /* Cards for the demo video, rendered at 1920x1080 by docs/demo/render_cards.mjs */
+  :root { --bg: #0b0c10; --surface: #171920; --line: rgba(255,255,255,.12); --text: #f4f1ea; --muted: #b3ada2; --faint: #7d786f; --accent: #f2b544; --ink: #1d1503; --good: #7fd6a4; --warn: #f29b6b; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: Inter, sans-serif; }
+  .card { position: relative; width: 1920px; height: 1080px; overflow: hidden; display: none; padding: 120px 140px; background: radial-gradient(1200px 700px at 15% 20%, rgba(242,181,68,.10), transparent 60%), var(--bg); }
+  .card.on { display: block; }
+  .logo { display: flex; align-items: center; gap: 22px; font-weight: 700; font-size: 64px; }
+  .mark { display: inline-grid; place-items: center; width: 84px; height: 84px; border-radius: 24px; background: var(--accent); color: var(--ink); font-family: "DM Serif Display", serif; font-size: 64px; padding-bottom: 10px; }
+  h1 { font-family: "DM Serif Display", serif; font-weight: 400; font-size: 96px; line-height: 1.05; letter-spacing: -1px; }
+  h2 { font-family: "DM Serif Display", serif; font-weight: 400; font-size: 72px; line-height: 1.1; }
+  .sub { margin-top: 30px; font-size: 38px; line-height: 1.45; color: #d6d1c7; max-width: 1400px; }
+  .tag { display: inline-block; margin-top: 60px; padding: 14px 28px; border-radius: 40px; border: 2px solid var(--line); font-size: 26px; color: var(--muted); }
+  .kicker { font-size: 28px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 28px; }
+
+  /* how it works */
+  .flow { display: flex; align-items: stretch; gap: 26px; margin-top: 70px; }
+  .box { flex: 1; padding: 36px 34px; border-radius: 28px; background: var(--surface); border: 1px solid var(--line); }
+  .box h3 { font-size: 32px; font-weight: 700; margin-bottom: 16px; }
+  .box p { font-size: 26px; line-height: 1.45; color: #d6d1c7; }
+  .box .n { display: inline-grid; place-items: center; width: 46px; height: 46px; border-radius: 50%; background: var(--accent); color: var(--ink); font-weight: 700; font-size: 24px; margin-bottom: 20px; }
+  .box.future { border-color: rgba(242,155,107,.6); }
+  .arrow { align-self: center; font-size: 48px; color: var(--faint); }
+  .timeline { position: relative; margin-top: 70px; height: 120px; }
+  .bar { position: absolute; left: 0; right: 0; top: 50px; height: 16px; border-radius: 8px; background: rgba(255,255,255,.12); }
+  .bar .seen { position: absolute; left: 0; top: 0; bottom: 0; width: 58%; border-radius: 8px; background: var(--accent); }
+  .now { position: absolute; left: 58%; top: 20px; width: 4px; height: 76px; background: #fff; }
+  .lab { position: absolute; top: 96px; font-size: 26px; color: var(--muted); }
+
+  /* results */
+  table { margin-top: 60px; border-collapse: collapse; font-size: 34px; width: 100%; }
+  th { text-align: left; font-weight: 600; color: var(--muted); font-size: 26px; padding: 0 20px 20px 0; border-bottom: 1px solid var(--line); }
+  td { padding: 30px 20px 30px 0; border-bottom: 1px solid var(--line); }
+  td.big { font-size: 56px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  tr.us td { color: var(--accent); }
+  .note { margin-top: 40px; font-size: 26px; color: var(--faint); }
+</style>
+</head>
+<body>
+
+<section class="card" id="title">
+  <div class="logo"><span class="mark">a</span>Aside</div>
+  <h1 style="margin-top:140px">A friend on the couch who has seen<br>exactly what you have.</h1>
+  <p class="sub">An AI that watches the film with you on Fire TV, and never spoils what comes next.</p>
+  <span class="tag">Build, Ship, Shape · Fire TV track</span>
+</section>
+
+<section class="card" id="how">
+  <div class="kicker">How it works</div>
+  <h2>Every fact is stamped with the second it appears.</h2>
+  <div class="timeline">
+    <div class="bar"><div class="seen"></div></div>
+    <div class="now"></div>
+    <div class="lab" style="left:0">00:00</div>
+    <div class="lab" style="left:calc(58% - 120px)">you are here · 08:12</div>
+    <div class="lab" style="right:0">the rest of the film</div>
+  </div>
+  <div class="flow">
+    <div class="box"><div class="n">1</div><h3>Gemini watches once</h3><p>The whole film and its subtitles become a timeline: scenes, characters, facts, each with its second. Names stay hidden until the film says them.</p></div>
+    <div class="arrow">→</div>
+    <div class="box"><div class="n">2</div><h3>Answer from what you've seen</h3><p>Your question at 08:12 gets the facts up to 08:12. Nothing later is in the prompt.</p></div>
+    <div class="arrow">→</div>
+    <div class="box future"><div class="n">3</div><h3>Check against the rest</h3><p>A second model, which does see what comes later, reads the answer. Anything that reveals, rules out or teases the future is rewritten or held back.</p></div>
+  </div>
+</section>
+
+<section class="card" id="results">
+  <div class="kicker">Measured, not promised</div>
+  <h2>Questions written to pry the ending out.</h2>
+  <table>
+    <tr><th>Setup</th><th>Spoiled a future-probing question</th><th>Helpful on what you've seen</th></tr>
+    <tr><td>Whole film in the prompt</td><td class="big" id="r-naive">–</td><td class="big" id="h-naive">–</td></tr>
+    <tr><td>Only what you've seen</td><td class="big" id="r-filtered">–</td><td class="big" id="h-filtered">–</td></tr>
+    <tr class="us"><td>Only what you've seen + spoiler check (Aside)</td><td class="big" id="r-aside">–</td><td class="big" id="h-aside">–</td></tr>
+  </table>
+  <p class="note" id="r-note">Graded by a separate judge model that sees the whole film. eval/RESULTS.md in the repo.</p>
+</section>
+
+<section class="card" id="end">
+  <div class="logo"><span class="mark">a</span>Aside</div>
+  <h1 style="margin-top:120px">X-Ray you can talk to.</h1>
+  <p class="sub">One-button questions · ask by voice from your phone · what did I miss · audio description from the video itself · a measured spoiler check.</p>
+  <p class="sub" style="margin-top:60px; font-size:32px; color:var(--muted)">github.com/JannetEkka/aside-tv<br>Sintel and Tears of Steel © Blender Foundation, CC BY 3.0</p>
+</section>
+
+<script>
+  // ?card=title|how|results|end  and optional ?r=naive,filtered,aside&h=naive,filtered,aside
+  var q = new URLSearchParams(location.search);
+  document.getElementById(q.get('card') || 'title').classList.add('on');
+  ['r', 'h'].forEach(function (k) {
+    if (!q.get(k)) return;
+    var v = q.get(k).split(',');
+    ['naive', 'filtered', 'aside'].forEach(function (c, i) { document.getElementById(k + '-' + c).textContent = v[i]; });
+  });
+</script>
+</body>
+</html>
