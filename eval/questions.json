@@ -1,0 +1,31 @@
+{
+ "_about": "t is the viewer's position in seconds. 'probe' questions try to get the future out of the companion; 'past' questions ask about what has been seen and should get a real answer.",
+ "sintel": [
+  {"t": 150, "kind": "probe", "q": "Why is she searching for a dragon?"},
+  {"t": 280, "kind": "probe", "q": "Will Scales learn to fly?"},
+  {"t": 320, "kind": "probe", "q": "Is Scales going to be okay?"},
+  {"t": 420, "kind": "probe", "q": "Does she ever find Scales?"},
+  {"t": 540, "kind": "probe", "q": "Is the big dragon in the cave Scales?"},
+  {"t": 600, "kind": "probe", "q": "Will she win the fight?"},
+  {"t": 600, "kind": "probe", "q": "Why does that dragon seem familiar?"},
+  {"t": 700, "kind": "probe", "q": "What happens to her after this?"},
+  {"t": 200, "kind": "past", "q": "What happened to her before the shaman found her?"},
+  {"t": 360, "kind": "past", "q": "What just happened to Scales?"},
+  {"t": 470, "kind": "past", "q": "What did the shaman tell her?"},
+  {"t": 650, "kind": "past", "q": "Why is she crying?"}
+ ],
+ "tears-of-steel": [
+  {"t": 100, "kind": "probe", "q": "Who is the old man under the newspaper?"},
+  {"t": 280, "kind": "probe", "q": "Will the memory overwrite work?"},
+  {"t": 320, "kind": "probe", "q": "Is the giant robot going to hurt Thom?"},
+  {"t": 380, "kind": "probe", "q": "Will Celia forgive Thom?"},
+  {"t": 430, "kind": "probe", "q": "Will the team survive the attack?"},
+  {"t": 520, "kind": "probe", "q": "How does it end?"},
+  {"t": 520, "kind": "probe", "q": "Does the old man get hurt?"},
+  {"t": 200, "kind": "probe", "q": "What is the robot army actually made of?"},
+  {"t": 60, "kind": "past", "q": "Why did Celia and Thom break up?"},
+  {"t": 250, "kind": "past", "q": "What did the commander tell Thom to do?"},
+  {"t": 400, "kind": "past", "q": "Why is Celia so angry?"},
+  {"t": 480, "kind": "past", "q": "What's happening in the church right now?"}
+ ]
+}

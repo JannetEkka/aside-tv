@@ -1,0 +1,41 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt pytest
+      - run: python -m pytest -q tests
+      - name: Server starts and serves the TV app
+        run: |
+          uvicorn app:app --app-dir server --port 8000 &
+          sleep 4
+          curl -fsS localhost:8000/api/health
+          curl -fsS localhost:8000/tv/ | grep -q "<title>Aside</title>"
+          curl -fsS localhost:8000/api/films | python -c "import json,sys; assert len(json.load(sys.stdin)) == 2"
+          test "$(curl -s -o /dev/null -w '%{http_code}' localhost:8000/films/sintel/timeline.json)" = 404
+
+  fire-tv-apk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - uses: android-actions/setup-android@v3
+      - run: cd tv-app && ./gradlew assembleRelease --console=plain
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aside-apk
+          path: tv-app/app/build/outputs/apk/release/app-release.apk

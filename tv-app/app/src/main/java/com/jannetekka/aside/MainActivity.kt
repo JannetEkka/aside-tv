@@ -43,6 +43,10 @@ class MainActivity : Activity() {
             settings.javaScriptEnabled = true
             settings.domStorageEnabled = true
             settings.mediaPlaybackRequiresUserGesture = false
+            // Amazon's Fire OS WebView guide (found through Amazon Devices Builder Tools): both are
+            // needed for the page's viewport meta tag to be honoured on the TV.
+            settings.useWideViewPort = true
+            settings.loadWithOverviewMode = true
             settings.cacheMode = WebSettings.LOAD_DEFAULT
             settings.userAgentString = settings.userAgentString + " AsideFireTV/" + BuildConfig.VERSION_NAME
             addJavascriptInterface(Bridge(), "AsideNative")
