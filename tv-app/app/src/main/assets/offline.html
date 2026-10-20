@@ -1,0 +1,9 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<style>html,body{margin:0;height:100%;background:#0b0c10;color:#f4f1ea;font-family:sans-serif;display:grid;place-items:center;text-align:center}
+h1{font-size:5vh;font-weight:600;margin:0}p{color:#b3ada2;font-size:2.8vh;max-width:70vw;line-height:1.5}
+button{margin-top:3vh;font-size:3vh;font-weight:600;padding:2vh 5vh;border-radius:5vh;border:0;background:#fff;color:#111;box-shadow:0 0 0 .6vh #f2b544}</style></head>
+<body><div><h1>Aside can't reach its service</h1>
+<p>Check that the Fire TV is online. If you've just deployed the server, it can take up to a minute to wake up.</p>
+<button id="b" autofocus>Try again</button></div>
+<script>var b=document.getElementById('b');b.focus();function go(){if(window.AsideNative)AsideNative.retry();else location.reload();}
+b.onclick=go;document.onkeydown=function(e){if(e.keyCode===13){go();e.preventDefault();}};</script></body></html>

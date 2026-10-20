@@ -1,0 +1,565 @@
+{
+ "id": "sintel",
+ "title": "Sintel",
+ "year": 2010,
+ "director": "Colin Levy",
+ "genre": "Fantasy · Animation",
+ "credit": "Sintel © copyright Blender Foundation | durian.blender.org",
+ "license": "CC BY 3.0",
+ "license_url": "https://creativecommons.org/licenses/by/3.0/",
+ "source_url": "https://durian.blender.org/",
+ "logline": "A lone traveller braves the frozen mountains of the gatekeepers, searching for the one thing she has lost.",
+ "duration": 888.03,
+ "credits_start": 746.0,
+ "video": "https://github.com/JannetEkka/aside-tv/releases/download/media-v1/sintel-720p.mp4",
+ "video_file": "sintel-720p.mp4",
+ "backdrop": "/films/sintel/backdrop.jpg",
+ "thumb": "/films/sintel/thumb.jpg",
+ "subtitles": [
+  {
+   "start": 107.25,
+   "end": 109.22,
+   "text": "This blade has a dark past."
+  },
+  {
+   "start": 111.8,
+   "end": 115.8,
+   "text": "It has shed much innocent blood."
+  },
+  {
+   "start": 118.0,
+   "end": 121.45,
+   "text": "You're a fool for traveling alone, so completely unprepared."
+  },
+  {
+   "start": 121.75,
+   "end": 124.8,
+   "text": "You're lucky your blood's still flowing."
+  },
+  {
+   "start": 125.25,
+   "end": 126.3,
+   "text": "Thank you."
+  },
+  {
+   "start": 127.5,
+   "end": 129.0,
+   "text": "So..."
+  },
+  {
+   "start": 129.4,
+   "end": 133.8,
+   "text": "What brings you to the land of the gatekeepers?"
+  },
+  {
+   "start": 135.0,
+   "end": 137.5,
+   "text": "I'm searching for someone."
+  },
+  {
+   "start": 138.0,
+   "end": 142.2,
+   "text": "Someone very dear? A kindred spirit?"
+  },
+  {
+   "start": 143.4,
+   "end": 145.0,
+   "text": "A dragon."
+  },
+  {
+   "start": 148.85,
+   "end": 151.75,
+   "text": "A dangerous quest for a lone hunter."
+  },
+  {
+   "start": 152.95,
+   "end": 155.87,
+   "text": "I've been alone for as long as I can remember."
+  },
+  {
+   "start": 207.25,
+   "end": 210.5,
+   "text": "We're almost done. Shhh..."
+  },
+  {
+   "start": 210.75,
+   "end": 213.5,
+   "text": "Hey, sit still."
+  },
+  {
+   "start": 228.25,
+   "end": 232.25,
+   "text": "Good night, Scales."
+  },
+  {
+   "start": 250.35,
+   "end": 253.85,
+   "text": "Get him, Scales! Come on!"
+  },
+  {
+   "start": 265.25,
+   "end": 268.25,
+   "text": "Scales?"
+  },
+  {
+   "start": 304.0,
+   "end": 307.5,
+   "text": "Yeah! Come on!"
+  },
+  {
+   "start": 338.75,
+   "end": 342.0,
+   "text": "Scales!"
+  },
+  {
+   "start": 445.85,
+   "end": 447.5,
+   "text": "I have failed."
+  },
+  {
+   "start": 452.8,
+   "end": 456.5,
+   "text": "You've only failed to see..."
+  },
+  {
+   "start": 457.8,
+   "end": 460.5,
+   "text": "These are dragon lands, Sintel."
+  },
+  {
+   "start": 460.85,
+   "end": 464.0,
+   "text": "You are closer than you know."
+  },
+  {
+   "start": 557.6,
+   "end": 559.5,
+   "text": "Scales!"
+  },
+  {
+   "start": 621.6,
+   "end": 624.0,
+   "text": "Scales?"
+  },
+  {
+   "start": 626.2,
+   "end": 629.8,
+   "text": "Scales..."
+  }
+ ],
+ "ad": [
+  {
+   "start": 0.7,
+   "end": 12.5,
+   "text": "Aerial flyover of jagged snow-covered mountains under a misty sky. On-screen text: The Blender Foundation Presents, The Durian Open Movie Project.",
+   "audio": "/films/sintel/ad/ad001.mp3",
+   "audio_s": 9.72
+  },
+  {
+   "start": 12.7,
+   "end": 24.5,
+   "text": "The camera glides over icy peaks and rugged ridges. Text: A Blender Institute Production. This film was supported by The Netherlands Film Fund.",
+   "audio": "/films/sintel/ad/ad002.mp3",
+   "audio_s": 9.53
+  },
+  {
+   "start": 24.7,
+   "end": 31.33,
+   "text": "In a vast snowy expanse, Sintel trudges forward with a walking staff, leaving footprints behind.",
+   "audio": "/films/sintel/ad/ad003.mp3",
+   "audio_s": 6.67
+  },
+  {
+   "start": 31.53,
+   "end": 42.42,
+   "text": "Hooded and bundled in winter clothes, Sintel walks into the blizzard. She pauses warily as shadowy figures appear on distant snowy rocks.",
+   "audio": "/films/sintel/ad/ad004.mp3",
+   "audio_s": 9.02
+  },
+  {
+   "start": 42.62,
+   "end": 53.96,
+   "text": "A mountain warrior leaps down from a crag, swinging a spear. Sintel dodges, parrying his strikes with her staff as they grapple.",
+   "audio": "/films/sintel/ad/ad005.mp3",
+   "audio_s": 8.04
+  },
+  {
+   "start": 54.16,
+   "end": 64.67,
+   "text": "The warrior punches Sintel and kicks her into the snow. As he charges with his weapon, she prepares her staff to fight back.",
+   "audio": "/films/sintel/ad/ad006.mp3",
+   "audio_s": 7.22
+  },
+  {
+   "start": 64.87,
+   "end": 74.04,
+   "text": "He pins her down. Sintel pulls a dagger from her belt and stabs him in the chest. He collapses.",
+   "audio": "/films/sintel/ad/ad007.mp3",
+   "audio_s": 5.78
+  },
+  {
+   "start": 74.24,
+   "end": 85.83,
+   "text": "Sintel lies wounded and exhausted in the snow. Later, far across the snowy plains, a solitary hut glows warmly in the mountain pass.",
+   "audio": "/films/sintel/ad/ad008.mp3",
+   "audio_s": 9.26
+  },
+  {
+   "start": 86.03,
+   "end": 101.21,
+   "text": "Her hand slips from her staff in the snow. Sintel continues hiking across the frozen mountain ridge. A title appears: Sintel, with a tree emblem.",
+   "audio": "/films/sintel/ad/ad009.mp3",
+   "audio_s": 9.67
+  },
+  {
+   "start": 101.41,
+   "end": 106.85,
+   "text": "Inside a warm tent, fire glows in a pit.",
+   "audio": "/films/sintel/ad/ad010.mp3",
+   "audio_s": 3.36
+  },
+  {
+   "start": 145.6,
+   "end": 148.45,
+   "text": "She looks down silently.",
+   "audio": "/films/sintel/ad/ad011.mp3",
+   "audio_s": 1.87
+  },
+  {
+   "start": 156.47,
+   "end": 168.27,
+   "text": "Earlier, in a sunlit city, a younger Sintel walks down an alleyway carrying wooden boards. She leans a board against a wall.",
+   "audio": "/films/sintel/ad/ad012.mp3",
+   "audio_s": 7.63
+  },
+  {
+   "start": 168.47,
+   "end": 176.42,
+   "text": "She discovers a ripe fruit on a crate, but beside it, finds a prickly hedgehog.",
+   "audio": "/films/sintel/ad/ad013.mp3",
+   "audio_s": 5.16
+  },
+  {
+   "start": 176.62,
+   "end": 186.71,
+   "text": "Hearing a noise, she leaps onto a roof. There, a small winged creature lies injured and bleeding on the shingles.",
+   "audio": "/films/sintel/ad/ad014.mp3",
+   "audio_s": 7.15
+  },
+  {
+   "start": 186.91,
+   "end": 196.42,
+   "text": "Blood pools from the creature's wing. Sintel crouches down slowly, watching the frightened baby dragon.",
+   "audio": "/films/sintel/ad/ad015.mp3",
+   "audio_s": 6.84
+  },
+  {
+   "start": 196.62,
+   "end": 206.85,
+   "text": "She reaches out her hand gently. The baby dragon calms down and nuzzles against her fingers. Sintel smiles softly.",
+   "audio": "/films/sintel/ad/ad016.mp3",
+   "audio_s": 7.87
+  },
+  {
+   "start": 214.1,
+   "end": 227.85,
+   "text": "Sintel tends to the dragon's wounded wing, wrapping it with bandages. The baby dragon chirps happily in her lap.",
+   "audio": "/films/sintel/ad/ad017.mp3",
+   "audio_s": 7.37
+  },
+  {
+   "start": 232.85,
+   "end": 249.95,
+   "text": "Later that night, Sintel sleeps on a mattress with Scales curled up beside her. The next morning, Scales peeks out from under the blanket.",
+   "audio": "/films/sintel/ad/ad018.mp3",
+   "audio_s": 7.25
+  },
+  {
+   "start": 254.45,
+   "end": 264.85,
+   "text": "Scales scampers through the bustling market, chasing after a chicken. Sintel runs after him, laughing as he causes a commotion.",
+   "audio": "/films/sintel/ad/ad019.mp3",
+   "audio_s": 7.7
+  },
+  {
+   "start": 268.85,
+   "end": 278.79,
+   "text": "Looking around the street, Sintel pauses. Overhead on a wooden beam, Scales tries to flap his wings and breathes a puff of flame.",
+   "audio": "/films/sintel/ad/ad020.mp3",
+   "audio_s": 8.04
+  },
+  {
+   "start": 278.99,
+   "end": 289.33,
+   "text": "Sintel smiles up at him as a flock of birds flies in V-formation across the sky. Later, she runs up crumbling stone stairs.",
+   "audio": "/films/sintel/ad/ad021.mp3",
+   "audio_s": 8.52
+  },
+  {
+   "start": 289.53,
+   "end": 303.6,
+   "text": "She reaches the top of the ancient ruins at sunset. Winged creatures soar over the vast city. Sintel cups her hands and cheers enthusiastically.",
+   "audio": "/films/sintel/ad/ad022.mp3",
+   "audio_s": 9.72
+  },
+  {
+   "start": 308.1,
+   "end": 319.0,
+   "text": "Scales flies joyfully through the golden evening sky. Sintel watches proudly, but suddenly a giant adult dragon swoops down from above.",
+   "audio": "/films/sintel/ad/ad023.mp3",
+   "audio_s": 9.05
+  },
+  {
+   "start": 319.2,
+   "end": 328.17,
+   "text": "The massive dragon snatches Scales with its talons and circles around in the air toward Sintel.",
+   "audio": "/films/sintel/ad/ad024.mp3",
+   "audio_s": 6.26
+  },
+  {
+   "start": 328.37,
+   "end": 338.35,
+   "text": "Scales struggles in the dragon's grip, reaching toward Sintel. The huge beast roars, spreads its massive wings, and takes flight.",
+   "audio": "/films/sintel/ad/ad025.mp3",
+   "audio_s": 8.93
+  },
+  {
+   "start": 342.6,
+   "end": 349.75,
+   "text": "Sintel stares after them, tears welling in her eyes, her sorrow hardening into resolve.",
+   "audio": "/films/sintel/ad/ad026.mp3",
+   "audio_s": 6.12
+  },
+  {
+   "start": 349.95,
+   "end": 361.75,
+   "text": "Sintel sets out on foot. Over days and nights, she treks through barren lands filled with tree stumps under a crescent moon.",
+   "audio": "/films/sintel/ad/ad027.mp3",
+   "audio_s": 7.27
+  },
+  {
+   "start": 361.95,
+   "end": 373.75,
+   "text": "As seasons and terrain change, she crosses vast sunbaked desert dunes, shielding her eyes against the glare.",
+   "audio": "/films/sintel/ad/ad028.mp3",
+   "audio_s": 7.63
+  },
+  {
+   "start": 373.95,
+   "end": 380.54,
+   "text": "Her journey continues through a dense bamboo forest.",
+   "audio": "/films/sintel/ad/ad029.mp3",
+   "audio_s": 3.22
+  },
+  {
+   "start": 380.74,
+   "end": 392.0,
+   "text": "She navigates the thick bamboo stalks, then encounters strange canine beasts in a rocky canyon, fighting them off with her staff.",
+   "audio": "/films/sintel/ad/ad030.mp3",
+   "audio_s": 7.97
+  },
+  {
+   "start": 392.2,
+   "end": 404.0,
+   "text": "She climbs steep crags, gazes across canyons, and traverses cold misty hills, clutching her walking stick against the wind.",
+   "audio": "/films/sintel/ad/ad031.mp3",
+   "audio_s": 8.3
+  },
+  {
+   "start": 404.2,
+   "end": 415.08,
+   "text": "She presses on up snowy mountain ridges, climbing through freezing gale-force winds and snowstorms.",
+   "audio": "/films/sintel/ad/ad032.mp3",
+   "audio_s": 6.26
+  },
+  {
+   "start": 415.28,
+   "end": 431.58,
+   "text": "She slips and scrambles up the snowy slope, marching past rocky formations where shadowed mountain warriors lurk above, watching her every step.",
+   "audio": "/films/sintel/ad/ad033.mp3",
+   "audio_s": 9.67
+  },
+  {
+   "start": 431.78,
+   "end": 445.45,
+   "text": "Sensing danger, she turns around just as a warrior ambushes her. Back in the present, inside the tent, Sintel stares into the fire.",
+   "audio": "/films/sintel/ad/ad034.mp3",
+   "audio_s": 8.93
+  },
+  {
+   "start": 448.1,
+   "end": 452.4,
+   "text": "The shaman nods quietly.",
+   "audio": "/films/sintel/ad/ad035.mp3",
+   "audio_s": 1.92
+  },
+  {
+   "start": 464.6,
+   "end": 471.0,
+   "text": "Sintel touches the round tree emblem engraved on the hilt.",
+   "audio": "/films/sintel/ad/ad036.mp3",
+   "audio_s": 3.84
+  },
+  {
+   "start": 471.2,
+   "end": 483.71,
+   "text": "The emblem dissolves into a vision of a grand tree outside a dark cavern. Outside the cave entrance, Sintel looks up in awe.",
+   "audio": "/films/sintel/ad/ad037.mp3",
+   "audio_s": 8.11
+  },
+  {
+   "start": 483.91,
+   "end": 495.71,
+   "text": "Sintel enters the cavern. Glowing crystals dot the rock walls. She unslings her bladed staff and moves cautiously forward.",
+   "audio": "/films/sintel/ad/ad038.mp3",
+   "audio_s": 8.06
+  },
+  {
+   "start": 495.91,
+   "end": 507.71,
+   "text": "Ahead in a vast subterranean cavern, a dragon tears into a fresh carcass. Sintel ducks behind a rock, observing the beast.",
+   "audio": "/films/sintel/ad/ad039.mp3",
+   "audio_s": 8.78
+  },
+  {
+   "start": 507.91,
+   "end": 519.71,
+   "text": "The dragon turns and slithers into a crevice. Sintel peeks around the boulder, gripping her weapon.",
+   "audio": "/films/sintel/ad/ad040.mp3",
+   "audio_s": 6.36
+  },
+  {
+   "start": 519.91,
+   "end": 536.33,
+   "text": "Sintel leaps down to the cavern floor and creeps toward a stone basin. Inside lies a small, sleeping baby dragon. Her eyes widen in joy.",
+   "audio": "/films/sintel/ad/ad041.mp3",
+   "audio_s": 9.19
+  },
+  {
+   "start": 536.53,
+   "end": 548.33,
+   "text": "The baby dragon opens its eyes and chirps. Suddenly, a massive blast of fire erupts from the side, nearly hitting Sintel.",
+   "audio": "/films/sintel/ad/ad042.mp3",
+   "audio_s": 8.52
+  },
+  {
+   "start": 548.53,
+   "end": 557.2,
+   "text": "She dives behind a boulder. The giant adult dragon crawls forward, snarling aggressively.",
+   "audio": "/films/sintel/ad/ad043.mp3",
+   "audio_s": 5.74
+  },
+  {
+   "start": 560.1,
+   "end": 571.9,
+   "text": "Sintel rolls away, narrowly dodging fire. She lunges forward, leaps onto the dragon's neck, and stabs her blade into its flesh.",
+   "audio": "/films/sintel/ad/ad044.mp3",
+   "audio_s": 8.54
+  },
+  {
+   "start": 572.1,
+   "end": 583.9,
+   "text": "The dragon violently thrashes, hurling Sintel against the rocky ground. She crawls toward her dropped staff as the dragon swings its tail.",
+   "audio": "/films/sintel/ad/ad045.mp3",
+   "audio_s": 8.78
+  },
+  {
+   "start": 584.1,
+   "end": 595.9,
+   "text": "Sintel gets struck and knocked down. The dragon swoops down, pinning her underneath its heavy talons. It lowers its massive head.",
+   "audio": "/films/sintel/ad/ad046.mp3",
+   "audio_s": 8.09
+  },
+  {
+   "start": 596.1,
+   "end": 607.9,
+   "text": "The dragon sniffs her gently. Sintel breaks free, grabs her blade, and plunges it straight through the dragon's chest.",
+   "audio": "/films/sintel/ad/ad047.mp3",
+   "audio_s": 7.7
+  },
+  {
+   "start": 608.1,
+   "end": 617.0,
+   "text": "The dragon reels back in agony. Sintel raises her staff, ready to strike again.",
+   "audio": "/films/sintel/ad/ad048.mp3",
+   "audio_s": 5.28
+  },
+  {
+   "start": 617.2,
+   "end": 621.2,
+   "text": "The dragon collapses heavily onto the ground.",
+   "audio": "/films/sintel/ad/ad049.mp3",
+   "audio_s": 3.02
+  },
+  {
+   "start": 630.4,
+   "end": 642.2,
+   "text": "Sintel sees a scar on the dragon's wing, matching the wound she bandaged on Scales. In the reflection of blood, she sees her aged reflection.",
+   "audio": "/films/sintel/ad/ad050.mp3",
+   "audio_s": 9.24
+  },
+  {
+   "start": 642.4,
+   "end": 654.2,
+   "text": "She looks at her weathered hands in disbelief. Years have passed. The dragon she just killed is Scales.",
+   "audio": "/films/sintel/ad/ad051.mp3",
+   "audio_s": 6.31
+  },
+  {
+   "start": 654.4,
+   "end": 666.2,
+   "text": "Sintel collapses to her knees, horrified by what she has done. Scales takes one last breath and closes his eyes.",
+   "audio": "/films/sintel/ad/ad052.mp3",
+   "audio_s": 7.2
+  },
+  {
+   "start": 666.4,
+   "end": 678.0,
+   "text": "Sintel weeps over Scales' body. Her cries echo through the cavern, causing stalactites to fall. She runs toward the cave entrance.",
+   "audio": "/films/sintel/ad/ad053.mp3",
+   "audio_s": 8.64
+  },
+  {
+   "start": 678.2,
+   "end": 690.0,
+   "text": "Boulders collapse behind her, sealing the cave shut. Outside under the twilight sky, Sintel sits at the edge of the cliff.",
+   "audio": "/films/sintel/ad/ad054.mp3",
+   "audio_s": 8.02
+  },
+  {
+   "start": 690.2,
+   "end": 700.29,
+   "text": "Overlooking the mountain range, Sintel sits alone, weeping with her head bowed into her hands.",
+   "audio": "/films/sintel/ad/ad055.mp3",
+   "audio_s": 5.98
+  },
+  {
+   "start": 700.49,
+   "end": 710.04,
+   "text": "She raises her tear-streaked face, gazing sadly out into the distant horizon.",
+   "audio": "/films/sintel/ad/ad056.mp3",
+   "audio_s": 5.59
+  },
+  {
+   "start": 710.24,
+   "end": 722.04,
+   "text": "Nearby, the small orphaned baby dragon emerges and hops over rocks where snowdrop flowers bloom. Sintel stands up and walks away.",
+   "audio": "/films/sintel/ad/ad057.mp3",
+   "audio_s": 9.19
+  },
+  {
+   "start": 722.24,
+   "end": 734.04,
+   "text": "Sintel walks into the glowing sunset along the mountain ridge. The baby dragon waddles behind, following her footsteps.",
+   "audio": "/films/sintel/ad/ad058.mp3",
+   "audio_s": 7.94
+  },
+  {
+   "start": 734.24,
+   "end": 746.0,
+   "text": "The baby dragon pauses beside the flowers, then hurries after Sintel as the screen fades to black.",
+   "audio": "/films/sintel/ad/ad059.mp3",
+   "audio_s": 6.98
+  }
+ ]
+}

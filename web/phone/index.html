@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b0c10">
+<title>Aside remote</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display&display=swap">
+<style>
+  :root { --bg: #0b0c10; --surface: #171920; --surface-2: #22252e; --line: rgba(255,255,255,.1); --text: #f4f1ea; --muted: #a9a49a; --accent: #f2b544; --ink: #1d1503; --good: #7fd6a4; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { min-height: 100vh; background: var(--bg); color: var(--text); font-family: Inter, system-ui, sans-serif; padding: 20px 16px 140px; }
+  button, input { font: inherit; color: inherit; }
+  header { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 20px; }
+  .mark { display: inline-grid; place-items: center; width: 32px; height: 32px; border-radius: 9px; background: var(--accent); color: var(--ink); font-family: "DM Serif Display", serif; font-size: 24px; padding-bottom: 3px; }
+  .status { margin-top: 18px; padding: 14px 16px; border-radius: 14px; background: var(--surface); border: 1px solid var(--line); font-size: 15px; color: var(--muted); }
+  .status b { color: var(--text); }
+  .status .live { display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: var(--good); margin-right: 8px; box-shadow: 0 0 8px var(--good); }
+  .mic { display: grid; place-items: center; margin: 30px auto 10px; width: 132px; height: 132px; border-radius: 50%; border: 0; background: var(--accent); color: var(--ink); box-shadow: 0 10px 40px rgba(242,181,68,.25); }
+  .mic.listening { animation: pulse 1.2s infinite; background: #fff; }
+  @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(242,181,68,.6); } 100% { box-shadow: 0 0 0 30px rgba(242,181,68,0); } }
+  .hint { text-align: center; color: var(--muted); font-size: 15px; min-height: 22px; }
+  form { display: flex; gap: 8px; margin-top: 22px; }
+  input { flex: 1; min-width: 0; height: 50px; padding: 0 16px; border-radius: 25px; border: 1px solid var(--line); background: var(--surface); font-size: 16px; }
+  .send { height: 50px; padding: 0 20px; border-radius: 25px; border: 0; background: var(--surface-2); font-weight: 600; }
+  .quick { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .quick button { padding: 10px 14px; border-radius: 20px; border: 1px solid var(--line); background: var(--surface); font-size: 14px; font-weight: 500; }
+  h2 { margin: 30px 0 10px; font-size: 13px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); }
+  .qa { padding: 14px 16px; border-radius: 14px; background: var(--surface); border: 1px solid var(--line); margin-bottom: 10px; }
+  .qa .q { color: var(--accent); font-weight: 600; font-size: 14px; }
+  .qa .a { margin-top: 6px; font-size: 16px; line-height: 1.45; }
+  .qa .t { margin-top: 6px; font-size: 12px; color: var(--muted); }
+  .empty { color: var(--muted); font-size: 15px; }
+  .err { color: #f29b6b; }
+</style>
+</head>
+<body>
+<header><span class="mark">a</span>Aside</header>
+<div class="status" id="status">Connecting to your TV…</div>
+
+<button class="mic" id="mic" aria-label="Ask out loud">
+  <svg width="54" height="54" viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="12" rx="3" fill="currentColor"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+</button>
+<div class="hint" id="hint">Tap and ask anything about the film</div>
+
+<form id="form"><input id="text" placeholder="Or type a question" autocomplete="off"><button class="send">Ask</button></form>
+<div class="quick" id="quick">
+  <button data-mode="now">What just happened?</button>
+  <button data-mode="who">Who's that?</button>
+  <button data-mode="missed">What did I miss?</button>
+  <button data-mode="story">Story so far</button>
+</div>
+
+<h2>Answers on the TV</h2>
+<div id="log"><div class="empty">Answers show up here too, so nobody has to read the TV from across the room.</div></div>
+
+<script>
+(function () {
+  'use strict';
+  var code = location.pathname.split('/').pop().toUpperCase();
+  var after = 0, status = document.getElementById('status'), log = document.getElementById('log'), hint = document.getElementById('hint');
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function ts(sec) { sec = Math.max(0, Math.floor(sec || 0)); var m = Math.floor(sec / 60), s = sec % 60; return (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s; }
+
+  function send(body) {
+    hint.textContent = 'Sent to the TV…';
+    return fetch('/api/rooms/' + code + '/say', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
+      .then(function (r) { if (!r.ok) throw new Error(); hint.textContent = 'Answer coming up on the TV'; })
+      .catch(function () { hint.innerHTML = '<span class="err">Couldn\'t reach the TV. Open Ask from phone there for a new code.</span>'; });
+  }
+
+  document.getElementById('form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var t = document.getElementById('text');
+    if (t.value.trim()) { send({ text: t.value.trim(), mode: 'question' }); t.value = ''; t.blur(); }
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('#quick button'), function (b) {
+    b.addEventListener('click', function () { send({ text: b.textContent, mode: b.getAttribute('data-mode') }); });
+  });
+
+  // Voice: the phone's own speech recognition, so the TV needs no microphone.
+  var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  var mic = document.getElementById('mic');
+  if (!SR) { mic.style.opacity = .4; hint.textContent = 'Voice isn\'t available in this browser. Type below instead.'; }
+  mic.addEventListener('click', function () {
+    if (!SR) return;
+    var rec = new SR();
+    rec.lang = 'en-US';
+    rec.interimResults = true;
+    rec.maxAlternatives = 1;
+    var finalText = '';
+    mic.classList.add('listening');
+    hint.textContent = 'Listening…';
+    rec.onresult = function (e) {
+      var s = '';
+      for (var i = 0; i < e.results.length; i++) s += e.results[i][0].transcript;
+      hint.textContent = '“' + s + '”';
+      if (e.results[e.results.length - 1].isFinal) finalText = s;
+    };
+    rec.onerror = function () { hint.textContent = 'Didn\'t catch that. Tap and try again.'; };
+    rec.onend = function () { mic.classList.remove('listening'); if (finalText.trim()) send({ text: finalText.trim(), mode: 'question' }); };
+    rec.start();
+  });
+
+  function poll() {
+    fetch('/api/rooms/' + code + '/feed?after=' + after).then(function (r) {
+      if (r.status === 404) { status.innerHTML = '<span class="err">This code has expired. On the TV, open Ask from phone and scan again.</span>'; throw new Error('gone'); }
+      return r.json();
+    }).then(function (d) {
+      var s = d.state || {};
+      status.innerHTML = s.film
+        ? '<span class="live"></span>Connected · <b>' + esc(s.title) + '</b> · Aside knows up to <b>' + ts(s.t) + '</b>'
+        : '<span class="live"></span>Connected to your TV';
+      if (d.log.length) {
+        if (!after) log.innerHTML = '';
+        d.log.forEach(function (x) {
+          after = Math.max(after, x.n);
+          var el = document.createElement('div');
+          el.className = 'qa';
+          el.innerHTML = '<div class="q">' + esc(x.question) + '</div><div class="a">' + esc(x.answer) + '</div><div class="t">at ' + ts(x.t) + '</div>';
+          log.insertBefore(el, log.firstChild);
+        });
+        hint.textContent = 'Tap and ask anything about the film';
+      }
+      setTimeout(poll, 1500);
+    }).catch(function (e) { if (e.message !== 'gone') setTimeout(poll, 3000); });
+  }
+  poll();
+})();
+</script>
+</body>
+</html>

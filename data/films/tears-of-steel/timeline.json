@@ -1,0 +1,1040 @@
+{
+ "id": "tears-of-steel",
+ "title": "Tears of Steel",
+ "year": 2012,
+ "director": "Ian Hubert",
+ "genre": "Sci-fi · Live action + VFX",
+ "credit": "Tears of Steel © copyright Blender Foundation | mango.blender.org",
+ "license": "CC BY 3.0",
+ "license_url": "https://creativecommons.org/licenses/by/3.0/",
+ "source_url": "https://mango.blender.org/",
+ "duration": 734.17,
+ "credits_start": 588.0,
+ "characters": [
+  {
+   "id": "thom",
+   "name": "Thom",
+   "label": "the young man",
+   "name_revealed_at": 23.0,
+   "first_seen": 24.0,
+   "look": "A young man with dark brown hair wearing a graphic tee and a dark jacket with yellow patterns on the back."
+  },
+  {
+   "id": "celia",
+   "name": "Celia",
+   "label": "the young woman",
+   "name_revealed_at": 25.0,
+   "first_seen": 24.0,
+   "look": "A young woman with light brown hair pulled back, wearing a blue and black vest and sporting a mechanical robotic right arm."
+  },
+  {
+   "id": "old_thom",
+   "name": "Thom",
+   "label": "the older gray-haired man",
+   "name_revealed_at": 226.0,
+   "first_seen": 98.0,
+   "look": "An older man with gray hair, a full gray beard, and a worn plaid coat over dark clothing."
+  },
+  {
+   "id": "captain",
+   "name": null,
+   "label": "the cyborg commander",
+   "name_revealed_at": null,
+   "first_seen": 59.0,
+   "look": "A burly man wearing an elaborate multi-lens eyepiece over his right eye and an ornate red patchwork coat."
+  },
+  {
+   "id": "barley",
+   "name": "Barley",
+   "label": "the sniper",
+   "name_revealed_at": 197.0,
+   "first_seen": 77.0,
+   "look": "A Black soldier wearing dark padded combat gear and aiming a futuristic sniper rifle."
+  },
+  {
+   "id": "djenghis",
+   "name": null,
+   "label": "the female soldier",
+   "name_revealed_at": null,
+   "first_seen": 176.0,
+   "look": "A woman of East Asian descent with tied-up hair, wearing a camouflaged military jacket and tactical gear."
+  },
+  {
+   "id": "tech_head",
+   "name": null,
+   "label": "the console operator",
+   "name_revealed_at": null,
+   "first_seen": 51.0,
+   "look": "A man with curly hair and wire-rim glasses wearing a holographic visor interface and a gray jacket."
+  }
+ ],
+ "scenes": [
+  {
+   "id": "s01",
+   "start": 0.0,
+   "location": "Canal Bridge",
+   "characters": [
+    "thom",
+    "celia"
+   ],
+   "summary": "On a canal bridge in Amsterdam, Celia argues with Thom over their future and accuses him of being uncomfortable with her robotic arm. Thom admits his fear, ending their relationship.",
+   "facts": [
+    {
+     "t": 23.0,
+     "text": "Celia calls Thom a jerk during an argument on a canal bridge."
+    },
+    {
+     "t": 25.0,
+     "text": "Thom says they must follow their separate passions, contrasting her robotics work with his desire to go to space."
+    },
+    {
+     "t": 31.0,
+     "text": "Celia claims Thom is freaked out by her mechanical robotic arm."
+    },
+    {
+     "t": 38.0,
+     "text": "Thom admits he has nightmares about being pursued by giant robotic claws."
+    }
+   ],
+   "end": 40.25
+  },
+  {
+   "id": "s02",
+   "start": 40.25,
+   "location": "Simulation Lab",
+   "characters": [
+    "tech_head",
+    "captain"
+   ],
+   "summary": "Forty years after the breakup, the past conversation is revealed to be a wireframe holographic simulation. Technicians in a high-tech lab synchronize the memory to a biological brain.",
+   "facts": [
+    {
+     "t": 42.0,
+     "text": "A title card indicates the scene is set forty years later."
+    },
+    {
+     "t": 50.0,
+     "text": "The console operator announces that the robot's memory is synchronized and locked."
+    },
+    {
+     "t": 57.0,
+     "text": "A biological human brain connected to electrodes sits on a small dish."
+    },
+    {
+     "t": 61.0,
+     "text": "The cyborg commander examines the wired brain and calls it freaky."
+    }
+   ],
+   "end": 64.46
+  },
+  {
+   "id": "s03",
+   "start": 64.46,
+   "location": "Bell Tower Lookout",
+   "characters": [
+    "barley",
+    "old_thom"
+   ],
+   "summary": "High above the ruined city, Barley watches an approaching flying warship through his rifle scope. Beside him, an older gray-haired man wakes up under an old newspaper.",
+   "facts": [
+    {
+     "t": 65.0,
+     "text": "The film title 'TEARS OF STEEL' appears."
+    },
+    {
+     "t": 79.0,
+     "text": "A newspaper covering the sleeping man reads 'Roboticist Creates Killer Robots'."
+    },
+    {
+     "t": 88.0,
+     "text": "A massive armored airship floats over the skyline of Amsterdam."
+    },
+    {
+     "t": 131.0,
+     "text": "The older gray-haired man mentions hearing the team talking about him the previous night."
+    },
+    {
+     "t": 146.0,
+     "text": "Barley drinks from a carton of mango juice while maintaining watch."
+    }
+   ],
+   "end": 152.88
+  },
+  {
+   "id": "s04",
+   "start": 152.88,
+   "location": "Ruined Church Nave",
+   "characters": [
+    "old_thom"
+   ],
+   "summary": "The older gray-haired man rappels down from the cathedral bell tower on a rope. He crosses the dilapidated church floor toward a brightly lit room.",
+   "facts": [
+    {
+     "t": 153.0,
+     "text": "The older gray-haired man rappels down a rope suspended in the nave."
+    },
+    {
+     "t": 174.0,
+     "text": "He enters an enclosed room outfitted with books, maps, and lamps."
+    }
+   ],
+   "end": 189.5
+  },
+  {
+   "id": "s05",
+   "start": 189.5,
+   "location": "Command Room",
+   "characters": [
+    "old_thom",
+    "captain",
+    "djenghis",
+    "barley"
+   ],
+   "summary": "The cyborg commander readies the older gray-haired man for his role as Barley gives a time estimate. The commander reminds him to speak with tenderness as the simulation begins.",
+   "facts": [
+    {
+     "t": 197.0,
+     "text": "The commander addresses the sniper as Barley over radio, who replies they have about ten minutes."
+    },
+    {
+     "t": 226.0,
+     "text": "The commander calls the older man Thom and points out the giant robot outside."
+    },
+    {
+     "t": 245.0,
+     "text": "The commander instructs Thom to be tender and remind her what love is."
+    }
+   ],
+   "end": 257.92
+  },
+  {
+   "id": "s06",
+   "start": 257.92,
+   "location": "Canal Bridge Outside Command Room",
+   "characters": [
+    "thom",
+    "tech_head",
+    "captain"
+   ],
+   "summary": "A projection of Young Thom appears on the bridge as a massive mechanical walker looms ahead. The commander calls action and initiates the memory overwrite.",
+   "facts": [
+    {
+     "t": 260.0,
+     "text": "A holographic avatar of Young Thom materializes on the canal bridge."
+    },
+    {
+     "t": 284.0,
+     "text": "A giant bipedal war mech approaches the bridge facing Young Thom."
+    },
+    {
+     "t": 294.0,
+     "text": "The commander calls action, and the console operator presses playback to start the memory overwrite."
+    }
+   ],
+   "end": 307.71
+  },
+  {
+   "id": "s07",
+   "start": 307.71,
+   "location": "Canal Bridge & Command Room",
+   "characters": [
+    "thom",
+    "celia",
+    "captain",
+    "djenghis",
+    "tech_head"
+   ],
+   "summary": "The giant robot projects Celia's form, and Young Thom repeats their past argument. When Thom deviates from the script to apologize, Celia's robotic appendage grabs him by the throat.",
+   "facts": [
+    {
+     "t": 309.0,
+     "text": "The giant robot projects a holographic overlay of Celia's face."
+    },
+    {
+     "t": 340.0,
+     "text": "Barley warns over the radio that hostile machines are two minutes away."
+    },
+    {
+     "t": 356.0,
+     "text": "Thom goes off script and admits he was young and foolish."
+    },
+    {
+     "t": 369.0,
+     "text": "Celia's mechanical hand snaps forward and pins Young Thom by the neck."
+    }
+   ],
+   "end": 373.88
+  },
+  {
+   "id": "s08",
+   "start": 373.88,
+   "location": "Command Room & Canal Bridge",
+   "characters": [
+    "captain",
+    "djenghis",
+    "tech_head",
+    "thom",
+    "celia"
+   ],
+   "summary": "Alarms trigger in the control room as the console operator screams in panic. On the bridge, Celia confronts Thom about abandoning her, and his sincere apology pauses her attack.",
+   "facts": [
+    {
+     "t": 373.9,
+     "text": "The commander orders an abort as the console flashes critical error warnings."
+    },
+    {
+     "t": 383.0,
+     "text": "Celia screams at Thom that he broke her heart and left her on Earth."
+    },
+    {
+     "t": 407.0,
+     "text": "Thom says he is sorry, softening Celia's grip on his avatar."
+    },
+    {
+     "t": 416.0,
+     "text": "The holographic projection dissipates, revealing Celia's mechanical walker standing alone."
+    }
+   ],
+   "end": 425.5
+  },
+  {
+   "id": "s09",
+   "start": 425.5,
+   "location": "Cathedral & Bell Tower",
+   "characters": [
+    "captain",
+    "barley",
+    "tech_head",
+    "djenghis"
+   ],
+   "summary": "Enemy machines assault the building, forcing Barley to slide down a cable and join the defense. Inside, the defenders exchange heavy fire with invading spider robots.",
+   "facts": [
+    {
+     "t": 431.0,
+     "text": "Barley fires at robots scaling the tower before ziplining down into the cathedral."
+    },
+    {
+     "t": 447.0,
+     "text": "Defenders strap on modular forearm weapons to defend the interior."
+    },
+    {
+     "t": 473.0,
+     "text": "Multiple spider mechs break into the greenhouse and exchange fire with the resistance."
+    },
+    {
+     "t": 504.0,
+     "text": "The console operator announces that the memory overwrite has reached ninety percent."
+    },
+    {
+     "t": 506.0,
+     "text": "The female soldier urges the commander to abort, addressing him as Captain."
+    }
+   ],
+   "end": 509.96
+  },
+  {
+   "id": "s10",
+   "start": 509.96,
+   "location": "Canal Bridge & Ruins",
+   "characters": [
+    "thom",
+    "old_thom",
+    "captain",
+    "djenghis",
+    "tech_head"
+   ],
+   "summary": "Young Thom delivers a final heartfelt plea before Old Thom steps onto the bridge in person. As the overwrite finishes, Thom touches Celia's machine, and the robot army shuts down.",
+   "facts": [
+    {
+     "t": 518.0,
+     "text": "Young Thom tells Celia that the world has changed and they can too."
+    },
+    {
+     "t": 531.0,
+     "text": "Old Thom steps out onto the bridge directly in front of the colossal robot."
+    },
+    {
+     "t": 538.0,
+     "text": "The console operator confirms that the memory overwrite is complete."
+    },
+    {
+     "t": 544.0,
+     "text": "Old Thom places his hands tenderly onto the chassis of the giant robot."
+    },
+    {
+     "t": 585.0,
+     "text": "The attacking war machines across the city collapse and deactivate."
+    }
+   ],
+   "end": 588.0
+  },
+  {
+   "id": "s11",
+   "start": 588.0,
+   "location": "End Credits",
+   "characters": [],
+   "summary": "End credits roll over stylized orange and blue technical graphics depicting cybernetic joints, circuitry, and machine schematics.",
+   "facts": [
+    {
+     "t": 589.0,
+     "text": "The stylized graphic credits sequence begins."
+    }
+   ],
+   "end": 709.5
+  },
+  {
+   "id": "s12",
+   "start": 709.5,
+   "location": "Robot Scrapyard",
+   "characters": [
+    "barley"
+   ],
+   "summary": "In the aftermath, Barley relaxes atop a towering mountain of destroyed robot parts. He takes a drink from his juice box and sighs contentedly.",
+   "facts": [
+    {
+     "t": 716.0,
+     "text": "Barley is seated high atop a massive pile of deactivated robot bodies."
+    },
+    {
+     "t": 725.0,
+     "text": "Barley drinks the remainder of his mango juice."
+    }
+   ],
+   "end": 734.17
+  }
+ ],
+ "subtitles": [
+  {
+   "start": 23.0,
+   "end": 24.5,
+   "text": "You're a jerk, Thom."
+  },
+  {
+   "start": 25.0,
+   "end": 27.0,
+   "text": "Look Celia, we have to follow our passions;"
+  },
+  {
+   "start": 27.0,
+   "end": 30.5,
+   "text": "...you have your robotics, and I just want to be awesome in space."
+  },
+  {
+   "start": 30.8,
+   "end": 34.0,
+   "text": "Why don't you just admit that you're freaked out by my robot hand?"
+  },
+  {
+   "start": 34.5,
+   "end": 36.0,
+   "text": "I'm not freaked out by- it's..."
+  },
+  {
+   "start": 37.0,
+   "end": 38.0,
+   "text": "...alright! Fine!"
+  },
+  {
+   "start": 38.0,
+   "end": 41.0,
+   "text": "I'm freaked out! I have nightmares that I'm being chased..."
+  },
+  {
+   "start": 41.0,
+   "end": 42.0,
+   "text": "...by these giant robotic claws of death..."
+  },
+  {
+   "start": 42.2,
+   "end": 45.0,
+   "text": "\"Fourty years later\" Whatever, Thom. We're done."
+  },
+  {
+   "start": 50.0,
+   "end": 53.5,
+   "text": "Robot's memory synced and locked!"
+  },
+  {
+   "start": 61.0,
+   "end": 63.0,
+   "text": "This is pretty freaky."
+  },
+  {
+   "start": 117.0,
+   "end": 119.0,
+   "text": "Shouldn't you be down there?"
+  },
+  {
+   "start": 131.0,
+   "end": 133.0,
+   "text": "I heard you guys talking last night."
+  },
+  {
+   "start": 136.0,
+   "end": 138.0,
+   "text": "It's not my fault, you know."
+  },
+  {
+   "start": 191.0,
+   "end": 192.0,
+   "text": "Are you ready?"
+  },
+  {
+   "start": 193.0,
+   "end": 195.0,
+   "text": "Of course you're ready, you're a rockstar."
+  },
+  {
+   "start": 197.0,
+   "end": 198.0,
+   "text": "How's it looking, Barley?"
+  },
+  {
+   "start": 199.0,
+   "end": 201.0,
+   "text": "We should have about ten minutes..."
+  },
+  {
+   "start": 201.5,
+   "end": 203.0,
+   "text": "Well that's perfect."
+  },
+  {
+   "start": 203.5,
+   "end": 206.5,
+   "text": "We're on in one! All systems go! Yeah you, go!"
+  },
+  {
+   "start": 208.0,
+   "end": 212.0,
+   "text": "Go! Move your asses! Go go go!"
+  },
+  {
+   "start": 213.0,
+   "end": 217.0,
+   "text": "I love it! Come on, go!"
+  },
+  {
+   "start": 223.0,
+   "end": 224.0,
+   "text": "That's nice."
+  },
+  {
+   "start": 224.5,
+   "end": 225.7,
+   "text": "Nothing to worry about."
+  },
+  {
+   "start": 226.0,
+   "end": 227.0,
+   "text": "Thom."
+  },
+  {
+   "start": 231.0,
+   "end": 233.0,
+   "text": "There she is."
+  },
+  {
+   "start": 233.5,
+   "end": 234.5,
+   "text": "Now."
+  },
+  {
+   "start": 235.0,
+   "end": 236.0,
+   "text": "You love her."
+  },
+  {
+   "start": 237.0,
+   "end": 238.5,
+   "text": "She is your passion!"
+  },
+  {
+   "start": 240.0,
+   "end": 241.0,
+   "text": "Be tender to her."
+  },
+  {
+   "start": 241.5,
+   "end": 244.5,
+   "text": "Be honest! Eh- be tender."
+  },
+  {
+   "start": 245.0,
+   "end": 248.0,
+   "text": "Remind her what love is."
+  },
+  {
+   "start": 292.0,
+   "end": 295.0,
+   "text": "...and, action!"
+  },
+  {
+   "start": 296.5,
+   "end": 298.0,
+   "text": "Memory overwrite in progress!"
+  },
+  {
+   "start": 299.0,
+   "end": 301.0,
+   "text": "You're a jerk, Thom!"
+  },
+  {
+   "start": 302.5,
+   "end": 305.0,
+   "text": "Ohp- Sorry! Sorry."
+  },
+  {
+   "start": 316.0,
+   "end": 317.0,
+   "text": "Look Celia."
+  },
+  {
+   "start": 318.0,
+   "end": 320.0,
+   "text": "We have to follow our passions."
+  },
+  {
+   "start": 321.0,
+   "end": 323.0,
+   "text": "You have your robotics..."
+  },
+  {
+   "start": 325.0,
+   "end": 328.0,
+   "text": "...and I just want to be awesome in space."
+  },
+  {
+   "start": 339.0,
+   "end": 341.0,
+   "text": "Okay, they're coming. Two minutes left!"
+  },
+  {
+   "start": 343.0,
+   "end": 344.0,
+   "text": "Speed it up, Thom!"
+  },
+  {
+   "start": 345.0,
+   "end": 346.0,
+   "text": "Vivacissimo!"
+  },
+  {
+   "start": 347.0,
+   "end": 350.0,
+   "text": "Why don't you just admit that you're freaked out by my robot hand?"
+  },
+  {
+   "start": 356.0,
+   "end": 359.0,
+   "text": "Listen Celia, I was young..."
+  },
+  {
+   "start": 359.5,
+   "end": 361.0,
+   "text": "...and a dick."
+  },
+  {
+   "start": 361.0,
+   "end": 363.0,
+   "text": "But that's no reason to destroy the world."
+  },
+  {
+   "start": 365.0,
+   "end": 366.0,
+   "text": "Why does he do this?"
+  },
+  {
+   "start": 366.5,
+   "end": 368.5,
+   "text": "We already tried that one!"
+  },
+  {
+   "start": 371.5,
+   "end": 372.5,
+   "text": "Abort!"
+  },
+  {
+   "start": 373.0,
+   "end": 374.0,
+   "text": "Cut!"
+  },
+  {
+   "start": 374.0,
+   "end": 375.0,
+   "text": "Whoaaa!"
+  },
+  {
+   "start": 379.0,
+   "end": 380.0,
+   "text": "Whoaaa!"
+  },
+  {
+   "start": 381.0,
+   "end": 383.0,
+   "text": "Nooooo!"
+  },
+  {
+   "start": 383.0,
+   "end": 385.0,
+   "text": "You broke my heart."
+  },
+  {
+   "start": 386.0,
+   "end": 387.0,
+   "text": "I know."
+  },
+  {
+   "start": 387.0,
+   "end": 389.0,
+   "text": "You forgot me on earth."
+  },
+  {
+   "start": 389.0,
+   "end": 390.0,
+   "text": "I know."
+  },
+  {
+   "start": 390.5,
+   "end": 393.0,
+   "text": "I should just crush you."
+  },
+  {
+   "start": 396.0,
+   "end": 397.0,
+   "text": "I'm-"
+  },
+  {
+   "start": 407.0,
+   "end": 408.0,
+   "text": "I'm sorry."
+  },
+  {
+   "start": 410.0,
+   "end": 411.0,
+   "text": "Good ad-lib."
+  },
+  {
+   "start": 419.0,
+   "end": 420.5,
+   "text": "Not my fault!"
+  },
+  {
+   "start": 422.0,
+   "end": 423.0,
+   "text": "This time."
+  },
+  {
+   "start": 428.0,
+   "end": 429.5,
+   "text": "Quiet on set!"
+  },
+  {
+   "start": 430.0,
+   "end": 431.0,
+   "text": "We're out of time!"
+  },
+  {
+   "start": 493.0,
+   "end": 494.0,
+   "text": "Come on!"
+  },
+  {
+   "start": 502.0,
+   "end": 504.0,
+   "text": "RAAAAAAAAH!"
+  },
+  {
+   "start": 504.0,
+   "end": 505.0,
+   "text": "Memory overwrite, 90%."
+  },
+  {
+   "start": 506.0,
+   "end": 508.0,
+   "text": "Captain! We have to abort!"
+  },
+  {
+   "start": 518.0,
+   "end": 520.0,
+   "text": "The world's changed, Celia..."
+  },
+  {
+   "start": 534.0,
+   "end": 536.0,
+   "text": "...maybe we can too."
+  },
+  {
+   "start": 538.0,
+   "end": 539.0,
+   "text": "Memory overwrite complete!"
+  },
+  {
+   "start": 559.0,
+   "end": 560.0,
+   "text": "You know."
+  },
+  {
+   "start": 562.0,
+   "end": 564.0,
+   "text": "There's a lesson to be learned from this."
+  },
+  {
+   "start": 566.0,
+   "end": 567.0,
+   "text": "Could'a gone worse."
+  }
+ ],
+ "analysed_by": "gemini-3.7-flash",
+ "gemini_logline": "Forty years after a bitter romantic breakup triggers a catastrophic future ruled by killer robots, a ragtag human resistance prepares a memory simulation to rewrite history.",
+ "logline": "In a future Amsterdam overrun by machines, a small band of scientists and soldiers bets everything on replaying one moment from the past.",
+ "ad": [
+  {
+   "id": "ad001",
+   "start": 0.7,
+   "end": 13.46,
+   "text": "Text on black background: \"Blender Foundation Presents\", then \"the Mango Open Movie project\". Rocket thrusters ignite with intense white flame inside a launch structure."
+  },
+  {
+   "id": "ad002",
+   "start": 13.66,
+   "end": 22.6,
+   "text": "A rocket ascends over a futuristic cityscape. Text: \"This film is supported by the Netherlands Film Fund\"."
+  },
+  {
+   "id": "ad003",
+   "start": 45.6,
+   "end": 49.6,
+   "text": "Glowing wireframe figures mimic Thom and Celia on screen."
+  },
+  {
+   "id": "ad004",
+   "start": 54.1,
+   "end": 60.6,
+   "text": "A preserved human brain rests on a dish, surrounded by a glowing energy ring."
+  },
+  {
+   "id": "ad005",
+   "start": 63.6,
+   "end": 74.08,
+   "text": "Title: \"TEARS OF STEEL\". A foggy city with traditional houses beneath massive industrial structures and airborne vessels."
+  },
+  {
+   "id": "ad006",
+   "start": 74.28,
+   "end": 84.83,
+   "text": "Inside a bell tower, a man lies under a newspaper headline: \"ROBOTICIST CREATES KILLER ROBOTS\". Nearby, a sniper takes aim."
+  },
+  {
+   "id": "ad007",
+   "start": 85.03,
+   "end": 95.42,
+   "text": "Through a telescopic sight, a dark flying ship hovers above rooftops. The sniper lowers his rifle slightly and glances up."
+  },
+  {
+   "id": "ad008",
+   "start": 95.62,
+   "end": 107.42,
+   "text": "The ship fires glowing projectiles before crashing through roofs. In the tower, the gray-haired man wakes as the newspaper blows away."
+  },
+  {
+   "id": "ad009",
+   "start": 107.62,
+   "end": 116.6,
+   "text": "Through the scope, the damaged vessel plows through brick houses, leaving a trail of destruction."
+  },
+  {
+   "id": "ad010",
+   "start": 119.6,
+   "end": 130.6,
+   "text": "The gray-haired man sits up, groaning and rubbing his shoulder, while the sniper keeps watch through his scope."
+  },
+  {
+   "id": "ad011",
+   "start": 138.6,
+   "end": 152.88,
+   "text": "The sniper glances back at him. The gray-haired man grabs a thick rope to pull himself up. The sniper sips from a juice carton."
+  },
+  {
+   "id": "ad012",
+   "start": 153.07,
+   "end": 164.88,
+   "text": "The gray-haired man slides down a long rope suspended in a grand, ruined church hall, landing on his feet."
+  },
+  {
+   "id": "ad013",
+   "start": 165.07,
+   "end": 172.29,
+   "text": "He holds his shoulder and walks toward a glowing yellow portal at the far end."
+  },
+  {
+   "id": "ad014",
+   "start": 172.49,
+   "end": 183.25,
+   "text": "He enters a dimly lit room where a female soldier in camouflage stands waiting. He walks past her toward a broken brick wall."
+  },
+  {
+   "id": "ad015",
+   "start": 183.45,
+   "end": 190.6,
+   "text": "He steps out onto a balcony, where a giant robot stands on a bridge."
+  },
+  {
+   "id": "ad016",
+   "start": 217.6,
+   "end": 222.6,
+   "text": "The commander spreads his arms as a glowing dome expands around."
+  },
+  {
+   "id": "ad017",
+   "start": 227.6,
+   "end": 230.6,
+   "text": "The commander puts his arms around."
+  },
+  {
+   "id": "ad018",
+   "start": 248.6,
+   "end": 257.92,
+   "text": "The commander guides Thom forward as a green holographic interface scans them and projects the simulation onto the bridge."
+  },
+  {
+   "id": "ad019",
+   "start": 258.12,
+   "end": 269.92,
+   "text": "Young Thom materializes on the bridge as a translucent hologram. He looks at his hands, then walks forward along the canal bridge."
+  },
+  {
+   "id": "ad020",
+   "start": 270.12,
+   "end": 281.92,
+   "text": "Young Thom walks beside the canal, his leather jacket featuring a colorful lion illustration on the back."
+  },
+  {
+   "id": "ad021",
+   "start": 282.12,
+   "end": 291.6,
+   "text": "Thom stops opposite the giant robot, which lowers its mechanical head toward him. In the control room, the commander speaks into a mic."
+  },
+  {
+   "id": "ad022",
+   "start": 305.6,
+   "end": 315.6,
+   "text": "The robot head morphs into young Celia. Floating pink text appears in the air behind Thom as he speaks to her."
+  },
+  {
+   "id": "ad023",
+   "start": 328.6,
+   "end": 338.6,
+   "text": "A golden sunset illuminates city towers. Through a scope, a robot climbs across rooftops in the distance."
+  },
+  {
+   "id": "ad024",
+   "start": 350.6,
+   "end": 355.6,
+   "text": "Pink text floats beside them: \"CELIA, I LOVE YOUR ROBOT HAND\"."
+  },
+  {
+   "id": "ad025",
+   "start": 375.6,
+   "end": 378.6,
+   "text": "An error message flashes red on screen."
+  },
+  {
+   "id": "ad026",
+   "start": 397.6,
+   "end": 406.6,
+   "text": "The console operator stares in disbelief. On the bridge, the robotic claw gently cradles Thom's face."
+  },
+  {
+   "id": "ad027",
+   "start": 411.6,
+   "end": 418.6,
+   "text": "Celia stares at Thom. A holographic wave ripples across her, returning her to robot form."
+  },
+  {
+   "id": "ad028",
+   "start": 423.6,
+   "end": 427.6,
+   "text": "A massive shadow looms over the cathedral interior."
+  },
+  {
+   "id": "ad029",
+   "start": 431.6,
+   "end": 441.21,
+   "text": "Barley opens fire on a robot attacking the tower balcony. The robot smashes the balustrade, sending Barley tumbling back."
+  },
+  {
+   "id": "ad030",
+   "start": 441.41,
+   "end": 453.21,
+   "text": "A scientist loads a glowing power cell into a heavy gauntlet and hands it to a young colleague, who attaches it to his arm."
+  },
+  {
+   "id": "ad031",
+   "start": 453.41,
+   "end": 461.79,
+   "text": "The young man aims the gauntlet device forward, his face tense with concentration."
+  },
+  {
+   "id": "ad032",
+   "start": 461.99,
+   "end": 478.96,
+   "text": "In a sunlit hall, technicians in white suits fire energy beams from gauntlets at invading giant robots smashing through the structure."
+  },
+  {
+   "id": "ad033",
+   "start": 479.16,
+   "end": 488.04,
+   "text": "Barley slides down a rope, activates a device on his harness, and swings through the cathedral rafters."
+  },
+  {
+   "id": "ad034",
+   "start": 488.24,
+   "end": 492.6,
+   "text": "A robot smashes into the cathedral organ loft."
+  },
+  {
+   "id": "ad035",
+   "start": 494.6,
+   "end": 501.6,
+   "text": "Organ pipes collapse in a huge explosion as Barley swings on a rope, firing wildly."
+  },
+  {
+   "id": "ad036",
+   "start": 508.6,
+   "end": 517.6,
+   "text": "On the bridge, the giant robot lowers its head close to young Thom as he speaks to it gently."
+  },
+  {
+   "id": "ad037",
+   "start": 520.6,
+   "end": 533.6,
+   "text": "A robot smashes through machinery in the hall. Outside, a giant mothership hovers. In the church, old Thom stands beside the passive robot head."
+  },
+  {
+   "id": "ad038",
+   "start": 539.6,
+   "end": 552.83,
+   "text": "The console operator works at his terminal. Old Thom gently rests his hands against the side of the robot's head."
+  },
+  {
+   "id": "ad039",
+   "start": 553.03,
+   "end": 558.6,
+   "text": "Thom gazes emotionally at the robot's mechanical face."
+  },
+  {
+   "id": "ad040",
+   "start": 567.6,
+   "end": 579.4,
+   "text": "A robot crashes into the room. Outside, old Thom stands alone in a circular courtyard surrounded by several giant robots."
+  },
+  {
+   "id": "ad041",
+   "start": 579.6,
+   "end": 588.0,
+   "text": "The camera pulls back high above the courtyard where Thom stands surrounded by the still, towering robots."
+  }
+ ],
+ "ad_written_by": "gemini-3.5-flash"
+}

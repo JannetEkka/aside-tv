@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+.venv/
+.env
+media/
+*.mp4
+*.mkv
+*.mov
+tv-app/.gradle/
+tv-app/build/
+tv-app/app/build/
+tv-app/local.properties
+.idea/
+node_modules/
+eval/runs/

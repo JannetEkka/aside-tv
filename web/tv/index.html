@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aside</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display&display=swap">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<div id="stage">
+
+  <!-- HOME -->
+  <section id="home" class="screen">
+    <div class="backdrop" id="home-backdrop"></div>
+    <div class="scrim"></div>
+    <header class="brand">
+      <div class="logo"><span class="logo-mark">a</span>Aside</div>
+      <div class="tagline">Watch with a friend who has seen exactly what you have.</div>
+    </header>
+    <div class="hero">
+      <div class="hero-meta" id="hero-meta"></div>
+      <h1 class="hero-title" id="hero-title"></h1>
+      <p class="hero-logline" id="hero-logline"></p>
+      <div class="hero-actions" id="hero-actions"></div>
+    </div>
+    <div class="rows">
+      <div class="row-label">Films</div>
+      <div class="cards" id="cards"></div>
+      <div class="row-label">Watching with Aside</div>
+      <div class="toggles" id="toggles"></div>
+    </div>
+    <footer class="credits" id="credits"></footer>
+  </section>
+
+  <!-- PLAYER -->
+  <section id="player" class="screen hidden">
+    <video id="video" preload="auto" playsinline></video>
+    <div id="captions" class="captions hidden"></div>
+    <div id="ad-caption" class="ad-caption hidden"><span class="ad-icon">AD</span><span id="ad-text"></span></div>
+    <div id="phone-pill" class="pill phone-pill hidden"><span class="dot"></span>Phone connected</div>
+
+    <div id="controls" class="controls hidden">
+      <div class="controls-top">
+        <div class="ctl-title" id="ctl-title"></div>
+        <div class="ctl-sub">Aside knows the film up to <b id="ctl-known">00:00</b>, never further.</div>
+      </div>
+      <div class="controls-bottom">
+        <div class="progress"><div class="progress-fill" id="progress-fill"></div><div class="progress-head" id="progress-head"></div></div>
+        <div class="ctl-row">
+          <span id="ctl-time">00:00 / 00:00</span>
+          <span class="ctl-hints"><kbd>▲</kbd> Ask Aside <kbd>◀ ▶</kbd> 10 s <kbd>⏯</kbd> Play / pause</span>
+        </div>
+      </div>
+    </div>
+
+    <div id="buffering" class="buffering hidden"><div class="spinner"></div></div>
+
+    <!-- Aside bar: the quick questions -->
+    <div id="asidebar" class="asidebar hidden layer">
+      <div class="asidebar-head">
+        <div class="logo small"><span class="logo-mark">a</span>Aside</div>
+        <div class="asidebar-sub">Paused at <b id="bar-time">00:00</b>. I only know what you've seen.</div>
+      </div>
+      <div class="chips" id="chips"></div>
+      <div class="chips hidden" id="missed-chips"></div>
+    </div>
+
+    <!-- Answer card -->
+    <div id="answer" class="answer hidden layer">
+      <div class="answer-q" id="answer-q"></div>
+      <div class="answer-from hidden" id="answer-from">From your phone</div>
+      <div class="answer-body" id="answer-body"></div>
+      <div class="answer-thinking hidden" id="answer-thinking"><span class="dots"><i></i><i></i><i></i></span><span id="thinking-text">Thinking about what we've seen</span></div>
+      <div class="answer-moments" id="answer-moments"></div>
+      <div class="answer-actions" id="answer-actions"></div>
+      <div class="answer-guard" id="answer-guard"></div>
+    </div>
+
+    <!-- Phone pairing -->
+    <div id="pair" class="pair hidden layer">
+      <div class="pair-card">
+        <img id="pair-qr" alt="">
+        <div class="pair-text">
+          <h2>Ask out loud from your phone</h2>
+          <p>Scan with your phone's camera, then tap the mic and ask anything about the film. Aside answers here on the TV, and only from what you've seen.</p>
+          <p class="pair-code">Or open <b id="pair-url"></b></p>
+          <div class="pair-status" id="pair-status">Waiting for your phone…</div>
+          <div class="pair-actions"><button class="btn" data-focus id="pair-done">Back to the film</button></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Welcome back -->
+    <div id="welcome" class="welcome hidden layer">
+      <div class="welcome-card">
+        <div class="logo small"><span class="logo-mark">a</span>Aside</div>
+        <h2 id="welcome-title">Welcome back</h2>
+        <p id="welcome-text"></p>
+        <div class="welcome-actions" id="welcome-actions"></div>
+      </div>
+    </div>
+  </section>
+
+  <div id="toast" class="toast hidden"></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

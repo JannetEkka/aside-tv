@@ -1,0 +1,689 @@
+{
+ "id": "tears-of-steel",
+ "title": "Tears of Steel",
+ "year": 2012,
+ "director": "Ian Hubert",
+ "genre": "Sci-fi · Live action + VFX",
+ "credit": "Tears of Steel © copyright Blender Foundation | mango.blender.org",
+ "license": "CC BY 3.0",
+ "license_url": "https://creativecommons.org/licenses/by/3.0/",
+ "source_url": "https://mango.blender.org/",
+ "logline": "In a future Amsterdam overrun by machines, a small band of scientists and soldiers bets everything on replaying one moment from the past.",
+ "duration": 734.17,
+ "credits_start": 588.0,
+ "video": "https://github.com/JannetEkka/aside-tv/releases/download/media-v1/tears-of-steel-720p.mp4",
+ "video_file": "tears-of-steel-720p.mp4",
+ "backdrop": "/films/tears-of-steel/backdrop.jpg",
+ "thumb": "/films/tears-of-steel/thumb.jpg",
+ "subtitles": [
+  {
+   "start": 23.0,
+   "end": 24.5,
+   "text": "You're a jerk, Thom."
+  },
+  {
+   "start": 25.0,
+   "end": 27.0,
+   "text": "Look Celia, we have to follow our passions;"
+  },
+  {
+   "start": 27.0,
+   "end": 30.5,
+   "text": "...you have your robotics, and I just want to be awesome in space."
+  },
+  {
+   "start": 30.8,
+   "end": 34.0,
+   "text": "Why don't you just admit that you're freaked out by my robot hand?"
+  },
+  {
+   "start": 34.5,
+   "end": 36.0,
+   "text": "I'm not freaked out by- it's..."
+  },
+  {
+   "start": 37.0,
+   "end": 38.0,
+   "text": "...alright! Fine!"
+  },
+  {
+   "start": 38.0,
+   "end": 41.0,
+   "text": "I'm freaked out! I have nightmares that I'm being chased..."
+  },
+  {
+   "start": 41.0,
+   "end": 42.0,
+   "text": "...by these giant robotic claws of death..."
+  },
+  {
+   "start": 42.2,
+   "end": 45.0,
+   "text": "\"Fourty years later\" Whatever, Thom. We're done."
+  },
+  {
+   "start": 50.0,
+   "end": 53.5,
+   "text": "Robot's memory synced and locked!"
+  },
+  {
+   "start": 61.0,
+   "end": 63.0,
+   "text": "This is pretty freaky."
+  },
+  {
+   "start": 117.0,
+   "end": 119.0,
+   "text": "Shouldn't you be down there?"
+  },
+  {
+   "start": 131.0,
+   "end": 133.0,
+   "text": "I heard you guys talking last night."
+  },
+  {
+   "start": 136.0,
+   "end": 138.0,
+   "text": "It's not my fault, you know."
+  },
+  {
+   "start": 191.0,
+   "end": 192.0,
+   "text": "Are you ready?"
+  },
+  {
+   "start": 193.0,
+   "end": 195.0,
+   "text": "Of course you're ready, you're a rockstar."
+  },
+  {
+   "start": 197.0,
+   "end": 198.0,
+   "text": "How's it looking, Barley?"
+  },
+  {
+   "start": 199.0,
+   "end": 201.0,
+   "text": "We should have about ten minutes..."
+  },
+  {
+   "start": 201.5,
+   "end": 203.0,
+   "text": "Well that's perfect."
+  },
+  {
+   "start": 203.5,
+   "end": 206.5,
+   "text": "We're on in one! All systems go! Yeah you, go!"
+  },
+  {
+   "start": 208.0,
+   "end": 212.0,
+   "text": "Go! Move your asses! Go go go!"
+  },
+  {
+   "start": 213.0,
+   "end": 217.0,
+   "text": "I love it! Come on, go!"
+  },
+  {
+   "start": 223.0,
+   "end": 224.0,
+   "text": "That's nice."
+  },
+  {
+   "start": 224.5,
+   "end": 225.7,
+   "text": "Nothing to worry about."
+  },
+  {
+   "start": 226.0,
+   "end": 227.0,
+   "text": "Thom."
+  },
+  {
+   "start": 231.0,
+   "end": 233.0,
+   "text": "There she is."
+  },
+  {
+   "start": 233.5,
+   "end": 234.5,
+   "text": "Now."
+  },
+  {
+   "start": 235.0,
+   "end": 236.0,
+   "text": "You love her."
+  },
+  {
+   "start": 237.0,
+   "end": 238.5,
+   "text": "She is your passion!"
+  },
+  {
+   "start": 240.0,
+   "end": 241.0,
+   "text": "Be tender to her."
+  },
+  {
+   "start": 241.5,
+   "end": 244.5,
+   "text": "Be honest! Eh- be tender."
+  },
+  {
+   "start": 245.0,
+   "end": 248.0,
+   "text": "Remind her what love is."
+  },
+  {
+   "start": 292.0,
+   "end": 295.0,
+   "text": "...and, action!"
+  },
+  {
+   "start": 296.5,
+   "end": 298.0,
+   "text": "Memory overwrite in progress!"
+  },
+  {
+   "start": 299.0,
+   "end": 301.0,
+   "text": "You're a jerk, Thom!"
+  },
+  {
+   "start": 302.5,
+   "end": 305.0,
+   "text": "Ohp- Sorry! Sorry."
+  },
+  {
+   "start": 316.0,
+   "end": 317.0,
+   "text": "Look Celia."
+  },
+  {
+   "start": 318.0,
+   "end": 320.0,
+   "text": "We have to follow our passions."
+  },
+  {
+   "start": 321.0,
+   "end": 323.0,
+   "text": "You have your robotics..."
+  },
+  {
+   "start": 325.0,
+   "end": 328.0,
+   "text": "...and I just want to be awesome in space."
+  },
+  {
+   "start": 339.0,
+   "end": 341.0,
+   "text": "Okay, they're coming. Two minutes left!"
+  },
+  {
+   "start": 343.0,
+   "end": 344.0,
+   "text": "Speed it up, Thom!"
+  },
+  {
+   "start": 345.0,
+   "end": 346.0,
+   "text": "Vivacissimo!"
+  },
+  {
+   "start": 347.0,
+   "end": 350.0,
+   "text": "Why don't you just admit that you're freaked out by my robot hand?"
+  },
+  {
+   "start": 356.0,
+   "end": 359.0,
+   "text": "Listen Celia, I was young..."
+  },
+  {
+   "start": 359.5,
+   "end": 361.0,
+   "text": "...and a dick."
+  },
+  {
+   "start": 361.0,
+   "end": 363.0,
+   "text": "But that's no reason to destroy the world."
+  },
+  {
+   "start": 365.0,
+   "end": 366.0,
+   "text": "Why does he do this?"
+  },
+  {
+   "start": 366.5,
+   "end": 368.5,
+   "text": "We already tried that one!"
+  },
+  {
+   "start": 371.5,
+   "end": 372.5,
+   "text": "Abort!"
+  },
+  {
+   "start": 373.0,
+   "end": 374.0,
+   "text": "Cut!"
+  },
+  {
+   "start": 374.0,
+   "end": 375.0,
+   "text": "Whoaaa!"
+  },
+  {
+   "start": 379.0,
+   "end": 380.0,
+   "text": "Whoaaa!"
+  },
+  {
+   "start": 381.0,
+   "end": 383.0,
+   "text": "Nooooo!"
+  },
+  {
+   "start": 383.0,
+   "end": 385.0,
+   "text": "You broke my heart."
+  },
+  {
+   "start": 386.0,
+   "end": 387.0,
+   "text": "I know."
+  },
+  {
+   "start": 387.0,
+   "end": 389.0,
+   "text": "You forgot me on earth."
+  },
+  {
+   "start": 389.0,
+   "end": 390.0,
+   "text": "I know."
+  },
+  {
+   "start": 390.5,
+   "end": 393.0,
+   "text": "I should just crush you."
+  },
+  {
+   "start": 396.0,
+   "end": 397.0,
+   "text": "I'm-"
+  },
+  {
+   "start": 407.0,
+   "end": 408.0,
+   "text": "I'm sorry."
+  },
+  {
+   "start": 410.0,
+   "end": 411.0,
+   "text": "Good ad-lib."
+  },
+  {
+   "start": 419.0,
+   "end": 420.5,
+   "text": "Not my fault!"
+  },
+  {
+   "start": 422.0,
+   "end": 423.0,
+   "text": "This time."
+  },
+  {
+   "start": 428.0,
+   "end": 429.5,
+   "text": "Quiet on set!"
+  },
+  {
+   "start": 430.0,
+   "end": 431.0,
+   "text": "We're out of time!"
+  },
+  {
+   "start": 493.0,
+   "end": 494.0,
+   "text": "Come on!"
+  },
+  {
+   "start": 502.0,
+   "end": 504.0,
+   "text": "RAAAAAAAAH!"
+  },
+  {
+   "start": 504.0,
+   "end": 505.0,
+   "text": "Memory overwrite, 90%."
+  },
+  {
+   "start": 506.0,
+   "end": 508.0,
+   "text": "Captain! We have to abort!"
+  },
+  {
+   "start": 518.0,
+   "end": 520.0,
+   "text": "The world's changed, Celia..."
+  },
+  {
+   "start": 534.0,
+   "end": 536.0,
+   "text": "...maybe we can too."
+  },
+  {
+   "start": 538.0,
+   "end": 539.0,
+   "text": "Memory overwrite complete!"
+  },
+  {
+   "start": 559.0,
+   "end": 560.0,
+   "text": "You know."
+  },
+  {
+   "start": 562.0,
+   "end": 564.0,
+   "text": "There's a lesson to be learned from this."
+  },
+  {
+   "start": 566.0,
+   "end": 567.0,
+   "text": "Could'a gone worse."
+  }
+ ],
+ "ad": [
+  {
+   "start": 0.7,
+   "end": 13.46,
+   "text": "Text on black background: \"Blender Foundation Presents\", then \"the Mango Open Movie project\". Rocket thrusters ignite with intense white flame inside a launch structure.",
+   "audio": "/films/tears-of-steel/ad/ad001.mp3",
+   "audio_s": 11.06
+  },
+  {
+   "start": 13.66,
+   "end": 22.6,
+   "text": "A rocket ascends over a futuristic cityscape. Text: \"This film is supported by the Netherlands Film Fund\".",
+   "audio": "/films/tears-of-steel/ad/ad002.mp3",
+   "audio_s": 6.84
+  },
+  {
+   "start": 45.6,
+   "end": 49.6,
+   "text": "Glowing wireframe figures mimic Thom and Celia on screen.",
+   "audio": "/films/tears-of-steel/ad/ad003.mp3",
+   "audio_s": 4.27
+  },
+  {
+   "start": 54.1,
+   "end": 60.6,
+   "text": "A preserved human brain rests on a dish, surrounded by a glowing energy ring.",
+   "audio": "/films/tears-of-steel/ad/ad004.mp3",
+   "audio_s": 5.26
+  },
+  {
+   "start": 63.6,
+   "end": 74.08,
+   "text": "Title: \"TEARS OF STEEL\". A foggy city with traditional houses beneath massive industrial structures and airborne vessels.",
+   "audio": "/films/tears-of-steel/ad/ad005.mp3",
+   "audio_s": 8.59
+  },
+  {
+   "start": 74.28,
+   "end": 84.83,
+   "text": "Inside a bell tower, a man lies under a newspaper headline: \"ROBOTICIST CREATES KILLER ROBOTS\". Nearby, a sniper takes aim.",
+   "audio": "/films/tears-of-steel/ad/ad006.mp3",
+   "audio_s": 9.14
+  },
+  {
+   "start": 85.03,
+   "end": 95.42,
+   "text": "Through a telescopic sight, a dark flying ship hovers above rooftops. The sniper lowers his rifle slightly and glances up.",
+   "audio": "/films/tears-of-steel/ad/ad007.mp3",
+   "audio_s": 8.18
+  },
+  {
+   "start": 95.62,
+   "end": 107.42,
+   "text": "The ship fires glowing projectiles before crashing through roofs. In the tower, the gray-haired man wakes as the newspaper blows away.",
+   "audio": "/films/tears-of-steel/ad/ad008.mp3",
+   "audio_s": 8.62
+  },
+  {
+   "start": 107.62,
+   "end": 116.6,
+   "text": "Through the scope, the damaged vessel plows through brick houses, leaving a trail of destruction.",
+   "audio": "/films/tears-of-steel/ad/ad009.mp3",
+   "audio_s": 5.78
+  },
+  {
+   "start": 119.6,
+   "end": 130.6,
+   "text": "The gray-haired man sits up, groaning and rubbing his shoulder, while the sniper keeps watch through his scope.",
+   "audio": "/films/tears-of-steel/ad/ad010.mp3",
+   "audio_s": 6.62
+  },
+  {
+   "start": 138.6,
+   "end": 152.88,
+   "text": "The sniper glances back at him. The gray-haired man grabs a thick rope to pull himself up. The sniper sips from a juice carton.",
+   "audio": "/films/tears-of-steel/ad/ad011.mp3",
+   "audio_s": 7.1
+  },
+  {
+   "start": 153.07,
+   "end": 164.88,
+   "text": "The gray-haired man slides down a long rope suspended in a grand, ruined church hall, landing on his feet.",
+   "audio": "/films/tears-of-steel/ad/ad012.mp3",
+   "audio_s": 7.03
+  },
+  {
+   "start": 165.07,
+   "end": 172.29,
+   "text": "He holds his shoulder and walks toward a glowing yellow portal at the far end.",
+   "audio": "/films/tears-of-steel/ad/ad013.mp3",
+   "audio_s": 4.46
+  },
+  {
+   "start": 172.49,
+   "end": 183.25,
+   "text": "He enters a dimly lit room where a female soldier in camouflage stands waiting. He walks past her toward a broken brick wall.",
+   "audio": "/films/tears-of-steel/ad/ad014.mp3",
+   "audio_s": 7.73
+  },
+  {
+   "start": 183.45,
+   "end": 190.6,
+   "text": "He steps out onto a balcony, where a giant robot stands on a bridge.",
+   "audio": "/films/tears-of-steel/ad/ad015.mp3",
+   "audio_s": 4.32
+  },
+  {
+   "start": 217.6,
+   "end": 222.6,
+   "text": "The commander spreads his arms as a glowing dome expands around.",
+   "audio": "/films/tears-of-steel/ad/ad016.mp3",
+   "audio_s": 4.42
+  },
+  {
+   "start": 227.6,
+   "end": 230.6,
+   "text": "The commander puts his arms around.",
+   "audio": "/films/tears-of-steel/ad/ad017.mp3",
+   "audio_s": 1.99
+  },
+  {
+   "start": 248.6,
+   "end": 257.92,
+   "text": "The commander guides Thom forward as a green holographic interface scans them and projects the simulation onto the bridge.",
+   "audio": "/films/tears-of-steel/ad/ad018.mp3",
+   "audio_s": 7.63
+  },
+  {
+   "start": 258.12,
+   "end": 269.92,
+   "text": "Young Thom materializes on the bridge as a translucent hologram. He looks at his hands, then walks forward along the canal bridge.",
+   "audio": "/films/tears-of-steel/ad/ad019.mp3",
+   "audio_s": 7.66
+  },
+  {
+   "start": 270.12,
+   "end": 281.92,
+   "text": "Young Thom walks beside the canal, his leather jacket featuring a colorful lion illustration on the back.",
+   "audio": "/films/tears-of-steel/ad/ad020.mp3",
+   "audio_s": 6.24
+  },
+  {
+   "start": 282.12,
+   "end": 291.6,
+   "text": "Thom stops opposite the giant robot, which lowers its mechanical head toward him. In the control room, the commander speaks into a mic.",
+   "audio": "/films/tears-of-steel/ad/ad021.mp3",
+   "audio_s": 7.97
+  },
+  {
+   "start": 305.6,
+   "end": 315.6,
+   "text": "The robot head morphs into young Celia. Floating pink text appears in the air behind Thom as he speaks to her.",
+   "audio": "/films/tears-of-steel/ad/ad022.mp3",
+   "audio_s": 6.72
+  },
+  {
+   "start": 328.6,
+   "end": 338.6,
+   "text": "A golden sunset illuminates city towers. Through a scope, a robot climbs across rooftops in the distance.",
+   "audio": "/films/tears-of-steel/ad/ad023.mp3",
+   "audio_s": 7.54
+  },
+  {
+   "start": 350.6,
+   "end": 355.6,
+   "text": "Pink text floats beside them: \"CELIA, I LOVE YOUR ROBOT HAND\".",
+   "audio": "/films/tears-of-steel/ad/ad024.mp3",
+   "audio_s": 4.61
+  },
+  {
+   "start": 375.6,
+   "end": 378.6,
+   "text": "An error message flashes red on screen.",
+   "audio": "/films/tears-of-steel/ad/ad025.mp3",
+   "audio_s": 2.5
+  },
+  {
+   "start": 397.6,
+   "end": 406.6,
+   "text": "The console operator stares in disbelief. On the bridge, the robotic claw gently cradles Thom's face.",
+   "audio": "/films/tears-of-steel/ad/ad026.mp3",
+   "audio_s": 7.06
+  },
+  {
+   "start": 411.6,
+   "end": 418.6,
+   "text": "Celia stares at Thom. A holographic wave ripples across her, returning her to robot form.",
+   "audio": "/films/tears-of-steel/ad/ad027.mp3",
+   "audio_s": 6.05
+  },
+  {
+   "start": 423.6,
+   "end": 427.6,
+   "text": "A massive shadow looms over the cathedral interior.",
+   "audio": "/films/tears-of-steel/ad/ad028.mp3",
+   "audio_s": 3.5
+  },
+  {
+   "start": 431.6,
+   "end": 441.21,
+   "text": "Barley opens fire on a robot attacking the tower balcony. The robot smashes the balustrade, sending Barley tumbling back.",
+   "audio": "/films/tears-of-steel/ad/ad029.mp3",
+   "audio_s": 7.92
+  },
+  {
+   "start": 441.41,
+   "end": 453.21,
+   "text": "A scientist loads a glowing power cell into a heavy gauntlet and hands it to a young colleague, who attaches it to his arm.",
+   "audio": "/films/tears-of-steel/ad/ad030.mp3",
+   "audio_s": 7.18
+  },
+  {
+   "start": 453.41,
+   "end": 461.79,
+   "text": "The young man aims the gauntlet device forward, his face tense with concentration.",
+   "audio": "/films/tears-of-steel/ad/ad031.mp3",
+   "audio_s": 5.18
+  },
+  {
+   "start": 461.99,
+   "end": 478.96,
+   "text": "In a sunlit hall, technicians in white suits fire energy beams from gauntlets at invading giant robots smashing through the structure.",
+   "audio": "/films/tears-of-steel/ad/ad032.mp3",
+   "audio_s": 8.66
+  },
+  {
+   "start": 479.16,
+   "end": 488.04,
+   "text": "Barley slides down a rope, activates a device on his harness, and swings through the cathedral rafters.",
+   "audio": "/films/tears-of-steel/ad/ad033.mp3",
+   "audio_s": 6.29
+  },
+  {
+   "start": 488.24,
+   "end": 492.6,
+   "text": "A robot smashes into the cathedral organ loft.",
+   "audio": "/films/tears-of-steel/ad/ad034.mp3",
+   "audio_s": 3.26
+  },
+  {
+   "start": 494.6,
+   "end": 501.6,
+   "text": "Organ pipes collapse in a huge explosion as Barley swings on a rope, firing wildly.",
+   "audio": "/films/tears-of-steel/ad/ad035.mp3",
+   "audio_s": 5.64
+  },
+  {
+   "start": 508.6,
+   "end": 517.6,
+   "text": "On the bridge, the giant robot lowers its head close to young Thom as he speaks to it gently.",
+   "audio": "/films/tears-of-steel/ad/ad036.mp3",
+   "audio_s": 5.78
+  },
+  {
+   "start": 520.6,
+   "end": 533.6,
+   "text": "A robot smashes through machinery in the hall. Outside, a giant mothership hovers. In the church, old Thom stands beside the passive robot head.",
+   "audio": "/films/tears-of-steel/ad/ad037.mp3",
+   "audio_s": 9.86
+  },
+  {
+   "start": 539.6,
+   "end": 552.83,
+   "text": "The console operator works at his terminal. Old Thom gently rests his hands against the side of the robot's head.",
+   "audio": "/films/tears-of-steel/ad/ad038.mp3",
+   "audio_s": 6.29
+  },
+  {
+   "start": 553.03,
+   "end": 558.6,
+   "text": "Thom gazes emotionally at the robot's mechanical face.",
+   "audio": "/films/tears-of-steel/ad/ad039.mp3",
+   "audio_s": 3.62
+  },
+  {
+   "start": 567.6,
+   "end": 579.4,
+   "text": "A robot crashes into the room. Outside, old Thom stands alone in a circular courtyard surrounded by several giant robots.",
+   "audio": "/films/tears-of-steel/ad/ad040.mp3",
+   "audio_s": 8.26
+  },
+  {
+   "start": 579.6,
+   "end": 588.0,
+   "text": "The camera pulls back high above the courtyard where Thom stands surrounded by the still, towering robots.",
+   "audio": "/films/tears-of-steel/ad/ad041.mp3",
+   "audio_s": 6.5
+  }
+ ]
+}

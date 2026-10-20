@@ -1,0 +1,385 @@
+{
+ "logline": "Forty years after a bitter romantic breakup triggers a catastrophic future ruled by killer robots, a ragtag human resistance prepares a memory simulation to rewrite history.",
+ "credits_start": "09:48",
+ "characters": [
+  {
+   "id": "thom",
+   "name": "Thom",
+   "name_revealed_at": "00:23",
+   "label": "the young man",
+   "first_seen": "00:24",
+   "look": "A young man with dark brown hair wearing a graphic tee and a dark jacket with yellow patterns on the back."
+  },
+  {
+   "id": "celia",
+   "name": "Celia",
+   "name_revealed_at": "00:25",
+   "label": "the young woman",
+   "first_seen": "00:24",
+   "look": "A young woman with light brown hair pulled back, wearing a blue and black vest and sporting a mechanical robotic right arm."
+  },
+  {
+   "id": "old_thom",
+   "name": "Thom",
+   "name_revealed_at": "03:46",
+   "label": "the older gray-haired man",
+   "first_seen": "01:38",
+   "look": "An older man with gray hair, a full gray beard, and a worn plaid coat over dark clothing."
+  },
+  {
+   "id": "captain",
+   "name": "Captain",
+   "name_revealed_at": "08:26",
+   "label": "the cyborg commander",
+   "first_seen": "00:59",
+   "look": "A burly man wearing an elaborate multi-lens eyepiece over his right eye and an ornate red patchwork coat."
+  },
+  {
+   "id": "barley",
+   "name": "Barley",
+   "name_revealed_at": "03:17",
+   "label": "the sniper",
+   "first_seen": "01:17",
+   "look": "A Black soldier wearing dark padded combat gear and aiming a futuristic sniper rifle."
+  },
+  {
+   "id": "djenghis",
+   "name": null,
+   "name_revealed_at": null,
+   "label": "the female soldier",
+   "first_seen": "02:56",
+   "look": "A woman of East Asian descent with tied-up hair, wearing a camouflaged military jacket and tactical gear."
+  },
+  {
+   "id": "tech_head",
+   "name": null,
+   "name_revealed_at": null,
+   "label": "the console operator",
+   "first_seen": "00:51",
+   "look": "A man with curly hair and wire-rim glasses wearing a holographic visor interface and a gray jacket."
+  }
+ ],
+ "scenes": [
+  {
+   "start": "00:00",
+   "end": "00:40",
+   "location": "Canal Bridge",
+   "characters": [
+    "thom",
+    "celia"
+   ],
+   "summary": "On a canal bridge in Amsterdam, Celia argues with Thom over their future and accuses him of being uncomfortable with her robotic arm. Thom admits his fear, ending their relationship.",
+   "facts": [
+    {
+     "t": "00:23",
+     "text": "Celia calls Thom a jerk during an argument on a canal bridge."
+    },
+    {
+     "t": "00:25",
+     "text": "Thom says they must follow their separate passions, contrasting her robotics work with his desire to go to space."
+    },
+    {
+     "t": "00:31",
+     "text": "Celia claims Thom is freaked out by her mechanical robotic arm."
+    },
+    {
+     "t": "00:38",
+     "text": "Thom admits he has nightmares about being pursued by giant robotic claws."
+    }
+   ]
+  },
+  {
+   "start": "00:40",
+   "end": "01:04",
+   "location": "Simulation Lab",
+   "characters": [
+    "tech_head",
+    "captain"
+   ],
+   "summary": "Forty years after the breakup, the past conversation is revealed to be a wireframe holographic simulation. Technicians in a high-tech lab synchronize the memory to a biological brain.",
+   "facts": [
+    {
+     "t": "00:42",
+     "text": "A title card indicates the scene is set forty years later."
+    },
+    {
+     "t": "00:50",
+     "text": "The console operator announces that the robot's memory is synchronized and locked."
+    },
+    {
+     "t": "00:57",
+     "text": "A biological human brain connected to electrodes sits on a small dish."
+    },
+    {
+     "t": "01:01",
+     "text": "The cyborg commander examines the wired brain and calls it freaky."
+    }
+   ]
+  },
+  {
+   "start": "01:04",
+   "end": "02:32",
+   "location": "Bell Tower Lookout",
+   "characters": [
+    "barley",
+    "old_thom"
+   ],
+   "summary": "High above the ruined city, Barley watches an approaching flying warship through his rifle scope. Beside him, an older gray-haired man wakes up under an old newspaper.",
+   "facts": [
+    {
+     "t": "01:05",
+     "text": "The film title 'TEARS OF STEEL' appears."
+    },
+    {
+     "t": "01:19",
+     "text": "A newspaper covering the sleeping man reads 'Roboticist Creates Killer Robots'."
+    },
+    {
+     "t": "01:28",
+     "text": "A massive armored airship floats over the skyline of Amsterdam."
+    },
+    {
+     "t": "02:11",
+     "text": "The older gray-haired man mentions hearing the team talking about him the previous night."
+    },
+    {
+     "t": "02:26",
+     "text": "Barley drinks from a carton of mango juice while maintaining watch."
+    }
+   ]
+  },
+  {
+   "start": "02:32",
+   "end": "03:11",
+   "location": "Ruined Church Nave",
+   "characters": [
+    "old_thom"
+   ],
+   "summary": "The older gray-haired man rappels down from the cathedral bell tower on a rope. He crosses the dilapidated church floor toward a brightly lit room.",
+   "facts": [
+    {
+     "t": "02:33",
+     "text": "The older gray-haired man rappels down a rope suspended in the nave."
+    },
+    {
+     "t": "02:54",
+     "text": "He enters an enclosed room outfitted with books, maps, and lamps."
+    }
+   ]
+  },
+  {
+   "start": "03:11",
+   "end": "04:18",
+   "location": "Command Room",
+   "characters": [
+    "old_thom",
+    "captain",
+    "djenghis",
+    "barley"
+   ],
+   "summary": "The cyborg commander readies the older gray-haired man for his role as Barley gives a time estimate. The commander reminds him to speak with tenderness as the simulation begins.",
+   "facts": [
+    {
+     "t": "03:17",
+     "text": "The commander addresses the sniper as Barley over radio, who replies they have about ten minutes."
+    },
+    {
+     "t": "03:46",
+     "text": "The commander calls the older man Thom and points out the giant robot outside."
+    },
+    {
+     "t": "04:05",
+     "text": "The commander instructs Thom to be tender and remind her what love is."
+    }
+   ]
+  },
+  {
+   "start": "04:18",
+   "end": "05:07",
+   "location": "Canal Bridge Outside Command Room",
+   "characters": [
+    "thom",
+    "tech_head",
+    "captain"
+   ],
+   "summary": "A projection of Young Thom appears on the bridge as a massive mechanical walker looms ahead. The commander calls action and initiates the memory overwrite.",
+   "facts": [
+    {
+     "t": "04:20",
+     "text": "A holographic avatar of Young Thom materializes on the canal bridge."
+    },
+    {
+     "t": "04:44",
+     "text": "A giant bipedal war mech approaches the bridge facing Young Thom."
+    },
+    {
+     "t": "04:54",
+     "text": "The commander calls action, and the console operator presses playback to start the memory overwrite."
+    }
+   ]
+  },
+  {
+   "start": "05:07",
+   "end": "06:13",
+   "location": "Canal Bridge & Command Room",
+   "characters": [
+    "thom",
+    "celia",
+    "captain",
+    "djenghis",
+    "tech_head"
+   ],
+   "summary": "The giant robot projects Celia's form, and Young Thom repeats their past argument. When Thom deviates from the script to apologize, Celia's robotic appendage grabs him by the throat.",
+   "facts": [
+    {
+     "t": "05:09",
+     "text": "The giant robot projects a holographic overlay of Celia's face."
+    },
+    {
+     "t": "05:40",
+     "text": "Barley warns over the radio that hostile machines are two minutes away."
+    },
+    {
+     "t": "05:56",
+     "text": "Thom goes off script and admits he was young and foolish."
+    },
+    {
+     "t": "06:09",
+     "text": "Celia's mechanical hand snaps forward and pins Young Thom by the neck."
+    }
+   ]
+  },
+  {
+   "start": "06:13",
+   "end": "07:05",
+   "location": "Command Room & Canal Bridge",
+   "characters": [
+    "captain",
+    "djenghis",
+    "tech_head",
+    "thom",
+    "celia"
+   ],
+   "summary": "Alarms trigger in the control room as the console operator screams in panic. On the bridge, Celia confronts Thom about abandoning her, and his sincere apology pauses her attack.",
+   "facts": [
+    {
+     "t": "06:12",
+     "text": "The commander orders an abort as the console flashes critical error warnings."
+    },
+    {
+     "t": "06:23",
+     "text": "Celia screams at Thom that he broke her heart and left her on Earth."
+    },
+    {
+     "t": "06:47",
+     "text": "Thom says he is sorry, softening Celia's grip on his avatar."
+    },
+    {
+     "t": "06:56",
+     "text": "The holographic projection dissipates, revealing Celia's mechanical walker standing alone."
+    }
+   ]
+  },
+  {
+   "start": "07:05",
+   "end": "08:30",
+   "location": "Cathedral & Bell Tower",
+   "characters": [
+    "captain",
+    "barley",
+    "tech_head",
+    "djenghis"
+   ],
+   "summary": "Enemy machines assault the building, forcing Barley to slide down a cable and join the defense. Inside, the defenders exchange heavy fire with invading spider robots.",
+   "facts": [
+    {
+     "t": "07:11",
+     "text": "Barley fires at robots scaling the tower before ziplining down into the cathedral."
+    },
+    {
+     "t": "07:27",
+     "text": "Defenders strap on modular forearm weapons to defend the interior."
+    },
+    {
+     "t": "07:53",
+     "text": "Multiple spider mechs break into the greenhouse and exchange fire with the resistance."
+    },
+    {
+     "t": "08:24",
+     "text": "The console operator announces that the memory overwrite has reached ninety percent."
+    },
+    {
+     "t": "08:26",
+     "text": "The female soldier urges the commander to abort, addressing him as Captain."
+    }
+   ]
+  },
+  {
+   "start": "08:30",
+   "end": "09:48",
+   "location": "Canal Bridge & Ruins",
+   "characters": [
+    "thom",
+    "old_thom",
+    "captain",
+    "djenghis",
+    "tech_head"
+   ],
+   "summary": "Young Thom delivers a final heartfelt plea before Old Thom steps onto the bridge in person. As the overwrite finishes, Thom touches Celia's machine, and the robot army shuts down.",
+   "facts": [
+    {
+     "t": "08:38",
+     "text": "Young Thom tells Celia that the world has changed and they can too."
+    },
+    {
+     "t": "08:51",
+     "text": "Old Thom steps out onto the bridge directly in front of the colossal robot."
+    },
+    {
+     "t": "08:58",
+     "text": "The console operator confirms that the memory overwrite is complete."
+    },
+    {
+     "t": "09:04",
+     "text": "Old Thom places his hands tenderly onto the chassis of the giant robot."
+    },
+    {
+     "t": "09:45",
+     "text": "The attacking war machines across the city collapse and deactivate."
+    }
+   ]
+  },
+  {
+   "start": "09:48",
+   "end": "11:49",
+   "location": "End Credits",
+   "characters": [],
+   "summary": "End credits roll over stylized orange and blue technical graphics depicting cybernetic joints, circuitry, and machine schematics.",
+   "facts": [
+    {
+     "t": "09:49",
+     "text": "The stylized graphic credits sequence begins."
+    }
+   ]
+  },
+  {
+   "start": "11:49",
+   "end": "12:13",
+   "location": "Robot Scrapyard",
+   "characters": [
+    "barley"
+   ],
+   "summary": "In the aftermath, Barley relaxes atop a towering mountain of destroyed robot parts. He takes a drink from his juice box and sighs contentedly.",
+   "facts": [
+    {
+     "t": "11:56",
+     "text": "Barley is seated high atop a massive pile of deactivated robot bodies."
+    },
+    {
+     "t": "12:05",
+     "text": "Barley drinks the remainder of his mango juice."
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,917 @@
+{
+ "id": "sintel",
+ "title": "Sintel",
+ "year": 2010,
+ "director": "Colin Levy",
+ "genre": "Fantasy · Animation",
+ "credit": "Sintel © copyright Blender Foundation | durian.blender.org",
+ "license": "CC BY 3.0",
+ "license_url": "https://creativecommons.org/licenses/by/3.0/",
+ "source_url": "https://durian.blender.org/",
+ "duration": 888.03,
+ "credits_start": 746.0,
+ "characters": [
+  {
+   "id": "sintel",
+   "name": "Sintel",
+   "label": "the red-haired traveler",
+   "name_revealed_at": 0.0,
+   "first_seen": 26.0,
+   "look": "A lean young woman with short reddish hair, dressed in cold-weather travel rags and leaning on a staff."
+  },
+  {
+   "id": "bandit",
+   "name": null,
+   "label": "the mountain warrior",
+   "name_revealed_at": null,
+   "first_seen": 41.0,
+   "look": "A muscular bald man with a dark goatee and thin mustache, wielding a spear in the snowy mountains."
+  },
+  {
+   "id": "shaman",
+   "name": null,
+   "label": "the old shaman",
+   "name_revealed_at": null,
+   "first_seen": 106.0,
+   "look": "An elderly bearded man wearing a patterned headscarf, facial piercings, and earth-toned robes, smoking a pipe."
+  },
+  {
+   "id": "scales",
+   "name": "Scales",
+   "label": "the baby dragon",
+   "name_revealed_at": 228.0,
+   "first_seen": 182.0,
+   "look": "A small, sandy-brown reptilian dragon fledgling with small horns, bat-like wings, and expressive eyes."
+  },
+  {
+   "id": "giant_dragon",
+   "name": null,
+   "label": "the adult dragon",
+   "name_revealed_at": null,
+   "first_seen": 313.0,
+   "look": "A massive, winged reptilian dragon with pale brownish scales, curved horns, and immense claws."
+  }
+ ],
+ "scenes": [
+  {
+   "id": "s01",
+   "start": 0.0,
+   "location": "Snowy Mountain Pass",
+   "characters": [
+    "sintel"
+   ],
+   "summary": "A red-haired traveler plods through deep snow amid towering frozen mountain peaks.",
+   "facts": [
+    {
+     "t": 26.0,
+     "text": "The traveler carries a staff while trekking through severe snowstorms."
+    },
+    {
+     "t": 36.0,
+     "text": "She lowers her scarf, revealing a tired and determined young face."
+    }
+   ],
+   "end": 42.42
+  },
+  {
+   "id": "s02",
+   "start": 42.42,
+   "location": "Snowy Mountain Slopes",
+   "characters": [
+    "sintel",
+    "bandit"
+   ],
+   "summary": "A bald mountain warrior leaps from above and attacks the traveler, knocking her unconscious before dragging her away.",
+   "facts": [
+    {
+     "t": 44.0,
+     "text": "A warrior wielding a spear ambushes the traveler from the cliffs."
+    },
+    {
+     "t": 58.0,
+     "text": "The warrior overpowers her and strikes her down onto the snow."
+    },
+    {
+     "t": 73.0,
+     "text": "The traveler loses consciousness as the warrior looms over her."
+    },
+    {
+     "t": 87.0,
+     "text": "The warrior drags her by her staff across the snow toward a distant shelter."
+    }
+   ],
+   "end": 101.21
+  },
+  {
+   "id": "s03",
+   "start": 101.21,
+   "location": "The Shaman's Tent",
+   "characters": [
+    "sintel",
+    "shaman"
+   ],
+   "summary": "The traveler wakes inside a warm yurt where an old shaman serves her hot soup and learns she is hunting a dragon.",
+   "facts": [
+    {
+     "t": 108.0,
+     "text": "The shaman notes that the traveler's blade has shed much innocent blood."
+    },
+    {
+     "t": 124.0,
+     "text": "The shaman offers warm broth to help the traveler recover."
+    },
+    {
+     "t": 135.0,
+     "text": "She explains that she has ventured into the land of the gatekeepers to search for someone."
+    },
+    {
+     "t": 144.0,
+     "text": "She clarifies to the shaman that the one she is searching for is a dragon."
+    }
+   ],
+   "end": 150.0
+  },
+  {
+   "id": "s04",
+   "start": 150.0,
+   "location": "Desert City Alley",
+   "characters": [
+    "sintel",
+    "scales"
+   ],
+   "summary": "In a flashback to her past, the red-haired girl searches for food in a city alley and discovers an injured baby dragon on a rooftop.",
+   "facts": [
+    {
+     "t": 156.0,
+     "text": "The red-haired girl rummages through discarded crates and alley scraps."
+    },
+    {
+     "t": 179.0,
+     "text": "She climbs onto a tiled rooftop after hearing a distressed cry."
+    },
+    {
+     "t": 187.0,
+     "text": "She discovers a small baby dragon with a severely bleeding wing."
+    },
+    {
+     "t": 202.0,
+     "text": "The baby dragon relaxes and permits the girl to gently touch its snout."
+    }
+   ],
+   "end": 205.0
+  },
+  {
+   "id": "s05",
+   "start": 205.0,
+   "location": "Abandoned Urban Shelter",
+   "characters": [
+    "sintel",
+    "scales"
+   ],
+   "summary": "The girl cleans and bandages the fledgling dragon's injured wing, names him Scales, and sleeps beside him.",
+   "facts": [
+    {
+     "t": 211.0,
+     "text": "The girl tends to the wounded creature in her makeshift ruined room."
+    },
+    {
+     "t": 228.0,
+     "text": "The girl names the baby dragon Scales as she tucks him into bed."
+    },
+    {
+     "t": 242.0,
+     "text": "Scales wakes her up affectionately the next morning by tugging her sleeve."
+    }
+   ],
+   "end": 248.17
+  },
+  {
+   "id": "s06",
+   "start": 248.17,
+   "location": "City Market Streets",
+   "characters": [
+    "sintel",
+    "scales"
+   ],
+   "summary": "The girl and Scales chase a chicken through busy streets and market stalls, showing off their playful bond.",
+   "facts": [
+    {
+     "t": 250.0,
+     "text": "The girl encourages Scales as they sprint together through town."
+    },
+    {
+     "t": 275.0,
+     "text": "Scales proudly emits a small puff of fire into the air."
+    },
+    {
+     "t": 280.0,
+     "text": "Scales gazes upward at a flock of birds flying high overhead."
+    }
+   ],
+   "end": 283.46
+  },
+  {
+   "id": "s07",
+   "start": 283.46,
+   "location": "High Temple Ruins",
+   "characters": [
+    "sintel",
+    "scales",
+    "giant_dragon"
+   ],
+   "summary": "After climbing high ruins above the city, Scales attempts to fly, only to be captured by a giant dragon that swoops away.",
+   "facts": [
+    {
+     "t": 286.0,
+     "text": "The girl and Scales climb the stone stairs to the summit of the ruined temple overlooking the city."
+    },
+    {
+     "t": 305.0,
+     "text": "Scales glides into the open sky as the girl cheers him on."
+    },
+    {
+     "t": 325.0,
+     "text": "A massive adult dragon dives from the sky and grabs Scales in its talons."
+    },
+    {
+     "t": 347.0,
+     "text": "The girl watches her dragon friend carried away into the horizon and resolves to find him."
+    }
+   ],
+   "end": 349.75
+  },
+  {
+   "id": "s08",
+   "start": 349.75,
+   "location": "Various Wilderness Regions",
+   "characters": [
+    "sintel"
+   ],
+   "summary": "The girl embarks on a long, arduous trek across dead forests, vast deserts, bamboo thickets, and rocky canyons.",
+   "facts": [
+    {
+     "t": 369.0,
+     "text": "She traverses endless desert dunes alone."
+    },
+    {
+     "t": 381.0,
+     "text": "She navigates dense bamboo groves while tracking her lost companion."
+    },
+    {
+     "t": 388.0,
+     "text": "She wrestles and defeats a savage creature among desert rock formations."
+    }
+   ],
+   "end": 392.0
+  },
+  {
+   "id": "s09",
+   "start": 392.0,
+   "location": "Snowy Mountain Ridge",
+   "characters": [
+    "sintel"
+   ],
+   "summary": "Her journey leads her into the blizzard-swept mountains, bringing the story back to the opening ambush.",
+   "facts": [
+    {
+     "t": 397.0,
+     "text": "She braves freezing blizzards and steep rock faces in the snowy ranges."
+    },
+    {
+     "t": 427.0,
+     "text": "Ambushers watch her from above as she walks below them in the snow."
+    }
+   ],
+   "end": 435.17
+  },
+  {
+   "id": "s10",
+   "start": 435.17,
+   "location": "The Shaman's Tent",
+   "characters": [
+    "sintel",
+    "shaman"
+   ],
+   "summary": "Back in the present, the girl weeps over her failure, but the shaman returns her blade and reassures her that she is close.",
+   "facts": [
+    {
+     "t": 446.0,
+     "text": "The girl weeps, believing she has failed her quest."
+    },
+    {
+     "t": 458.0,
+     "text": "The shaman reveals her name as Sintel and tells her she is already in dragon lands."
+    },
+    {
+     "t": 468.0,
+     "text": "Sintel's staff-blade features an emblem depicting a great tree."
+    }
+   ],
+   "end": 471.0
+  },
+  {
+   "id": "s11",
+   "start": 471.0,
+   "location": "Mountain Tree & Cavern Entrance",
+   "characters": [
+    "sintel"
+   ],
+   "summary": "Sintel discovers a lone tree matching the blade's emblem above a cavern and enters the dark, glowing depths.",
+   "facts": [
+    {
+     "t": 473.0,
+     "text": "Sintel finds the exact tree depicted on her weapon's crest."
+    },
+    {
+     "t": 485.0,
+     "text": "She enters an enormous dark cavern dotted with luminous crystal clusters."
+    },
+    {
+     "t": 502.0,
+     "text": "She spots an enormous dragon feeding on a carcass in the distance."
+    },
+    {
+     "t": 536.0,
+     "text": "She discovers what appears to be a small baby dragon curled asleep on a rock nest."
+    }
+   ],
+   "end": 539.33
+  },
+  {
+   "id": "s12",
+   "start": 539.33,
+   "location": "Dragon's Cavern",
+   "characters": [
+    "sintel"
+   ],
+   "summary": "The large dragon attacks Sintel with fiery blasts, leading to a desperate duel in which she impales the monster's chest with her spear.",
+   "facts": [
+    {
+     "t": 542.0,
+     "text": "The dragon unleashes a massive torrent of flame at Sintel."
+    },
+    {
+     "t": 560.0,
+     "text": "Sintel narrowly avoids dragon fire, rolling away and retrieving her staff-spear."
+    },
+    {
+     "t": 580.0,
+     "text": "The dragon knocks Sintel to the ground, stunning her."
+    },
+    {
+     "t": 601.0,
+     "text": "As the dragon lowers its snout, Sintel strikes upward, driving her spear deep into its heart."
+    }
+   ],
+   "end": 617.0
+  },
+  {
+   "id": "s13",
+   "start": 617.0,
+   "location": "Dragon's Cavern",
+   "characters": [
+    "sintel"
+   ],
+   "summary": "As the dying dragon collapses, Sintel spots the familiar scar on its wing and realizes in horror that she has slain Scales.",
+   "facts": [
+    {
+     "t": 627.0,
+     "text": "Sintel sees a bleeding scar on the dragon's wing identical to the wound she bandaged long ago."
+    },
+    {
+     "t": 633.0,
+     "text": "She realizes the dragon she fought was her beloved companion Scales, fully grown over the years of her quest."
+    },
+    {
+     "t": 665.0,
+     "text": "Scales dies as glowing embers drift through the cavern."
+    },
+    {
+     "t": 674.0,
+     "text": "Tremors shake the cavern as massive stalactites collapse around her."
+    }
+   ],
+   "end": 678.0
+  },
+  {
+   "id": "s14",
+   "start": 678.0,
+   "location": "Cavern Entrance / Mountain Ridge",
+   "characters": [
+    "sintel"
+   ],
+   "summary": "Now an elderly woman weathered by decades of searching, Sintel emerges from the collapsed cave and departs as a newborn dragon follows behind.",
+   "facts": [
+    {
+     "t": 688.0,
+     "text": "Sintel sits alone at the cliff's edge, visibly aged with graying hair and weathered skin."
+    },
+    {
+     "t": 702.0,
+     "text": "She clutches her bruised face, grieving the tragedy of her obsession."
+    },
+    {
+     "t": 717.0,
+     "text": "She stands and walks along the sunny mountain ridge toward the horizon."
+    },
+    {
+     "t": 730.0,
+     "text": "A tiny baby dragon emerges from behind rocks and follows in her footsteps."
+    }
+   ],
+   "end": 888.03
+  }
+ ],
+ "subtitles": [
+  {
+   "start": 107.25,
+   "end": 109.22,
+   "text": "This blade has a dark past."
+  },
+  {
+   "start": 111.8,
+   "end": 115.8,
+   "text": "It has shed much innocent blood."
+  },
+  {
+   "start": 118.0,
+   "end": 121.45,
+   "text": "You're a fool for traveling alone, so completely unprepared."
+  },
+  {
+   "start": 121.75,
+   "end": 124.8,
+   "text": "You're lucky your blood's still flowing."
+  },
+  {
+   "start": 125.25,
+   "end": 126.3,
+   "text": "Thank you."
+  },
+  {
+   "start": 127.5,
+   "end": 129.0,
+   "text": "So..."
+  },
+  {
+   "start": 129.4,
+   "end": 133.8,
+   "text": "What brings you to the land of the gatekeepers?"
+  },
+  {
+   "start": 135.0,
+   "end": 137.5,
+   "text": "I'm searching for someone."
+  },
+  {
+   "start": 138.0,
+   "end": 142.2,
+   "text": "Someone very dear? A kindred spirit?"
+  },
+  {
+   "start": 143.4,
+   "end": 145.0,
+   "text": "A dragon."
+  },
+  {
+   "start": 148.85,
+   "end": 151.75,
+   "text": "A dangerous quest for a lone hunter."
+  },
+  {
+   "start": 152.95,
+   "end": 155.87,
+   "text": "I've been alone for as long as I can remember."
+  },
+  {
+   "start": 207.25,
+   "end": 210.5,
+   "text": "We're almost done. Shhh..."
+  },
+  {
+   "start": 210.75,
+   "end": 213.5,
+   "text": "Hey, sit still."
+  },
+  {
+   "start": 228.25,
+   "end": 232.25,
+   "text": "Good night, Scales."
+  },
+  {
+   "start": 250.35,
+   "end": 253.85,
+   "text": "Get him, Scales! Come on!"
+  },
+  {
+   "start": 265.25,
+   "end": 268.25,
+   "text": "Scales?"
+  },
+  {
+   "start": 304.0,
+   "end": 307.5,
+   "text": "Yeah! Come on!"
+  },
+  {
+   "start": 338.75,
+   "end": 342.0,
+   "text": "Scales!"
+  },
+  {
+   "start": 445.85,
+   "end": 447.5,
+   "text": "I have failed."
+  },
+  {
+   "start": 452.8,
+   "end": 456.5,
+   "text": "You've only failed to see..."
+  },
+  {
+   "start": 457.8,
+   "end": 460.5,
+   "text": "These are dragon lands, Sintel."
+  },
+  {
+   "start": 460.85,
+   "end": 464.0,
+   "text": "You are closer than you know."
+  },
+  {
+   "start": 557.6,
+   "end": 559.5,
+   "text": "Scales!"
+  },
+  {
+   "start": 621.6,
+   "end": 624.0,
+   "text": "Scales?"
+  },
+  {
+   "start": 626.2,
+   "end": 629.8,
+   "text": "Scales..."
+  }
+ ],
+ "analysed_by": "gemini-3.8-flash",
+ "gemini_logline": "A lone traveler searching for a lost companion braves treacherous snow-capped mountains and dangerous foes before being rescued by a wise old shaman.",
+ "logline": "A lone traveller braves the frozen mountains of the gatekeepers, searching for the one thing she has lost.",
+ "ad": [
+  {
+   "id": "ad001",
+   "start": 0.7,
+   "end": 12.5,
+   "text": "Aerial flyover of jagged snow-covered mountains under a misty sky. On-screen text: The Blender Foundation Presents, The Durian Open Movie Project."
+  },
+  {
+   "id": "ad002",
+   "start": 12.7,
+   "end": 24.5,
+   "text": "The camera glides over icy peaks and rugged ridges. Text: A Blender Institute Production. This film was supported by The Netherlands Film Fund."
+  },
+  {
+   "id": "ad003",
+   "start": 24.7,
+   "end": 31.33,
+   "text": "In a vast snowy expanse, Sintel trudges forward with a walking staff, leaving footprints behind."
+  },
+  {
+   "id": "ad004",
+   "start": 31.53,
+   "end": 42.42,
+   "text": "Hooded and bundled in winter clothes, Sintel walks into the blizzard. She pauses warily as shadowy figures appear on distant snowy rocks."
+  },
+  {
+   "id": "ad005",
+   "start": 42.62,
+   "end": 53.96,
+   "text": "A mountain warrior leaps down from a crag, swinging a spear. Sintel dodges, parrying his strikes with her staff as they grapple."
+  },
+  {
+   "id": "ad006",
+   "start": 54.16,
+   "end": 64.67,
+   "text": "The warrior punches Sintel and kicks her into the snow. As he charges with his weapon, she prepares her staff to fight back."
+  },
+  {
+   "id": "ad007",
+   "start": 64.87,
+   "end": 74.04,
+   "text": "He pins her down. Sintel pulls a dagger from her belt and stabs him in the chest. He collapses."
+  },
+  {
+   "id": "ad008",
+   "start": 74.24,
+   "end": 85.83,
+   "text": "Sintel lies wounded and exhausted in the snow. Later, far across the snowy plains, a solitary hut glows warmly in the mountain pass."
+  },
+  {
+   "id": "ad009",
+   "start": 86.03,
+   "end": 101.21,
+   "text": "Her hand slips from her staff in the snow. Sintel continues hiking across the frozen mountain ridge. A title appears: Sintel, with a tree emblem."
+  },
+  {
+   "id": "ad010",
+   "start": 101.41,
+   "end": 106.85,
+   "text": "Inside a warm tent, fire glows in a pit."
+  },
+  {
+   "id": "ad011",
+   "start": 145.6,
+   "end": 148.45,
+   "text": "She looks down silently."
+  },
+  {
+   "id": "ad012",
+   "start": 156.47,
+   "end": 168.27,
+   "text": "Earlier, in a sunlit city, a younger Sintel walks down an alleyway carrying wooden boards. She leans a board against a wall."
+  },
+  {
+   "id": "ad013",
+   "start": 168.47,
+   "end": 176.42,
+   "text": "She discovers a ripe fruit on a crate, but beside it, finds a prickly hedgehog."
+  },
+  {
+   "id": "ad014",
+   "start": 176.62,
+   "end": 186.71,
+   "text": "Hearing a noise, she leaps onto a roof. There, a small winged creature lies injured and bleeding on the shingles."
+  },
+  {
+   "id": "ad015",
+   "start": 186.91,
+   "end": 196.42,
+   "text": "Blood pools from the creature's wing. Sintel crouches down slowly, watching the frightened baby dragon."
+  },
+  {
+   "id": "ad016",
+   "start": 196.62,
+   "end": 206.85,
+   "text": "She reaches out her hand gently. The baby dragon calms down and nuzzles against her fingers. Sintel smiles softly."
+  },
+  {
+   "id": "ad017",
+   "start": 214.1,
+   "end": 227.85,
+   "text": "Sintel tends to the dragon's wounded wing, wrapping it with bandages. The baby dragon chirps happily in her lap."
+  },
+  {
+   "id": "ad018",
+   "start": 232.85,
+   "end": 249.95,
+   "text": "Later that night, Sintel sleeps on a mattress with Scales curled up beside her. The next morning, Scales peeks out from under the blanket."
+  },
+  {
+   "id": "ad019",
+   "start": 254.45,
+   "end": 264.85,
+   "text": "Scales scampers through the bustling market, chasing after a chicken. Sintel runs after him, laughing as he causes a commotion."
+  },
+  {
+   "id": "ad020",
+   "start": 268.85,
+   "end": 278.79,
+   "text": "Looking around the street, Sintel pauses. Overhead on a wooden beam, Scales tries to flap his wings and breathes a puff of flame."
+  },
+  {
+   "id": "ad021",
+   "start": 278.99,
+   "end": 289.33,
+   "text": "Sintel smiles up at him as a flock of birds flies in V-formation across the sky. Later, she runs up crumbling stone stairs."
+  },
+  {
+   "id": "ad022",
+   "start": 289.53,
+   "end": 303.6,
+   "text": "She reaches the top of the ancient ruins at sunset. Winged creatures soar over the vast city. Sintel cups her hands and cheers enthusiastically."
+  },
+  {
+   "id": "ad023",
+   "start": 308.1,
+   "end": 319.0,
+   "text": "Scales flies joyfully through the golden evening sky. Sintel watches proudly, but suddenly a giant adult dragon swoops down from above."
+  },
+  {
+   "id": "ad024",
+   "start": 319.2,
+   "end": 328.17,
+   "text": "The massive dragon snatches Scales with its talons and circles around in the air toward Sintel."
+  },
+  {
+   "id": "ad025",
+   "start": 328.37,
+   "end": 338.35,
+   "text": "Scales struggles in the dragon's grip, reaching toward Sintel. The huge beast roars, spreads its massive wings, and takes flight."
+  },
+  {
+   "id": "ad026",
+   "start": 342.6,
+   "end": 349.75,
+   "text": "Sintel stares after them, tears welling in her eyes, her sorrow hardening into resolve."
+  },
+  {
+   "id": "ad027",
+   "start": 349.95,
+   "end": 361.75,
+   "text": "Sintel sets out on foot. Over days and nights, she treks through barren lands filled with tree stumps under a crescent moon."
+  },
+  {
+   "id": "ad028",
+   "start": 361.95,
+   "end": 373.75,
+   "text": "As seasons and terrain change, she crosses vast sunbaked desert dunes, shielding her eyes against the glare."
+  },
+  {
+   "id": "ad029",
+   "start": 373.95,
+   "end": 380.54,
+   "text": "Her journey continues through a dense bamboo forest."
+  },
+  {
+   "id": "ad030",
+   "start": 380.74,
+   "end": 392.0,
+   "text": "She navigates the thick bamboo stalks, then encounters strange canine beasts in a rocky canyon, fighting them off with her staff."
+  },
+  {
+   "id": "ad031",
+   "start": 392.2,
+   "end": 404.0,
+   "text": "She climbs steep crags, gazes across canyons, and traverses cold misty hills, clutching her walking stick against the wind."
+  },
+  {
+   "id": "ad032",
+   "start": 404.2,
+   "end": 415.08,
+   "text": "She presses on up snowy mountain ridges, climbing through freezing gale-force winds and snowstorms."
+  },
+  {
+   "id": "ad033",
+   "start": 415.28,
+   "end": 431.58,
+   "text": "She slips and scrambles up the snowy slope, marching past rocky formations where shadowed mountain warriors lurk above, watching her every step."
+  },
+  {
+   "id": "ad034",
+   "start": 431.78,
+   "end": 445.45,
+   "text": "Sensing danger, she turns around just as a warrior ambushes her. Back in the present, inside the tent, Sintel stares into the fire."
+  },
+  {
+   "id": "ad035",
+   "start": 448.1,
+   "end": 452.4,
+   "text": "The shaman nods quietly."
+  },
+  {
+   "id": "ad036",
+   "start": 464.6,
+   "end": 471.0,
+   "text": "Sintel touches the round tree emblem engraved on the hilt."
+  },
+  {
+   "id": "ad037",
+   "start": 471.2,
+   "end": 483.71,
+   "text": "The emblem dissolves into a vision of a grand tree outside a dark cavern. Outside the cave entrance, Sintel looks up in awe."
+  },
+  {
+   "id": "ad038",
+   "start": 483.91,
+   "end": 495.71,
+   "text": "Sintel enters the cavern. Glowing crystals dot the rock walls. She unslings her bladed staff and moves cautiously forward."
+  },
+  {
+   "id": "ad039",
+   "start": 495.91,
+   "end": 507.71,
+   "text": "Ahead in a vast subterranean cavern, a dragon tears into a fresh carcass. Sintel ducks behind a rock, observing the beast."
+  },
+  {
+   "id": "ad040",
+   "start": 507.91,
+   "end": 519.71,
+   "text": "The dragon turns and slithers into a crevice. Sintel peeks around the boulder, gripping her weapon."
+  },
+  {
+   "id": "ad041",
+   "start": 519.91,
+   "end": 536.33,
+   "text": "Sintel leaps down to the cavern floor and creeps toward a stone basin. Inside lies a small, sleeping baby dragon. Her eyes widen in joy."
+  },
+  {
+   "id": "ad042",
+   "start": 536.53,
+   "end": 548.33,
+   "text": "The baby dragon opens its eyes and chirps. Suddenly, a massive blast of fire erupts from the side, nearly hitting Sintel."
+  },
+  {
+   "id": "ad043",
+   "start": 548.53,
+   "end": 557.2,
+   "text": "She dives behind a boulder. The giant adult dragon crawls forward, snarling aggressively."
+  },
+  {
+   "id": "ad044",
+   "start": 560.1,
+   "end": 571.9,
+   "text": "Sintel rolls away, narrowly dodging fire. She lunges forward, leaps onto the dragon's neck, and stabs her blade into its flesh."
+  },
+  {
+   "id": "ad045",
+   "start": 572.1,
+   "end": 583.9,
+   "text": "The dragon violently thrashes, hurling Sintel against the rocky ground. She crawls toward her dropped staff as the dragon swings its tail."
+  },
+  {
+   "id": "ad046",
+   "start": 584.1,
+   "end": 595.9,
+   "text": "Sintel gets struck and knocked down. The dragon swoops down, pinning her underneath its heavy talons. It lowers its massive head."
+  },
+  {
+   "id": "ad047",
+   "start": 596.1,
+   "end": 607.9,
+   "text": "The dragon sniffs her gently. Sintel breaks free, grabs her blade, and plunges it straight through the dragon's chest."
+  },
+  {
+   "id": "ad048",
+   "start": 608.1,
+   "end": 617.0,
+   "text": "The dragon reels back in agony. Sintel raises her staff, ready to strike again."
+  },
+  {
+   "id": "ad049",
+   "start": 617.2,
+   "end": 621.2,
+   "text": "The dragon collapses heavily onto the ground."
+  },
+  {
+   "id": "ad050",
+   "start": 630.4,
+   "end": 642.2,
+   "text": "Sintel sees a scar on the dragon's wing, matching the wound she bandaged on Scales. In the reflection of blood, she sees her aged reflection."
+  },
+  {
+   "id": "ad051",
+   "start": 642.4,
+   "end": 654.2,
+   "text": "She looks at her weathered hands in disbelief. Years have passed. The dragon she just killed is Scales."
+  },
+  {
+   "id": "ad052",
+   "start": 654.4,
+   "end": 666.2,
+   "text": "Sintel collapses to her knees, horrified by what she has done. Scales takes one last breath and closes his eyes."
+  },
+  {
+   "id": "ad053",
+   "start": 666.4,
+   "end": 678.0,
+   "text": "Sintel weeps over Scales' body. Her cries echo through the cavern, causing stalactites to fall. She runs toward the cave entrance."
+  },
+  {
+   "id": "ad054",
+   "start": 678.2,
+   "end": 690.0,
+   "text": "Boulders collapse behind her, sealing the cave shut. Outside under the twilight sky, Sintel sits at the edge of the cliff."
+  },
+  {
+   "id": "ad055",
+   "start": 690.2,
+   "end": 700.29,
+   "text": "Overlooking the mountain range, Sintel sits alone, weeping with her head bowed into her hands."
+  },
+  {
+   "id": "ad056",
+   "start": 700.49,
+   "end": 710.04,
+   "text": "She raises her tear-streaked face, gazing sadly out into the distant horizon."
+  },
+  {
+   "id": "ad057",
+   "start": 710.24,
+   "end": 722.04,
+   "text": "Nearby, the small orphaned baby dragon emerges and hops over rocks where snowdrop flowers bloom. Sintel stands up and walks away."
+  },
+  {
+   "id": "ad058",
+   "start": 722.24,
+   "end": 734.04,
+   "text": "Sintel walks into the glowing sunset along the mountain ridge. The baby dragon waddles behind, following her footsteps."
+  },
+  {
+   "id": "ad059",
+   "start": 734.24,
+   "end": 746.0,
+   "text": "The baby dragon pauses beside the flowers, then hurries after Sintel as the screen fades to black."
+  }
+ ],
+ "ad_written_by": "gemini-3.8-flash"
+}
