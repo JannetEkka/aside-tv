@@ -129,6 +129,18 @@
       return r.json().then(function (j) { if (!r.ok) throw new Error(j.error || j.detail || ('HTTP ' + r.status)); return j; });
     });
   }
+  // Tell the server about media and script errors, so a failure on a real stick can be read from the server.
+  var reported = 0;
+  function report(kind, detail) {
+    if (reported++ > 40) return;
+    try { fetch('/api/client-log', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ kind: kind, detail: String(detail || '') }), keepalive: true }).catch(function () {}); } catch (e) { /* ignore */ }
+  }
+  window.addEventListener('error', function (e) { report('script', (e.message || 'error') + ' @' + (e.lineno || '')); });
+  window.addEventListener('unhandledrejection', function (e) { report('promise', e.reason && (e.reason.message || e.reason)); });
+  function mediaDetail(el, what) {
+    var e = el.error;
+    return what + ' code=' + (e ? e.code : '?') + ' ' + ((e && e.message) || '') + ' t=' + Math.round(el.currentTime || 0) + ' net=' + el.networkState + ' ready=' + el.readyState + ' ' + String(el.currentSrc || el.src || '').slice(-60);
+  }
   function posKey(f) { return 'aside.pos.' + f.id; }
   function savedPos(f) { return load(posKey(f), null); }
 
@@ -194,6 +206,7 @@
   // ---------- PLAYER ----------
   function play(f, from, max, opts) {
     film = f;
+    report('play', f.id + ' from ' + Math.round(from || 0) + ' ' + (window.ReactNativeWebView ? 'vega' : 'web'));
     screen = 'player';
     $('home').classList.add('hidden');
     $('player').classList.remove('hidden');
@@ -275,6 +288,7 @@
   video.addEventListener('canplay', function () { $('buffering').classList.add('hidden'); });
   video.addEventListener('seeking', function () { stopAd(); });
   video.addEventListener('error', function () {
+    report('video', mediaDetail(video, film ? film.id : '?'));
     $('buffering').classList.add('hidden');
     if (screen === 'player' && film && failStreak < 3) { failStreak++; reconnect(); return; }
     toast("Couldn't load the film. Check the internet connection.", 6000);
@@ -363,6 +377,7 @@
     $('ad-caption').classList.remove('hidden');
     var done = function () { if (adPlaying === a) stopAd(); };
     a.addEventListener('ended', done);
+    a.addEventListener('error', function () { report('ad-audio', mediaDetail(a, 'ad')); });
     a.addEventListener('error', done);
     a.play().catch(done);
   }
@@ -514,8 +529,9 @@
       speechSynthesis.speak(u);
       return;
     }
-    voiceAudio = new Audio('/api/speak?text=' + encodeURIComponent(text));
-    voiceAudio.play().catch(function () { voiceAudio = null; });
+    var va = voiceAudio = new Audio('/api/speak?text=' + encodeURIComponent(text));
+    va.addEventListener('error', function () { report('voice', mediaDetail(va, 'speak')); });
+    va.play().catch(function () { voiceAudio = null; });
   }
   function stopSpeaking() {
     if (voiceAudio) { try { voiceAudio.pause(); } catch (e) { /* ignore */ } voiceAudio = null; }

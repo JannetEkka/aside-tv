@@ -7,6 +7,7 @@ import io
 import os
 import random
 import time
+import wave
 from pathlib import Path
 
 from fastapi import FastAPI, HTTPException, Request
@@ -108,6 +109,29 @@ async def eval_judge(body: JudgeIn):
         return await asyncio.to_thread(companion.judge, film, body.t, body.question, body.answer)
     except Exception as e:
         return JSONResponse({"error": str(e)[:200]}, status_code=503)
+
+
+CLIENT_LOG = []   # (time, kind, detail, user agent) reported by TV apps, newest last
+
+
+class ClientEvent(BaseModel):
+    kind: str
+    detail: str = ""
+
+
+@app.post("/api/client-log")
+def client_log(e: ClientEvent, request: Request):
+    """The TV app reports media and script errors, so a failure on a real stick can be read from here."""
+    CLIENT_LOG.append((time.strftime("%H:%M:%S"), e.kind[:40], e.detail[:400], request.headers.get("user-agent", "")[:100]))
+    del CLIENT_LOG[:-100]
+    return {"ok": True}
+
+
+@app.get("/api/eval/client-log")
+def eval_client_log():
+    if not EVAL:
+        raise HTTPException(404)
+    return {"now": time.strftime("%H:%M:%S"), "events": CLIENT_LOG[-60:]}
 
 
 @app.get("/api/eval/models")
@@ -312,6 +336,14 @@ GEMINI_TTS = [m for m in os.environ.get("ASIDE_GEMINI_TTS",
               "gemini-3.8-flash-tts,gemini-3.1-flash-tts-preview,gemini-2.5-flash-preview-tts").split(",") if m]
 
 
+def _silence(seconds=0.4, rate=24000):
+    buf = io.BytesIO()
+    with wave.open(buf, "wb") as w:
+        w.setnchannels(1); w.setsampwidth(2); w.setframerate(rate)
+        w.writeframes(b"\x00\x00" * int(rate * seconds))
+    return buf.getvalue()
+
+
 def voice_key(text):
     import hashlib
     return hashlib.sha1(text.encode()).hexdigest()
@@ -390,7 +422,9 @@ async def speak(text: str):
             except Exception:
                 audio = None
         if audio is None:
-            raise HTTPException(503, "voice unavailable")
+            # The Vega shell blanks the whole app when a media request fails, so a voice that is
+            # unavailable (free quotas used up) is a short silence; the answer is on screen anyway.
+            return Response(_silence(), media_type="audio/wav", headers={"Cache-Control": "no-store", "X-Voice": "unavailable"})
         path.write_bytes(audio)
     return FileResponse(path, media_type="audio/wav", headers={"Cache-Control": "public, max-age=86400"})
 
