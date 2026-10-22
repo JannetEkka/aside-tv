@@ -141,6 +141,20 @@
     var e = el.error;
     return what + ' code=' + (e ? e.code : '?') + ' ' + ((e && e.message) || '') + ' t=' + Math.round(el.currentTime || 0) + ' net=' + el.networkState + ' ready=' + el.readyState + ' ' + String(el.currentSrc || el.src || '').slice(-60);
   }
+  // Audio is fetched, then played from memory. A media request dropped while it is still loading (a slow
+  // live voice skipped for the next question) counts as a load error to the Vega shell, which then covers
+  // the whole app with its offline screen. A fetch is never dropped, only ignored when no longer wanted.
+  var audioFiles = {};
+  function audioFile(url) {
+    if (!audioFiles[url]) {
+      audioFiles[url] = fetch(url).then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.blob();
+      }).then(function (b) { return URL.createObjectURL(b); });
+      audioFiles[url].catch(function () { delete audioFiles[url]; });
+    }
+    return audioFiles[url];
+  }
   function posKey(f) { return 'aside.pos.' + f.id; }
   function savedPos(f) { return load(posKey(f), null); }
 
@@ -219,13 +233,21 @@
     var start = function () {
       try { video.currentTime = from || 0; } catch (e) { /* not seekable yet */ }
       if (opts && opts.recap) { ask({ mode: 'story', title: 'Catch me up', t: from }); }
-      else { video.play().catch(function () { showControls(); }); }
+      else {
+        video.play().catch(function () { showControls(); });
+        setTimeout(function () {
+          if (screen !== 'player' || film !== f || !video.paused || activeLayer()) return;
+          report('stuck', mediaDetail(video, f.id + ' from ' + Math.round(from || 0)));
+          video.play().catch(function () { showControls(); });
+        }, 6000);
+      }
     };
     if (video.readyState >= 1) start(); else video.addEventListener('loadedmetadata', function once() { video.removeEventListener('loadedmetadata', once); start(); });
     showControls();
   }
 
   function exitPlayer() {
+    save('aside.live', null);
     stopSpeaking();
     stopAd();
     video.pause();
@@ -335,7 +357,11 @@
     captions(t);
     if (!video.paused) audioDescription(t);
   }, 250);
-  setInterval(function () { if (screen === 'player' && !video.paused) { savePosition(); pushState(); } }, 5000);
+  setInterval(function () {
+    if (screen !== 'player' || !film) return;
+    save('aside.live', { id: film.id, at: Date.now() });
+    if (!video.paused) { savePosition(); pushState(); }
+  }, 5000);
 
   // ---------- captions ----------
   function captions(t) {
@@ -367,19 +393,23 @@
     var cues = film.ad;
     while (adIndex < cues.length && cues[adIndex].start < t - 0.8) adIndex++;
     var c = cues[adIndex];
-    if (!c || t < c.start) return;
+    if (!c) return;
+    if (t < c.start) { if (c.start - t < 5) audioFile(c.audio).catch(function () {}); return; }   // fetch ahead
     adIndex++;
-    var a = new Audio(c.audio);
-    a.volume = AD_VOICE;
-    adPlaying = a;
-    fadeVolume(AD_DUCK, 300);
-    $('ad-text').textContent = c.text;
-    $('ad-caption').classList.remove('hidden');
-    var done = function () { if (adPlaying === a) stopAd(); };
-    a.addEventListener('ended', done);
-    a.addEventListener('error', function () { report('ad-audio', mediaDetail(a, 'ad')); });
-    a.addEventListener('error', done);
-    a.play().catch(done);
+    var want = adPlaying = { cue: c };   // claimed while its audio loads
+    audioFile(c.audio).then(function (src) {
+      if (adPlaying !== want) return;    // seeked or stopped meanwhile
+      var a = adPlaying = new Audio(src);
+      a.volume = AD_VOICE;
+      fadeVolume(AD_DUCK, 300);
+      $('ad-text').textContent = c.text;
+      $('ad-caption').classList.remove('hidden');
+      var done = function () { if (adPlaying === a) stopAd(); };
+      a.addEventListener('ended', done);
+      a.addEventListener('error', function () { report('ad-audio', mediaDetail(a, 'ad')); });
+      a.addEventListener('error', done);
+      a.play().catch(done);
+    }).catch(function (e) { report('ad-audio', 'fetch ' + e.message); if (adPlaying === want) adPlaying = null; });
   }
   function stopAd() {
     if (adPlaying) { try { adPlaying.pause(); } catch (e) { /* ignore */ } }
@@ -519,7 +549,7 @@
   // or the browser's when the app runs outside the wrapper.
   // Fire OS: the TV's own speech engine through the wrapper. Vega's WebView has no speech API, so
   // there the server reads it out (/api/speak). A desktop browser uses its own speech synthesis.
-  var voiceAudio = null;
+  var voiceAudio = null, voiceSeq = 0;
   function speak(text) {
     stopSpeaking();
     if (window.AsideNative && window.AsideNative.speak) { window.AsideNative.speak(text); return; }
@@ -529,11 +559,16 @@
       speechSynthesis.speak(u);
       return;
     }
-    var va = voiceAudio = new Audio('/api/speak?text=' + encodeURIComponent(text));
-    va.addEventListener('error', function () { report('voice', mediaDetail(va, 'speak')); });
-    va.play().catch(function () { voiceAudio = null; });
+    var seq = ++voiceSeq;
+    audioFile('/api/speak?text=' + encodeURIComponent(text)).then(function (src) {
+      if (seq !== voiceSeq) return;   // moved on while it loaded
+      var va = voiceAudio = new Audio(src);
+      va.addEventListener('error', function () { report('voice', mediaDetail(va, 'speak')); });
+      va.play().catch(function () { voiceAudio = null; });
+    }).catch(function (e) { report('voice', 'fetch ' + e.message); });
   }
   function stopSpeaking() {
+    voiceSeq++;
     if (voiceAudio) { try { voiceAudio.pause(); } catch (e) { /* ignore */ } voiceAudio = null; }
     if (window.AsideNative && window.AsideNative.stop) window.AsideNative.stop();
     else if (window.speechSynthesis) speechSynthesis.cancel();
@@ -664,6 +699,10 @@
     renderHome();
     var a = $('hero-actions').querySelector('[data-focus]');
     setFocus(a);
+    // Reloaded mid-film (the Vega shell's "Try again", or reopened within a few minutes): carry on.
+    var live = load('aside.live', null);
+    var lf = live && films.filter(function (x) { return x.id === live.id; })[0], lp = lf && load(posKey(lf), null);
+    if (lf && lp && Date.now() - live.at < 3 * 60 * 1000) { report('resume', lf.id + ' at ' + Math.round(lp.t)); play(lf, lp.t, lp.max); }
   }).catch(function () {
     $('hero-title').textContent = 'Aside';
     $('hero-logline').textContent = "Couldn't reach the Aside service. Check the internet connection and open the app again.";
