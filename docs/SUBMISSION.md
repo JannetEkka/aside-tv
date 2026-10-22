@@ -79,7 +79,22 @@ amazon-fire-tv, vega-os, vega-sdk, react-native, webview, javascript, html5, css
 `docs/submission/gallery-1.jpg` … `gallery-8.jpg` (1920×1280, 3:2, captioned)
 
 ## Video demo link
-(YouTube link, public, under 3 minutes)
+(YouTube link, public, under 3 minutes.) Upload `aside-demo.mp4` with:
+
+- **Title:** Aside: an AI that watches the film with you and never spoils (Fire TV)
+- **Description:**
+
+```
+Aside is a Fire TV app for watching films with an AI that knows the story only up to the second you're at. Press Up on the remote to ask what just happened, who that is, or what you missed, or ask anything from your phone. It also narrates audio description in the gaps between dialogue.
+
+Entry for Build, Ship, Shape: Amazon Developer Hackathon (Fire TV track).
+Code: https://github.com/JannetEkka/aside-tv
+
+The app runs on a Fire TV Stick 4K Select (Vega OS); this video is a screen recording of the same app in a browser.
+Sintel © Blender Foundation | durian.blender.org, CC BY 3.0.
+```
+
+- **Visibility:** Public. **Made for kids:** No.
 
 ## Upload a file (optional)
 `dist/aside-tv-packages.zip`: the Vega packages (armv7 for current sticks, aarch64, x86_64 for the Vega Virtual Device) and the Fire OS APK.
