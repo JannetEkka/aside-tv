@@ -4,10 +4,10 @@
 
 Writes data/films/<id>/public.json (title, playback info, captions, audio description cues),
 descriptions.vtt and captions.vtt (WebVTT, for any player),
-the backdrop and card images, and one narrated MP3 per audio description cue: by default through an
-Aside server's /api/speak (Groq's Orpheus voice, the one that reads answers), or offline with Piper
-(--piper; the LJSpeech voice, trained on public-domain recordings). Every clip is loudness-levelled,
-and sped up slightly if it would run past its silent gap.
+the backdrop and card images, and one narrated MP3 per audio description cue, spoken offline by
+Kokoro (an open-weight voice model, Apache 2.0; voice "af_heart"). Every clip is loudness-levelled,
+and sped up slightly if it would run past its silent gap. --piper uses Piper's LJSpeech voice instead,
+--voice-server an Aside server's /api/speak.
 The scene notes and facts stay in timeline.json, which only the server reads.
 """
 import argparse
@@ -22,6 +22,20 @@ import urllib.request
 from common import FILMS
 
 VOICE = os.environ.get("ASIDE_PIPER_VOICE", "media/piper/en_US-ljspeech-high.onnx")
+KOKORO_DIR = os.environ.get("ASIDE_KOKORO_DIR", "media/kokoro")
+KOKORO_VOICE = os.environ.get("ASIDE_KOKORO_VOICE", "af_heart")
+_kokoro = None
+
+
+def kokoro_wav(text, wav, speed=0.95):
+    """Kokoro-82M through kokoro-onnx: about 2x faster than real time on a laptop CPU, no API."""
+    global _kokoro
+    import soundfile
+    from kokoro_onnx import Kokoro
+    if _kokoro is None:
+        _kokoro = Kokoro(os.path.join(KOKORO_DIR, "kokoro-v1.0.onnx"), os.path.join(KOKORO_DIR, "voices-v1.0.bin"))
+    samples, rate = _kokoro.create(text, voice=KOKORO_VOICE, speed=speed, lang="en-us")
+    soundfile.write(wav, samples, rate)
 
 
 def frame(video, t, out, vf):
@@ -35,8 +49,10 @@ def duration(path):
     return round(float(r.stdout.strip()), 2)
 
 
-def speak_wav(text, wav, server):
-    if not server:
+def speak_wav(text, wav, server, engine="kokoro"):
+    if engine == "kokoro":
+        return kokoro_wav(text, wav)
+    if engine == "piper":
         subprocess.run(["python3", "-m", "piper", "-m", VOICE, "--length-scale", "0.9", "-f", wav],
                        input=text, text=True, check=True, capture_output=True)
         return
@@ -52,20 +68,20 @@ def speak_wav(text, wav, server):
     raise RuntimeError(f"no voice for: {text[:40]}")
 
 
-def narrate(cues, folder, server=None):
+def narrate(cues, folder, server=None, engine="kokoro"):
     folder.mkdir(exist_ok=True)
     for c in cues:
         path = folder / f"{c['id']}.mp3"
         if not (path.exists() and path.stat().st_size > 1000):
             with tempfile.NamedTemporaryFile(suffix=".wav") as wav:
-                speak_wav(c["text"], wav.name, server)
+                speak_wav(c["text"], wav.name, server, engine)
                 gap = c["end"] - c["start"]
                 tempo = min(1.25, max(1.0, duration(wav.name) / max(gap, 0.5)))   # fit the gap
                 subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", wav.name, "-af",
                                 f"atempo={tempo:.3f},loudnorm=I=-16:TP=-1.5:LRA=11", "-ac", "1", "-ar", "24000",
                                 "-c:a", "libmp3lame", "-b:a", "64k", str(path)], check=True)
-            if server:
-                time.sleep(7)   # the speech model's free tier allows 10 requests a minute
+            if engine == "server":
+                time.sleep(7)   # Groq's speech model: 10 requests a minute on the free tier
         c["audio_s"] = duration(path)
 
 
@@ -88,8 +104,7 @@ def main():
     ap.add_argument("film")
     ap.add_argument("--video", required=True, help="the 720p MP4 that is published")
     ap.add_argument("--still", type=float, required=True, help="second to take the backdrop from")
-    ap.add_argument("--voice-server", default="https://aside-tv.onrender.com",
-                    help="Aside server whose /api/speak renders the narration")
+    ap.add_argument("--voice-server", help="render through this Aside server's /api/speak instead")
     ap.add_argument("--piper", action="store_true", help="render offline with Piper instead")
     args = ap.parse_args()
 
@@ -99,7 +114,8 @@ def main():
     frame(args.video, args.still, d / "thumb.jpg", "crop=ih*16/9:ih,scale=640:360")
 
     cues = [dict(c) for c in tl.get("ad", [])]
-    narrate(cues, d / "ad", None if args.piper else args.voice_server)
+    engine = "piper" if args.piper else "server" if args.voice_server else "kokoro"
+    narrate(cues, d / "ad", args.voice_server, engine)
     long = [c["id"] for c in cues if c["audio_s"] > c["end"] - c["start"] + 0.5]
     if long:
         print("narration longer than its gap:", ", ".join(long))

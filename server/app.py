@@ -307,33 +307,91 @@ def _join_wavs(blobs):
     return buf.getvalue()
 
 
+VOICE_DIR = ROOT / "data" / "voice"   # answers pre-recorded with Kokoro (pipeline/voice.py), keyed by text
+GEMINI_TTS = [m for m in os.environ.get("ASIDE_GEMINI_TTS",
+              "gemini-3.8-flash-tts,gemini-3.1-flash-tts-preview,gemini-2.5-flash-preview-tts").split(",") if m]
+
+
+def voice_key(text):
+    import hashlib
+    return hashlib.sha1(text.encode()).hexdigest()
+
+
+def _gemini_tts(text):
+    """Gemini's speech model, on the server's Gemini key: 24 kHz 16-bit mono PCM, wrapped as WAV."""
+    import wave
+    from google.genai import types
+    last = None
+    for m in GEMINI_TTS:
+        try:
+            r = companion.client().models.generate_content(
+                model=m, contents=f"Say in a warm, clear voice: {text}",
+                config=types.GenerateContentConfig(
+                    response_modalities=["AUDIO"],
+                    speech_config=types.SpeechConfig(voice_config=types.VoiceConfig(
+                        prebuilt_voice_config=types.PrebuiltVoiceConfig(voice_name="Kore"))),
+                    http_options=types.HttpOptions(timeout=20000)))
+            pcm = r.candidates[0].content.parts[0].inline_data.data
+            if pcm[:4] == b"RIFF":   # some models already return a WAV file
+                return pcm
+            buf = io.BytesIO()
+            with wave.open(buf, "wb") as w:
+                w.setnchannels(1)
+                w.setsampwidth(2)
+                w.setframerate(24000)
+                w.writeframes(pcm)
+            return buf.getvalue()
+        except Exception as e:
+            last = e
+            companion.FAILURES.append((time.strftime("%H:%M:%S"), f"speak:{m}", str(e)[:200]))
+    raise RuntimeError(f"no Gemini voice: {last}")
+
+
+async def _groq_tts(text):
+    import urllib.error
+    voice, blobs = SPEAK_VOICES[0], []
+    for chunk in _sentences(text):
+        for attempt in range(3):
+            try:
+                blobs.append(await asyncio.to_thread(_speak_chunk, chunk, voice))
+                break
+            except urllib.error.HTTPError as e:
+                body = e.read().decode(errors="ignore")[:300]
+                companion.FAILURES.append((time.strftime("%H:%M:%S"), f"speak:{voice}", f"{e} {body}"[:400]))
+                if e.code == 429 and "per minute" in body and attempt < 2:
+                    await asyncio.sleep(7)
+                    continue
+                raise   # daily cap (3,600 tokens on the free tier) or another error: next engine
+    return _join_wavs(blobs)
+
+
 @app.get("/api/speak")
 async def speak(text: str):
-    import hashlib
-    import urllib.error
+    """Read an answer aloud, for Vega's WebView (it has no speech API). Pre-recorded Kokoro audio first,
+    then Groq's Orpheus, then Gemini's speech model. Each free tier is small, so all three exist."""
     text = text.strip()[:700]
-    if not text or not os.environ.get("GROQ_API_KEY"):
+    if not text:
         raise HTTPException(404)
+    canned = VOICE_DIR / f"{voice_key(text)}.mp3"
+    if canned.is_file():
+        return FileResponse(canned, media_type="audio/mpeg", headers={"Cache-Control": "public, max-age=86400"})
     SPEAK_DIR.mkdir(parents=True, exist_ok=True)
-    voice = SPEAK_VOICES[0]   # one voice for everything; another is only tried if Groq rejects the name
-    path = SPEAK_DIR / (hashlib.sha1(f"{SPEAK_MODEL}|{voice}|{text}".encode()).hexdigest() + ".wav")
+    path = SPEAK_DIR / f"{voice_key(text)}.wav"
     if not path.exists():
-        blobs, chunks = [], _sentences(text)
-        for chunk in chunks:
-            for attempt in range(4):
-                try:
-                    blobs.append(await asyncio.to_thread(_speak_chunk, chunk, voice))
-                    break
-                except urllib.error.HTTPError as e:
-                    body = e.read().decode(errors="ignore")[:300]
-                    companion.FAILURES.append((time.strftime("%H:%M:%S"), f"speak:{voice}", f"{e} {body}"[:400]))
-                    if e.code == 429 and attempt < 3:   # 10 requests a minute on the free tier: wait, same voice
-                        await asyncio.sleep(7)
-                        continue
-                    if e.code == 400 and "invalid_voice" in body and len(SPEAK_VOICES) > 1:
-                        SPEAK_VOICES.pop(0)
-                    raise HTTPException(503, "voice unavailable")
-        path.write_bytes(_join_wavs(blobs))
+        audio = None
+        if os.environ.get("GROQ_API_KEY"):
+            try:
+                audio = await _groq_tts(text)
+            except Exception:
+                audio = None
+        if audio is None and os.environ.get("GEMINI_API_KEY"):
+            try:
+                audio = await asyncio.to_thread(_gemini_tts, text)
+            except Exception:
+                audio = None
+        if audio is None:
+            raise HTTPException(503, "voice unavailable")
+        path.write_bytes(audio)
     return FileResponse(path, media_type="audio/wav", headers={"Cache-Control": "public, max-age=86400"})
 
 
