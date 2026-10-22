@@ -271,10 +271,44 @@
   video.addEventListener('pause', function () { pausedAt = Date.now(); if (!activeLayer()) showControls(); savePosition(); pushState(); });
   video.addEventListener('play', function () { pausedAt = 0; if (!activeLayer()) showControls(); pushState(); });
   video.addEventListener('waiting', function () { $('buffering').classList.remove('hidden'); });
-  video.addEventListener('playing', function () { $('buffering').classList.add('hidden'); });
+  video.addEventListener('playing', function () { failStreak = 0; $('buffering').classList.add('hidden'); });
   video.addEventListener('canplay', function () { $('buffering').classList.add('hidden'); });
   video.addEventListener('seeking', function () { stopAd(); });
-  video.addEventListener('error', function () { $('buffering').classList.add('hidden'); toast("Couldn't load the film. Check the internet connection.", 6000); });
+  video.addEventListener('error', function () {
+    $('buffering').classList.add('hidden');
+    if (screen === 'player' && film && failStreak < 3) { failStreak++; reconnect(); return; }
+    toast("Couldn't load the film. Check the internet connection.", 6000);
+  });
+
+  // The free server sleeps after 15 quiet minutes, and a paused or fully buffered film makes no requests.
+  // Keep it awake while someone is on the player; if the film connection drops anyway, wait for the
+  // server and carry on from the same second.
+  var failStreak = 0, reconnecting = false, onMeta = null;
+  setInterval(function () { if (screen === 'player') fetch('/api/health').catch(function () { /* next tick */ }); }, 4 * 60 * 1000);
+  function reconnect() {
+    if (reconnecting) return;
+    reconnecting = true;
+    var f = film, t = video.currentTime || lastTick || 0, wasPlaying = !video.paused, tries = 0;
+    $('buffering').classList.remove('hidden');
+    toast('Connection lost. Reconnecting…', 6000);
+    (function attempt() {
+      if (screen !== 'player' || film !== f) { reconnecting = false; return; }
+      fetch('/api/health').then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); }).then(function () {
+        if (onMeta) video.removeEventListener('loadedmetadata', onMeta);
+        onMeta = function () {
+          video.removeEventListener('loadedmetadata', onMeta); onMeta = null;
+          try { video.currentTime = t; } catch (e) { /* not seekable yet */ }
+          if (wasPlaying) video.play().catch(function () { showControls(); });
+        };
+        video.addEventListener('loadedmetadata', onMeta);
+        video.src = f.video;
+        reconnecting = false;
+      }).catch(function () {
+        if (++tries > 40) { reconnecting = false; $('buffering').classList.add('hidden'); toast("Couldn't load the film. Check the internet connection.", 6000); return; }
+        setTimeout(attempt, 3000);
+      });
+    })();
+  }
   video.addEventListener('ended', function () { savePosition(); });
 
   // Playback tick: grow the knowledge horizon only by real watching, run AD and captions.
