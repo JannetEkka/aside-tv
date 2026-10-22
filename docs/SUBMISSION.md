@@ -79,6 +79,9 @@ amazon-fire-tv, vega-os, vega-sdk, react-native, webview, javascript, html5, css
 `docs/submission/gallery-1.jpg` … `gallery-8.jpg` (1920×1280, 3:2, captioned)
 
 ## Video demo link
+
+https://youtu.be/8459XKUURhs
+
 (YouTube link, public, under 3 minutes.) Upload `aside-demo.mp4` with:
 
 - **Title:** Aside: an AI that watches the film with you and never spoils (Fire TV)
@@ -145,6 +148,10 @@ No
 
 ## Friction Log
 
+https://github.com/JannetEkka/aside-tv/blob/main/docs/FRICTION_LOG.md
+
+(The same entries, for reference:)
+
 ```
 FL-1. Enable Developer Mode on a Vega stick from a Windows laptop
 Steps: Settings > About > device name x7 > Developer Options > Developer Mode > Continue (6-digit code); looked for the Vega CLI on Windows.
@@ -191,7 +198,7 @@ Steps: tried the usual Android tools.
 Expected: a screen recording command.
 Actual: scrcpy/screenrecord are Android-only; no Vega equivalent on a stick.
 Severity: Low
-Workaround: filmed the TV with a phone.
+Workaround: for the demo video, recorded the same web app in a desktop browser (headless Chromium driven like a remote), so the video doesn't show the stick itself.
 Suggestion: `vega device screenrecord`.
 
 FL-7. Amazon Devices Builder Tools MCP: first calls
