@@ -303,7 +303,7 @@
 
   // ---------- audio description: narration in the gaps between dialogue ----------
   // While the narrator speaks the film dips a little (not off) and fades back, as broadcast AD does.
-  var AD_DUCK = 0.65, AD_VOICE = 0.8;
+  var AD_DUCK = 0.6, AD_VOICE = 1.0;   // clips are loudness-levelled to -16 LUFS
   var adIndex = 0, adPlaying = null, fadeTimer = null;
   function fadeVolume(to, ms) {
     clearInterval(fadeTimer);
