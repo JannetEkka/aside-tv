@@ -4,6 +4,23 @@ Target: 2:45 or less (judges may stop at 3:00), English, nobody on camera. Every
 
 Before recording: wake the server (open its address on your phone), open Aside on the TV, and on the home screen set **Audio description: Off**, **Read answers aloud: On**, **Captions: Off**.
 
+## Quickest: one continuous take (about 4 minutes)
+
+Film the TV with your phone in one go, following these steps. Pauses and fumbles are fine; Claude cuts them out and adds the titles, explanation and narration.
+
+1. **Home screen.** Move to *Tears of Steel* and back to *Sintel* with the D-pad. Press **Play**.
+2. Hold **Right** (or Fast-forward) to skip to about **05:30**. Let it play to about **05:50** (the big dragon takes Scales).
+3. Press **Up** → **What just happened?** Wait until the answer has been read out.
+4. Press **Back**. Let the film play about 10 seconds.
+5. Press **Up** → **What did I miss?** → **I've been gone 2 min**. Wait for the answer.
+6. Press **Back**, then **Up** → **Ask by phone**. Scan the QR code with your phone (keep the camera on the TV; it's fine if the phone is out of shot) and ask out loud: **"Does she ever find Scales?"** Wait for the answer.
+7. Press **Back**. Skip ahead to about **09:00** (inside the cave). Ask on the phone: **"Is the big dragon Scales?"** Wait for the answer.
+8. Press **Back** twice to the home screen. Turn **Audio description: On**. Open *Sintel* → **Start over**, and let the first 40 seconds play.
+
+Then upload the video to Google Drive, set sharing to **Anyone with the link**, and send Claude the link.
+
+## The longer shot list
+
 Each take can be long and messy. Pauses and retries are fine, because they get cut.
 
 | # | What to do on the TV | Roughly | Why it's in the video |
