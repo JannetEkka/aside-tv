@@ -37,7 +37,7 @@ It runs on a real **Fire TV Stick 4K Select (Vega OS)**, built from Amazon's Veg
 - **Audio description that never talks over dialogue.** Silent gaps come from the subtitle timings; each gap gets a word budget (2.5 words a second), Gemini writes a description for it while watching, and the narration is levelled and fitted to the gap. The track is also exported as standard WebVTT.
 - **Answers from only what you've seen.** For a question at 08:12 the server passes only the facts up to 08:12, and swaps names the film hasn't said yet for descriptions. The model is told never to assert or deny anything the film hasn't shown.
 - **A second model checks every answer against the rest of the film.** It sees what you've seen and what happens later, and rewrites or withholds anything that reveals, rules out or teases the future. Button answers that still fail fall back to a plain recap stitched from the timeline's own facts, so they can't spoil.
-- **Fire TV apps.** The TV UI is plain ES2017 on a 1920×1080 stage with geometric D-pad focus. On Vega, a React Native for Vega app hosts it in a Vega WebView (`allowSystemKeyEvents` for Back, `postMessage` to exit); Vega's WebView has no speech API, so answers are read aloud by the server. On Fire OS, a Kotlin WebView wrapper forwards Back, Menu and media keys and uses Android TextToSpeech.
+- **Fire TV apps.** The TV UI is plain ES2017 on a 1920×1080 stage with geometric D-pad focus. On Vega, a React Native for Vega app hosts it in a Vega WebView (`allowSystemKeyEvents` for Back, `postMessage` to exit); Vega's WebView has no speech API, so answers are read aloud by the server (pre-recorded with the open Kokoro voice for prepared answers; Groq Orpheus or Gemini speech for live ones). On Fire OS, a Kotlin WebView wrapper forwards Back, Menu and media keys and uses Android TextToSpeech.
 - **Free tiers only.** FastAPI on Render's free plan; answers and checks fall back across Groq (gpt-oss-120b, Qwen 3.8, gpt-oss-20b), Gemini Flash and Gemma; the one-button answers are prepared ahead of time every 30 seconds so they stay instant when free tiers are busy.
 
 ## Measured, not promised
@@ -69,7 +69,7 @@ Inside a streaming player (Prime Video's X-Ray Recaps already summarises up to y
 ```
 
 ## Built with
-amazon-fire-tv, vega-os, vega-sdk, react-native, webview, javascript, html5, css3, python, fastapi, google-gemini, gemma, groq, gpt-oss, qwen, orpheus-tts, ffmpeg, kotlin, android, render, amazon-devices-builder-tools, mcp, webvtt, claude-code
+amazon-fire-tv, vega-os, vega-sdk, react-native, webview, javascript, html5, css3, python, fastapi, google-gemini, gemma, groq, gpt-oss, qwen, kokoro-tts, ffmpeg, kotlin, android, render, amazon-devices-builder-tools, mcp, webvtt, claude-code
 
 ## "Try it out" links
 - https://github.com/JannetEkka/aside-tv
@@ -168,7 +168,7 @@ Steps: called window.speechSynthesis.
 Expected: speech, as in Chromium.
 Actual: not available in Vega WebView (confirmed by community threads); no WebView-level TTS bridge documented.
 Severity: Medium (an accessibility feature)
-Workaround: the server renders speech (Groq Orpheus) and the page plays the audio.
+Workaround: the server renders speech (pre-recorded Kokoro audio, then Groq Orpheus, then Gemini's speech model) and the page plays the audio.
 Suggestion: expose speechSynthesis, or document a native TTS module that a WebView app can bridge to.
 
 FL-6. Record the screen of a Vega stick for a demo
@@ -219,7 +219,7 @@ On a Fire TV Stick: Vega OS sticks install https://aside-tv.onrender.com/vpkg (s
 - Amazon Devices Builder Tools MCP server: Fire OS and Vega documentation search from our coding agent (remote key codes, WebView settings, Vega WebView migration and remote-input guides, VDA over TCP/IP).
 - Fire OS (Android WebView, Kotlin): a second build for Fire OS sticks.
 - Amazon Developer Console: developer registration and the vendor used for Developer Mode.
-Not Amazon: Google Gemini API (video understanding, answers), Groq (gpt-oss, Qwen, Orpheus speech), Gemma, FastAPI, Render, ffmpeg, Claude Code.
+Not Amazon: Google Gemini API (video understanding, answers, speech fallback), Groq (gpt-oss, Qwen, Orpheus speech), Gemma, Kokoro (open-weight speech), FastAPI, Render, ffmpeg, Claude Code.
 ```
 
 ## Feedback Question 2: What worked well?
@@ -264,7 +264,7 @@ Yes. A web app inside a thin native shell ran on both Fire OS and Vega OS with a
 ## Which AI tools have you leveraged?
 
 ```
-Claude Code (Anthropic) to write, test and debug the code, directed and reviewed by me. Google Gemini (watching each film to build its timeline and audio description; answer fallback). Groq-hosted gpt-oss-120b, Qwen 3.8 27B and gpt-oss-20b (answers and the spoiler check), Gemma 4 (fallback), Groq Orpheus (speech). Amazon Devices Builder Tools MCP server (Fire OS and Vega documentation from the coding agent).
+Claude Code (Anthropic) to write, test and debug the code, directed and reviewed by me. Google Gemini (watching each film to build its timeline and audio description; answer fallback). Groq-hosted gpt-oss-120b, Qwen 3.8 27B and gpt-oss-20b (answers and the spoiler check), Gemma 4 (fallback), Kokoro-82M, Groq Orpheus and Gemini speech (reading answers and audio description aloud). Amazon Devices Builder Tools MCP server (Fire OS and Vega documentation from the coding agent).
 ```
 
 ## Level of learning
