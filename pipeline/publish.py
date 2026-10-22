@@ -4,8 +4,10 @@
 
 Writes data/films/<id>/public.json (title, playback info, captions, audio description cues),
 descriptions.vtt and captions.vtt (WebVTT, for any player),
-the backdrop and card images, and one narrated MP3 per audio description cue (Piper, an open-source offline voice: the LJSpeech
-voice, trained on public-domain recordings).
+the backdrop and card images, and one narrated MP3 per audio description cue: by default through an
+Aside server's /api/speak (Groq's Orpheus voice, the one that reads answers), or offline with Piper
+(--piper; the LJSpeech voice, trained on public-domain recordings). Every clip is loudness-levelled,
+and sped up slightly if it would run past its silent gap.
 The scene notes and facts stay in timeline.json, which only the server reads.
 """
 import argparse
@@ -13,6 +15,9 @@ import json
 import os
 import subprocess
 import tempfile
+import time
+import urllib.parse
+import urllib.request
 
 from common import FILMS
 
@@ -30,16 +35,37 @@ def duration(path):
     return round(float(r.stdout.strip()), 2)
 
 
-def narrate(cues, folder):
+def speak_wav(text, wav, server):
+    if not server:
+        subprocess.run(["python3", "-m", "piper", "-m", VOICE, "--length-scale", "0.9", "-f", wav],
+                       input=text, text=True, check=True, capture_output=True)
+        return
+    url = server.rstrip("/") + "/api/speak?text=" + urllib.parse.quote(text)
+    for attempt in range(5):
+        try:
+            with urllib.request.urlopen(url, timeout=90) as r, open(wav, "wb") as f:
+                f.write(r.read())
+            return
+        except Exception as e:
+            print(f"  retry {attempt + 1}: {e}")
+            time.sleep(10 * (attempt + 1))
+    raise RuntimeError(f"no voice for: {text[:40]}")
+
+
+def narrate(cues, folder, server=None):
     folder.mkdir(exist_ok=True)
     for c in cues:
         path = folder / f"{c['id']}.mp3"
         if not (path.exists() and path.stat().st_size > 1000):
             with tempfile.NamedTemporaryFile(suffix=".wav") as wav:
-                subprocess.run(["python3", "-m", "piper", "-m", VOICE, "--length-scale", "0.9", "-f", wav.name],
-                               input=c["text"], text=True, check=True, capture_output=True)
-                subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", wav.name, "-ac", "1", "-c:a", "libmp3lame",
-                                "-b:a", "64k", str(path)], check=True)
+                speak_wav(c["text"], wav.name, server)
+                gap = c["end"] - c["start"]
+                tempo = min(1.25, max(1.0, duration(wav.name) / max(gap, 0.5)))   # fit the gap
+                subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", wav.name, "-af",
+                                f"atempo={tempo:.3f},loudnorm=I=-16:TP=-1.5:LRA=11", "-ac", "1", "-ar", "24000",
+                                "-c:a", "libmp3lame", "-b:a", "64k", str(path)], check=True)
+            if server:
+                time.sleep(7)   # the speech model's free tier allows 10 requests a minute
         c["audio_s"] = duration(path)
 
 
@@ -62,6 +88,9 @@ def main():
     ap.add_argument("film")
     ap.add_argument("--video", required=True, help="the 720p MP4 that is published")
     ap.add_argument("--still", type=float, required=True, help="second to take the backdrop from")
+    ap.add_argument("--voice-server", default="https://aside-tv.onrender.com",
+                    help="Aside server whose /api/speak renders the narration")
+    ap.add_argument("--piper", action="store_true", help="render offline with Piper instead")
     args = ap.parse_args()
 
     d = FILMS / args.film
@@ -70,7 +99,7 @@ def main():
     frame(args.video, args.still, d / "thumb.jpg", "crop=ih*16/9:ih,scale=640:360")
 
     cues = [dict(c) for c in tl.get("ad", [])]
-    narrate(cues, d / "ad")
+    narrate(cues, d / "ad", None if args.piper else args.voice_server)
     long = [c["id"] for c in cues if c["audio_s"] > c["end"] - c["start"] + 0.5]
     if long:
         print("narration longer than its gap:", ", ".join(long))

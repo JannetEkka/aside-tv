@@ -310,27 +310,30 @@ def _join_wavs(blobs):
 @app.get("/api/speak")
 async def speak(text: str):
     import hashlib
+    import urllib.error
     text = text.strip()[:700]
     if not text or not os.environ.get("GROQ_API_KEY"):
         raise HTTPException(404)
     SPEAK_DIR.mkdir(parents=True, exist_ok=True)
-    path = SPEAK_DIR / (hashlib.sha1(f"{SPEAK_MODEL}|{text}".encode()).hexdigest() + ".wav")
+    voice = SPEAK_VOICES[0]   # one voice for everything; another is only tried if Groq rejects the name
+    path = SPEAK_DIR / (hashlib.sha1(f"{SPEAK_MODEL}|{voice}|{text}".encode()).hexdigest() + ".wav")
     if not path.exists():
-        last = None
-        for voice in list(SPEAK_VOICES):
-            try:
-                blobs = [await asyncio.to_thread(_speak_chunk, chunk, voice) for chunk in _sentences(text)]
-                path.write_bytes(_join_wavs(blobs))
-                if SPEAK_VOICES[0] != voice:   # remember the voice that works
-                    SPEAK_VOICES.remove(voice)
-                    SPEAK_VOICES.insert(0, voice)
-                break
-            except Exception as e:
-                last = e
-                body = e.read().decode(errors="ignore")[:300] if hasattr(e, "read") else ""
-                companion.FAILURES.append((time.strftime("%H:%M:%S"), f"speak:{voice}", f"{e} {body}"[:400]))
-        else:
-            raise HTTPException(503, f"voice unavailable: {last}")
+        blobs, chunks = [], _sentences(text)
+        for chunk in chunks:
+            for attempt in range(4):
+                try:
+                    blobs.append(await asyncio.to_thread(_speak_chunk, chunk, voice))
+                    break
+                except urllib.error.HTTPError as e:
+                    body = e.read().decode(errors="ignore")[:300]
+                    companion.FAILURES.append((time.strftime("%H:%M:%S"), f"speak:{voice}", f"{e} {body}"[:400]))
+                    if e.code == 429 and attempt < 3:   # 10 requests a minute on the free tier: wait, same voice
+                        await asyncio.sleep(7)
+                        continue
+                    if e.code == 400 and "invalid_voice" in body and len(SPEAK_VOICES) > 1:
+                        SPEAK_VOICES.pop(0)
+                    raise HTTPException(503, "voice unavailable")
+        path.write_bytes(_join_wavs(blobs))
     return FileResponse(path, media_type="audio/wav", headers={"Cache-Control": "public, max-age=86400"})
 
 
